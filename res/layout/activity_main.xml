@@ -19,5 +19,14 @@
         android:textSize="15dp"
         android:gravity="center_horizontal"
         android:id="@+id/loading"/>
+    <ImageView 
+        android:adjustViewBounds="true"
+		android:scaleType="centerCrop"
+        android:layout_height="90dip" 
+    	android:layout_width="300dip" 
+    	android:layout_gravity="center" 
+    	android:maxWidth="160dip"
+    	android:id="@+id/USAQIimageView">
+    </ImageView> 
 
 </LinearLayout>

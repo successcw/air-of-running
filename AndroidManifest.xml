@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="com.successcw.airofrunning.service.IntentService">
+            <intent-filter android:priority="1000">
+                <action android:name="com.successcw.airofrunning.intentservice"/>
+                <category android:name="android.intent.category.DEFAULT" /> 
+            </intent-filter>
+        </service>
     </application>
     
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>

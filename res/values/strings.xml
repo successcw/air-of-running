@@ -3,7 +3,7 @@
 
     <string name="app_name">Air of Running</string>
     <string name="hello_world">US Consulate Shanghai Air Quality</string>
-    <string name="loading">loading...</string>
+    <string name="loading"></string>
     <string name="menu_settings">Settings</string>
 
 </resources>
