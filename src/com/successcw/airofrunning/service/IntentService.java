@@ -22,6 +22,7 @@ import com.successcw.airofrunning.nettool.NetTool;
 public class IntentService extends Service{
 	
 	XMLGettersSetters data;
+	boolean flag = false;
 	public LocalBinder binder = new LocalBinder();
 	
 	public IntentService() {
@@ -69,33 +70,39 @@ public class IntentService extends Service{
 				XMLHandler myXMLHandler = new XMLHandler();
 				xmlR.setContentHandler(myXMLHandler);
 				xmlR.parse(new InputSource(url.openStream()));
+				flag = true;
 				
 			} catch (Exception e) {
 				System.out.println(e);
+				Intent intent = new Intent("com.successcw.airofrunning.noNet");
+				sendBroadcast(intent);
+				Log.e(ACTIVITY_SERVICE, "noNet");
 			}
 
-			data = XMLHandler.data;
-			byte[] USAQIImageData = null;
-			
-			//获取美国上海领事馆AQI图片
-			String path = "http://www.beijingaqifeed.com/shanghaiaqi/CurrentAQI.jpg";
-			
-			try{
-				USAQIImageData = NetTool.getImage(path);
-                //Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
-                //imageView.setImageBitmap(bm);
-            }catch(Exception e){
-                Log.i("获取图片失败",e.toString());
-            //e.printStackTrace();
-                //Toast.makeText(DataActivity.this, "获取图片失败", 1);
-            }
-			
-			
-			
-			Intent intent = new Intent("com.successcw.airofrunning.entity");
-			intent.putExtra("USAQI", data.getDescription().get(1));
-			intent.putExtra("USAQIIMAGE", USAQIImageData);
-			sendBroadcast(intent);
+			if(flag) {
+				data = XMLHandler.data;
+				byte[] USAQIImageData = null;
+				
+				//获取美国上海领事馆AQI图片
+				String path = "http://www.beijingaqifeed.com/shanghaiaqi/CurrentAQI.jpg";
+				
+				try{
+					USAQIImageData = NetTool.getImage(path);
+	                //Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
+	                //imageView.setImageBitmap(bm);
+	            }catch(Exception e){
+	                Log.i("获取图片失败",e.toString());
+	            //e.printStackTrace();
+	                //Toast.makeText(DataActivity.this, "获取图片失败", 1);
+	            }
+				flag = false;
+				
+				
+				Intent intent = new Intent("com.successcw.airofrunning.entity");
+				intent.putExtra("USAQI", data.getDescription().get(1));
+				intent.putExtra("USAQIIMAGE", USAQIImageData);
+				sendBroadcast(intent);
+			}
 			super.run();
 		}
 	}

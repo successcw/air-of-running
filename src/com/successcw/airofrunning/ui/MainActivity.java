@@ -1,4 +1,4 @@
-package com.successcw.airofrunning;
+package com.successcw.airofrunning.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -57,6 +57,7 @@ public class MainActivity extends Activity {
 			if (action.equals("com.successcw.airofrunning.noNet")) {
 				Toast.makeText(context, "ÍøÂçÒì³£,Çë¼ì²éÄúµÄÍøÂç!", Toast.LENGTH_LONG)
 				.show();
+				handler.sendEmptyMessage(2);
 			}
 			if (action.equals("com.successcw.airofrunning.entity")) {
 				USAQI = (String) intent.getSerializableExtra("USAQI");

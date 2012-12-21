@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.successcw.airofrunning;
+package com.successcw.airofrunning.ui;
 
 public final class R {
     public static final class attr {
