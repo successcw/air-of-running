@@ -10,14 +10,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +28,13 @@ public class MainActivity extends Activity {
 	private static final int DIALOG = 1;
 	private Intent service;
 	public IntentService AirOfRunningService;
-	String USAQI = "";
+	String USAQIVALUE = "";
+	String USAQITIME = "";
+	String SHUPDATETIME = "";
+	String SHUPDATEDATE = "";
+	String SHPM2_5 = "";
+	String SHAQIVALUE = "";
+	String SHAQILEVEL = "";
 	byte[] USAQIIMAGE = null;
 	Bitmap bm;
 	
@@ -60,9 +66,13 @@ public class MainActivity extends Activity {
 				handler.sendEmptyMessage(2);
 			}
 			if (action.equals("com.successcw.airofrunning.entity")) {
-				USAQI = (String) intent.getSerializableExtra("USAQI");
-				USAQIIMAGE = (byte[]) intent.getSerializableExtra("USAQIIMAGE");
-				bm = BitmapFactory.decodeByteArray(USAQIIMAGE, 0, USAQIIMAGE.length);
+				USAQIVALUE = (String) intent.getSerializableExtra("USAQIVALUE");
+				USAQITIME = (String) intent.getSerializableExtra("USAQITIME");
+				SHUPDATEDATE = (String) intent.getSerializableExtra("SHUPDATEDATE");
+				SHUPDATETIME = (String) intent.getSerializableExtra("SHUPDATETIME");
+				SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
+				SHAQIVALUE = (String) intent.getSerializableExtra("SHAQIVALUE");
+				//SHPM2_5 = (String) intent.getSerializableExtra("SHPM2_5");
 				handler.sendEmptyMessage(2);
 			}
 		}
@@ -144,13 +154,127 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+	public int Linear(int AQIhigh, int AQIlow, float Conchigh, float Conclow, float Concentration)
+	{
+		int linear;
+		//float Conc =  Float.parseFloat(Concentration);
+		float temp;
+		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
+		linear=Math.round(temp);
+		return linear;
+	}
+	public int AQIPM25(String Concentration)
+	{
+		float Conc = Float.parseFloat(Concentration);
+		Log.i("AQIPM25", Float.toString(Conc));
+		float c = (float)(Math.floor(10*Conc))/10;
+		
+		int AQI = 0;
+	
+		if (c>=0 && c<15.5)
+		{
+			AQI=Linear(50,0,15.4f,0,c);
+		}
+		else if (c>=15.5 && c<35.5)
+		{
+			AQI=Linear(100,51,35.4f,15.5f,c);
+		}
+		else if (c>=35.5 && c<65.5)
+		{
+			AQI=Linear(150,101,65.4f,35.5f,c);
+		}
+		else if (c>=65.5 && c<150.5)
+		{
+			AQI=Linear(200,151,150.4f,65.5f,c);
+		}
+		else if (c>=150.5 && c<250.5)
+		{
+			AQI=Linear(300,201,250.4f,150.5f,c);
+		}
+		else if (c>=250.5 && c<350.5)
+		{
+			AQI=Linear(400,301,350.4f,250.5f,c);
+		}
+		else if (c>=350.5 && c<500.5)
+		{
+			AQI=Linear(500,401,500.4f,350.5f,c);
+		}
+		else
+		{
+			AQI=100000;
+		}
+		return AQI;
+	}
+	
 	private void createMainView() {
 		View layout = findViewById(R.id.layout);
 		
-		ImageView USAQIimageView = (ImageView)findViewById(R.id.USAQIimageView);
-		USAQIimageView.setImageBitmap(bm);
-		TextView loading = (TextView)findViewById(R.id.loading);
-		loading.setText(USAQI);
+		//ImageView USAQIimageView = (ImageView)findViewById(R.id.USAQIimageView);
+		//USAQIimageView.setImageBitmap(bm);
+
+		String []Array = USAQITIME.split(" ");
+		USAQITIME = Array[1];
+		TextView US = (TextView)findViewById(R.id.US);
+		US.setText("美国上海领事馆 " + SHUPDATEDATE + " " + USAQITIME + "发布" );
+		
+		TextView USAQIVALUEView = (TextView)findViewById(R.id.USAQIVALUE);
+		TextView SHView = (TextView)findViewById(R.id.SH);
+		SHView.setText("上海官方 " + SHUPDATEDATE + " " + SHUPDATETIME + "发布" );
+		TextView SHAQIVALUEView = (TextView)findViewById(R.id.SHAQIVALUE);
+		
+		
+		//update US AQI
+		if(Integer.parseInt(USAQIVALUE.toString()) < 50 ){
+			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "健康");
+			USAQIVALUEView.setTextColor(Color.GREEN);
+			USAQIVALUEView.setTextSize(20);
+			
+		}else if (Integer.parseInt(USAQIVALUE.toString()) < 100 && Integer.parseInt(USAQIVALUE.toString()) >= 51){
+			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "中等");			
+			USAQIVALUEView.setTextColor(Color.YELLOW);
+			USAQIVALUEView.setTextSize(20);
+			
+		}else if (Integer.parseInt(USAQIVALUE.toString()) < 150 && Integer.parseInt(USAQIVALUE.toString()) >= 101){
+			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "对敏感人群不健康");
+			USAQIVALUEView.setTextColor(Color.rgb(255,165,0));
+			USAQIVALUEView.setTextSize(20);			
+		}else if (Integer.parseInt(USAQIVALUE.toString()) < 200 && Integer.parseInt(USAQIVALUE.toString()) >= 151){
+			USAQIVALUEView.setTextColor(Color.RED);
+			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "不健康");
+			USAQIVALUEView.setTextSize(20);		
+		}else if (Integer.parseInt(USAQIVALUE.toString()) < 300 && Integer.parseInt(USAQIVALUE.toString()) >= 201){
+			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "非常不健康");
+			USAQIVALUEView.setTextColor(Color.rgb(176,48,96));
+			USAQIVALUEView.setTextSize(20);
+		}else if (Integer.parseInt(USAQIVALUE.toString()) < 501 && Integer.parseInt(USAQIVALUE.toString()) >= 301){
+			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "危险");
+			USAQIVALUEView.setTextColor(Color.rgb(139,69,19));
+			USAQIVALUEView.setTextSize(20);		
+		}else{
+			USAQIVALUEView.setText("AQI:"+USAQIVALUE+" "+ "爆表");
+			USAQIVALUEView.setTextColor(Color.rgb(139,69,19));
+			USAQIVALUEView.setTextSize(20);					
+		}
+		
+		//update SH AQI value
+		SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
+		SHAQIVALUEView.setTextSize(20);
+		if(Integer.parseInt(SHAQIVALUE.toString()) < 50 ){
+			SHAQIVALUEView.setTextColor(Color.GREEN);		
+		}else if (Integer.parseInt(SHAQIVALUE.toString()) < 100 && Integer.parseInt(SHAQIVALUE.toString()) >= 51){
+			SHAQIVALUEView.setTextColor(Color.YELLOW);		
+		}else if (Integer.parseInt(SHAQIVALUE.toString()) < 150 && Integer.parseInt(SHAQIVALUE.toString()) >= 101){
+			SHAQIVALUEView.setTextColor(Color.rgb(255,165,0));		
+		}else if (Integer.parseInt(SHAQIVALUE.toString()) < 200 && Integer.parseInt(SHAQIVALUE.toString()) >= 151){
+			SHAQIVALUEView.setTextColor(Color.RED);	
+		}else if (Integer.parseInt(SHAQIVALUE.toString()) < 300 && Integer.parseInt(SHAQIVALUE.toString()) >= 201){
+			SHAQIVALUEView.setTextColor(Color.rgb(176,48,96));
+		}else if (Integer.parseInt(SHAQIVALUE.toString()) < 501 && Integer.parseInt(SHAQIVALUE.toString()) >= 301){
+			SHAQIVALUEView.setTextColor(Color.rgb(139,69,19));		
+		}else{			
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ "爆表");
+			SHAQIVALUEView.setTextColor(Color.rgb(139,69,19));			
+		}	
 		setContentView(layout);
 	}
 

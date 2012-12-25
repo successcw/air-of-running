@@ -5,6 +5,15 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+import org.kxml2.kdom.Element;
+
+import android.util.Log;
+import android.widget.Toast;
+
 public class NetTool {
 	public static byte[] readStream(InputStream inStream) throws Exception{
         //实例化一个存放输出流的字节数组
@@ -60,5 +69,54 @@ public class NetTool {
         }
         return null;
       }
+   public static String getSHAQI(String MethodName) {
+		String NAMESPACE = "http://tempuri.org/";
+		String SOAP_ACTION = NAMESPACE + MethodName;
+		String URL = "http://202.136.217.188/AQIWS4Moblie/WebService.asmx";
+		
+		SoapObject request = new SoapObject(NAMESPACE, MethodName);        
+		
+		Element[] header = new Element[1];
+		header[0] = new Element().createElement(NAMESPACE, "MySoapHeader");
+		Element username = new Element().createElement(NAMESPACE, "UserName");
+		username.addChild(4, "8564879f-3d1a-4c4f-9219-47f1fa5a6790");
+		header[0].addChild(2, username);
+		
+		Element pass = new Element().createElement(NAMESPACE, "PassWord");
+		pass.addChild(4, "a1ea259d-068c-4aab-a795-0191f3b5e6f3");
+		header[0].addChild(2, pass);
+		
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);    	
+    	envelope.headerOut = header;
+    	envelope.bodyOut = request;
+    	envelope.dotNet = true;
+	
+    	try {
+    		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+    		
+    		androidHttpTransport.debug = true;
+    		//this is the actual part that will call the webservice
+    		androidHttpTransport.call(SOAP_ACTION, envelope);
+    		
+    		
+    		// Get the SoapResult from the envelope body.
+        	SoapObject result = (SoapObject)envelope.bodyIn;
+        	if(result != null)
+        	{
+        		Log.e("NetTool", result.getProperty(0).toString());
+        		return result.getProperty(0).toString();
+        		//Get the first property and change the label text
+	    	}
+        	else
+        	{
+        		Log.e("NetTool", "Nothing");
+        		//Toast.makeText(getApplicationContext(), "No Response",Toast.LENGTH_LONG).show();
+        	}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+		
+		return null;
+   }
 }
 	
