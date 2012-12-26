@@ -105,8 +105,14 @@ public class IntentService extends Service{
 				
 				SHAQI= NetTool.getSHAQI("GetSiteAQIData").replace("$", " ").replace("#", " ").replace("*"," ");
 				String []SHAQIArray = SHAQI.split(" ");
-				for(String name:SHAQIArray)
-					Log.i("AQI:",name.toString());
+				//for(String name:SHAQIArray)
+				//	Log.i("AQI:",name.toString());
+				byte[] SHLandscape = null;
+				
+				//获取上海实时图片
+				String path = "http://www.semc.gov.cn/aqi/home/images/landscape.jpg";		
+
+				SHLandscape = NetTool.getImage(path);
 				
 				Intent intent = new Intent("com.successcw.airofrunning.entity");
 				intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
@@ -115,7 +121,7 @@ public class IntentService extends Service{
 				intent.putExtra("SHUPDATEDATE", SHAQIArray[21].toString());
 				intent.putExtra("SHUPDATETIME", SHAQIArray[22].toString());
 				intent.putExtra("SHAQIVALUE", SHAQIArray[16].toString());
-				//intent.putExtra("USAQIIMAGE", USAQIImageData);
+				intent.putExtra("SHLANDSCAPE", SHLandscape);
 				sendBroadcast(intent);
 			}catch(Exception e){
 				Log.i("AQI",e.toString());

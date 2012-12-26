@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent" 
+    android:background="#ffe3e3e3">
 
     <TextView
         android:id="@+id/US"
@@ -22,16 +23,6 @@
         android:textSize="15dp" />
 
     <TextView
-        android:id="@+id/SH"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:gravity="left"
-        android:text="@string/SH"
-        android:textSize="15dp" />
-
-    <TextView
         android:id="@+id/SHAQIVALUE"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
@@ -42,19 +33,45 @@
         android:textSize="15dp" />
 
 	<ImageView
-	    android:id="@+id/pointer"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/aqilevel"
-	    android:layout_below="@+id/aqilevel"
-	    android:src="@drawable/pointer" />
-
-	<ImageView
-	    android:id="@+id/aqilevel"
+	    android:id="@+id/usaqilevel"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/USAQIVALUE"
-	    android:src="@drawable/aqi" />
+	    android:layout_below="@+id/USAQIVALUE" />
 
+	<ImageView
+	    android:id="@+id/shaqilevel"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/SHAQIVALUE" />
+	
+    <TextView
+        android:id="@+id/shshijing"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/shaqilevel"
+        android:gravity="center_horizontal"
+        android:text="@string/shshijing"
+        android:textSize="15dp" />
+	
+	
+	<ImageView
+	    android:id="@+id/shlandscape"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignTop="@+id/shshijing" />
+
+	<TextView
+	    android:id="@+id/SH"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/usaqilevel"
+	    android:gravity="left"
+	    android:text="@string/SH"
+	    android:textSize="15dp" />
+	
 </RelativeLayout>
