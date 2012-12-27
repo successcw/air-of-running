@@ -115,6 +115,7 @@ public class IntentService extends Service{
 				SHLandscape = NetTool.getImage(path);
 				
 				Intent intent = new Intent("com.successcw.airofrunning.entity");
+				Log.i("USAQI",jsonObjRecv.toString());
 				intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
 				intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").toString());
 				intent.putExtra("SHAQILEVEL", SHAQIArray[SHAQIArray.length - 3].toString());

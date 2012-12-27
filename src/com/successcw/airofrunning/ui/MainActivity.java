@@ -231,6 +231,13 @@ public class MainActivity extends Activity {
 		return AQI;
 	}
 
+	public static Integer TryParseInt(String str) {
+        try {
+            return Integer.valueOf(str);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+	}
 	
 	private void createMainView() {
 		View layout = findViewById(R.id.layout);
@@ -274,9 +281,6 @@ public class MainActivity extends Activity {
 			  UStoast.show();
 		   }        
 		});
-
-
-		
 		
 		TextView SHShiJing = (TextView)findViewById(R.id.shshijing);
 		SHShiJing.setText("实景照片");
@@ -284,35 +288,39 @@ public class MainActivity extends Activity {
 		ImageView SHLandscape = (ImageView)findViewById(R.id.shlandscape);
 		SHLandscape.setImageBitmap(bm);
 		
+		Integer USAQIVALUETemp = TryParseInt(USAQIVALUE.toString());
+		
 		//update US AQI
-		if(Integer.parseInt(USAQIVALUE.toString()) <= 50 ){
+		if (USAQIVALUETemp == null) {
+			USAQIVALUEView.setText("AQI数据加载错误，请稍候重试");
+		}else if(Integer.valueOf(USAQIVALUETemp) <= 50){
 			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "健康");
 			USAQIVALUEView.setTextColor(Color.rgb(0,228,0));
 			USAQIVALUEView.setTextSize(20);
 			USAQILevel.setImageResource(R.drawable.aqi_1);
 			
-		}else if (Integer.parseInt(USAQIVALUE.toString()) <= 100 && Integer.parseInt(USAQIVALUE.toString()) >= 51){
+		}else if (Integer.valueOf(USAQIVALUETemp) <= 100 && Integer.valueOf(USAQIVALUETemp) >= 51){
 			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "中等");			
 			USAQIVALUEView.setTextColor(Color.rgb(255,255,0));
 			USAQIVALUEView.setTextSize(20);
 			USAQILevel.setImageResource(R.drawable.aqi_2);
 			
-		}else if (Integer.parseInt(USAQIVALUE.toString()) <= 150 && Integer.parseInt(USAQIVALUE.toString()) >= 101){
+		}else if (Integer.valueOf(USAQIVALUETemp) <= 150 && Integer.valueOf(USAQIVALUETemp) >= 101){
 			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "对敏感人群不健康");
 			USAQIVALUEView.setTextColor(Color.rgb(255,165,0));
 			USAQIVALUEView.setTextSize(20);		
 			USAQILevel.setImageResource(R.drawable.aqi_3);
-		}else if (Integer.parseInt(USAQIVALUE.toString()) <= 200 && Integer.parseInt(USAQIVALUE.toString()) >= 151){
+		}else if (Integer.valueOf(USAQIVALUETemp) <= 200 && Integer.valueOf(USAQIVALUETemp) >= 151){
 			USAQIVALUEView.setTextColor(Color.RED);
 			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "不健康");
 			USAQIVALUEView.setTextSize(20);		
 			USAQILevel.setImageResource(R.drawable.aqi_4);
-		}else if (Integer.parseInt(USAQIVALUE.toString()) <= 300 && Integer.parseInt(USAQIVALUE.toString()) >= 201){
+		}else if (Integer.valueOf(USAQIVALUETemp) <= 300 && Integer.valueOf(USAQIVALUETemp) >= 201){
 			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "非常不健康");
 			USAQIVALUEView.setTextColor(Color.rgb(176,48,96));
 			USAQIVALUEView.setTextSize(20);
 			USAQILevel.setImageResource(R.drawable.aqi_5);
-		}else if (Integer.parseInt(USAQIVALUE.toString()) <= 500 && Integer.parseInt(USAQIVALUE.toString()) >= 301){
+		}else if (Integer.valueOf(USAQIVALUETemp) <= 500 && Integer.valueOf(USAQIVALUETemp) >= 301){
 			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "危险");
 			USAQIVALUEView.setTextColor(Color.rgb(139,69,19));
 			USAQIVALUEView.setTextSize(20);
@@ -324,9 +332,6 @@ public class MainActivity extends Activity {
 			USAQILevel.setImageResource(R.drawable.aqi);
 		}
 		
-		//update SH AQI value
-		SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
-		SHAQIVALUEView.setTextSize(20);
 		ImageView SHAQILevel = (ImageView)findViewById(R.id.shaqilevel);
 		SHAQILevel.setOnClickListener(new View.OnClickListener() {
 			   //@Override
@@ -350,23 +355,34 @@ public class MainActivity extends Activity {
 		   }        
 		});
 		
+		Integer SHAQIVALUETemp = TryParseInt(SHAQIVALUE.toString());
+		//update SH AQI value
+		SHAQIVALUEView.setTextSize(20);
 		
-		if(Integer.parseInt(SHAQIVALUE.toString()) <= 50 ){
+		if (SHAQIVALUETemp == null) {
+			SHAQIVALUEView.setText("AQI数据加载错误，请稍候重试");
+		}else if (Integer.valueOf(SHAQIVALUETemp) <= 50){
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
 			SHAQIVALUEView.setTextColor(Color.rgb(0,228,0));	
 			SHAQILevel.setImageResource(R.drawable.aqi_1);
-		}else if (Integer.parseInt(SHAQIVALUE.toString()) <= 100 && Integer.parseInt(SHAQIVALUE.toString()) >= 51){
+		}else if (Integer.valueOf(SHAQIVALUETemp) <= 100 && Integer.valueOf(SHAQIVALUETemp) >= 51){
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
 			SHAQIVALUEView.setTextColor(Color.rgb(255,255,0));		
 			SHAQILevel.setImageResource(R.drawable.aqi_2);
-		}else if (Integer.parseInt(SHAQIVALUE.toString()) <= 150 && Integer.parseInt(SHAQIVALUE.toString()) >= 101){
+		}else if (Integer.valueOf(SHAQIVALUETemp) <= 150 && Integer.valueOf(SHAQIVALUETemp) >= 101){
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
 			SHAQIVALUEView.setTextColor(Color.rgb(255,165,0));
 			SHAQILevel.setImageResource(R.drawable.aqi_3);
-		}else if (Integer.parseInt(SHAQIVALUE.toString()) <= 200 && Integer.parseInt(SHAQIVALUE.toString()) >= 151){
+		}else if (Integer.valueOf(SHAQIVALUETemp) <= 200 && Integer.valueOf(SHAQIVALUETemp) >= 151){
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
 			SHAQIVALUEView.setTextColor(Color.RED);	
 			SHAQILevel.setImageResource(R.drawable.aqi_4);
-		}else if (Integer.parseInt(SHAQIVALUE.toString()) <= 300 && Integer.parseInt(SHAQIVALUE.toString()) >= 201){
+		}else if (Integer.valueOf(SHAQIVALUETemp) <= 300 && Integer.valueOf(SHAQIVALUETemp) >= 201){
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
 			SHAQIVALUEView.setTextColor(Color.rgb(176,48,96));
 			SHAQILevel.setImageResource(R.drawable.aqi_5);
-		}else if (Integer.parseInt(SHAQIVALUE.toString()) <= 500 && Integer.parseInt(SHAQIVALUE.toString()) >= 301){
+		}else if (Integer.valueOf(SHAQIVALUETemp) <= 500 && Integer.valueOf(SHAQIVALUETemp) >= 301){
+			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
 			SHAQIVALUEView.setTextColor(Color.rgb(139,69,19));
 			SHAQILevel.setImageResource(R.drawable.aqi_6);
 		}else{			
