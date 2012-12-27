@@ -103,7 +103,7 @@ public class NetTool {
         	SoapObject result = (SoapObject)envelope.bodyIn;
         	if(result != null)
         	{
-        		Log.e("NetTool", result.getProperty(0).toString());
+        		Log.i("NetTool", result.getProperty(0).toString());
         		return result.getProperty(0).toString();
         		//Get the first property and change the label text
 	    	}

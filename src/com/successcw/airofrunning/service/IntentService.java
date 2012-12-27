@@ -117,14 +117,17 @@ public class IntentService extends Service{
 				Intent intent = new Intent("com.successcw.airofrunning.entity");
 				intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
 				intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").toString());
-				intent.putExtra("SHAQILEVEL", SHAQIArray[20].toString());				
-				intent.putExtra("SHUPDATEDATE", SHAQIArray[21].toString());
-				intent.putExtra("SHUPDATETIME", SHAQIArray[22].toString());
-				intent.putExtra("SHAQIVALUE", SHAQIArray[16].toString());
+				intent.putExtra("SHAQILEVEL", SHAQIArray[SHAQIArray.length - 3].toString());
+				intent.putExtra("SHUPDATEDATE", SHAQIArray[SHAQIArray.length - 2].toString());
+				intent.putExtra("SHUPDATETIME", SHAQIArray[SHAQIArray.length - 1].toString());
+				intent.putExtra("SHAQIVALUE", SHAQIArray[1].toString());
 				intent.putExtra("SHLANDSCAPE", SHLandscape);
 				sendBroadcast(intent);
 			}catch(Exception e){
 				Log.i("AQI",e.toString());
+				Intent intent = new Intent("com.successcw.airofrunning.noNet");
+				intent.putExtra("ERRORMSG", e.toString());
+				sendBroadcast(intent);
 			}
 
 			

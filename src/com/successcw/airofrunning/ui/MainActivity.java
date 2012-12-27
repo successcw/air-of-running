@@ -66,7 +66,8 @@ public class MainActivity extends Activity {
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
 			if (action.equals("com.successcw.airofrunning.noNet")) {
-				Toast.makeText(context, "网络异常,请检查您的网络!", Toast.LENGTH_LONG)
+				String ERRORMSG = (String) intent.getSerializableExtra("ERRORMSG");
+				Toast.makeText(context, "出错了 " + ERRORMSG.toString(), Toast.LENGTH_LONG)
 				.show();
 				handler.sendEmptyMessage(2);
 			}
