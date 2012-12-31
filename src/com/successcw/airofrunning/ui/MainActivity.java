@@ -1,5 +1,9 @@
 package com.successcw.airofrunning.ui;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -11,13 +15,18 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,7 +62,9 @@ public class MainActivity extends Activity {
 				removeDialog(DIALOG);
 				createMainView();
 				break;
-				
+			case 3:
+				removeDialog(DIALOG);
+				break;
 			default:
 				break;
 			}
@@ -67,9 +78,9 @@ public class MainActivity extends Activity {
 			String action = intent.getAction();
 			if (action.equals("com.successcw.airofrunning.noNet")) {
 				String ERRORMSG = (String) intent.getSerializableExtra("ERRORMSG");
-				Toast.makeText(context, "出错了 " + ERRORMSG.toString(), Toast.LENGTH_LONG)
+				Toast.makeText(context, "出错了,请稍后重试" + ERRORMSG.toString(), Toast.LENGTH_LONG)
 				.show();
-				handler.sendEmptyMessage(2);
+				handler.sendEmptyMessage(3);
 			}
 			if (action.equals("com.successcw.airofrunning.entity")) {
 				USAQIVALUE = (String) intent.getSerializableExtra("USAQIVALUE");
@@ -115,8 +126,7 @@ public class MainActivity extends Activity {
 	        	if (UStoast != null)
 	        		UStoast.cancel();
 	        	if (SHtoast != null)
-	        	{
-	        		
+	        	{	        		
 	        		SHtoast.cancel();
 	        		Log.i("SHtoast", "cancel SHtoast");
 	        	}
@@ -173,12 +183,82 @@ public class MainActivity extends Activity {
 		//}
 		super.onDestroy();
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
+		//getMenuInflater().inflate(R.menu.activity_main, menu);
+		   menu.add(0,1,0,"weibo")
+	        .setIcon(R.drawable.pointer)
+	        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		return true;
 	}
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case 1:
+	            Log.i("MENU", "1 clicked");
+	            DisplayMetrics dm = new DisplayMetrics();
+	            getWindowManager().getDefaultDisplay().getMetrics(dm);
+	            int width = dm.widthPixels; 
+	            int height = dm.heightPixels;//获取屏幕的宽和高
+	            Rect rect = new Rect();
+	            View view= getWindow().getDecorView();
+	            view.getWindowVisibleDisplayFrame(rect);
+	            int statusBarHeight = rect.top;
+	            Log.i("状态栏高度",Integer.toString(statusBarHeight));
+	             
+	            int wintop = getWindow().findViewById(android.R.id.content).getTop();
+	            int titleBarHeight = wintop - statusBarHeight;
+	            Log.i("标题栏高度",Integer.toString(titleBarHeight));
+	            
+	       
+	            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+	            view.draw(new Canvas(bmp));
+	            
+	            File SpicyDirectory = new File("/sdcard/AirOfRunning/");
+	            SpicyDirectory.mkdirs();
+	            
+	            String filename="/sdcard/AirOfRunning/airofrunning.jpg";
+	            FileOutputStream out = null;
+	            try {
+	            out = new FileOutputStream(filename);
+	            bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
+	            } catch (Exception e) {
+	            e.printStackTrace();
+	            } finally {
+	            try {
+	            out.flush();
+	            } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	            }
+	            try {
+	            out.close();
+	            } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	            }
+	            out=null;
+	            }
+	            
+	            //view.draw(new Canvas(b));
+	            String url = "file:///" + "sdcard/AirOfRunning/airofrunning.jpg";
+	            //String url = "http://www.semc.gov.cn/aqi/home/images/landscape.jpg";
+	            Intent intent=new Intent(Intent.ACTION_SEND);  
+	            intent.setType("image/*");  //分享的数据类型       <-----只要改為intent.setType("image/*");就可以了
+	            intent.putExtra(Intent.EXTRA_SUBJECT, "Air of running");  //主题
+	            intent.putExtra(Intent.EXTRA_TEXT,  "跑步之前看看空气质量再决定跑不跑哦，高污染跑了不如不跑。 分享自：我的第一个应用：Air of Running，^_^。 友情提示：科学跑步，拒绝污染。");  //内容
+	            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));   //圖片
+	            startActivity(Intent.createChooser(intent, "标题"));  //目标应用选择对话框的标题
+	        default:
+	            return super.onOptionsItemSelected(item);
+        }
+    }
+	
 	public int Linear(int AQIhigh, int AQIlow, float Conchigh, float Conclow, float Concentration)
 	{
 		int linear;
