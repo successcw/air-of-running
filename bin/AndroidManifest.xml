@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.DEFAULT" /> 
             </intent-filter>
         </service>
+        <activity android:name="com.successcw.airofrunning.ui.weatheractivity"></activity>
     </application>
     
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>

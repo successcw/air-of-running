@@ -21,23 +21,38 @@ public final class R {
         public static final int ic_launcher=0x7f020007;
         public static final int landscape=0x7f020008;
         public static final int pointer=0x7f020009;
-        public static final int shaqilevel=0x7f02000a;
-        public static final int usaqilevel=0x7f02000b;
+        public static final int rain=0x7f02000a;
+        public static final int shaqilevel=0x7f02000b;
+        public static final int shvsus=0x7f02000c;
+        public static final int usaqilevel=0x7f02000d;
     }
     public static final class id {
-        public static final int SH=0x7f070004;
-        public static final int SHAQIVALUE=0x7f070003;
-        public static final int US=0x7f070001;
-        public static final int USAQIVALUE=0x7f070002;
-        public static final int layout=0x7f070000;
-        public static final int menu_settings=0x7f070009;
-        public static final int shaqilevel=0x7f070006;
-        public static final int shlandscape=0x7f070008;
-        public static final int shshijing=0x7f070007;
-        public static final int usaqilevel=0x7f070005;
+        public static final int SH=0x7f070005;
+        public static final int SHAQIVALUE=0x7f070004;
+        public static final int US=0x7f070002;
+        public static final int USAQIVALUE=0x7f070003;
+        public static final int jianyi=0x7f07000c;
+        public static final int kongqi=0x7f07000b;
+        public static final int layout=0x7f070001;
+        public static final int menu_settings=0x7f070012;
+        public static final int shaqilevel=0x7f070007;
+        public static final int shlandscape=0x7f070009;
+        public static final int shshijing=0x7f070008;
+        public static final int shvsus=0x7f070011;
+        public static final int textjianyi=0x7f070000;
+        public static final int textzixun=0x7f070010;
+        public static final int usaqilevel=0x7f070006;
+        public static final int view=0x7f07000a;
+        public static final int viewLine=0x7f07000e;
+        public static final int viewpager=0x7f07000f;
+        public static final int zixun=0x7f07000d;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int jianyi=0x7f030001;
+        public static final int kongqi=0x7f030002;
+        public static final int weather=0x7f030003;
+        public static final int zixun=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;

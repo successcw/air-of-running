@@ -1,77 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="#ffe3e3e3">
-
-    <TextView
-        android:id="@+id/US"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="@string/US"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/USAQIVALUE"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/US"
-        android:gravity="center_horizontal"
-        android:text="@string/USAQIVALUE"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/SHAQIVALUE"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/SH"
-        android:gravity="center_horizontal"
-        android:text="@string/SHAQIVALUE"
-        android:textSize="15dp" />
-
-	<ImageView
-	    android:id="@+id/usaqilevel"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/USAQIVALUE" />
-
-	<ImageView
-	    android:id="@+id/shaqilevel"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/SHAQIVALUE" />
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+	<TabHost 
+	    android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rain">
+	    <LinearLayout
+	        android:orientation="vertical"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent">
+	        //android:padding="5dp">
 	
-    <TextView
-        android:id="@+id/shshijing"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/shaqilevel"
-        android:gravity="center_horizontal"
-        android:text="@string/shshijing"
-        android:textSize="15dp" />
-	
-	
-	<ImageView
-	    android:id="@+id/shlandscape"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentBottom="true"
-	    android:layout_alignTop="@+id/shshijing" />
+	            <TabWidget
+	                android:id="@android:id/tabs"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="0.0"
+	                android:visibility="gone" />
 
-	<TextView
-	    android:id="@+id/SH"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/usaqilevel"
-	    android:gravity="left"
-	    android:text="@string/SH"
-	    android:textSize="15dp" />
-	
+			<FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0" >
+            </FrameLayout>
+	        </LinearLayout>
+    </TabHost>
 </RelativeLayout>

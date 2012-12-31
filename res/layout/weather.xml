@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+   		
+    	<LinearLayout
+        		android:id="@+id/view"
+        		android:layout_width="fill_parent"
+        		android:layout_height="20dp"
+        		android:layout_alignParentLeft="true"
+        		android:layout_alignParentTop="true"
+        		android:background="#4f888888">
+
+    		<TextView
+        		android:id="@+id/kongqi"
+        		android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1.0"
+        		android:gravity="center"
+        		android:text="空气"
+        		android:textAppearance="?android:attr/textAppearanceLarge"
+        		android:textColor="@android:color/white"
+        		android:textSize="15.0dip" 
+        		android:background="#4f000000"/>
+    		
+    		<TextView
+        		android:id="@+id/jianyi"
+        		android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1.0"
+        		android:gravity="center"
+        		android:text="建议"
+        		android:textAppearance="?android:attr/textAppearanceLarge"
+        		android:textColor="@android:color/white"
+        		android:textSize="15.0dip" />
+    		
+    		<TextView
+        		android:id="@+id/zixun"
+        		android:layout_width="fill_parent"
+        		android:layout_height="fill_parent"
+        		android:layout_weight="1.0"
+        		android:gravity="center"
+        		android:text="资讯"
+        		android:textAppearance="?android:attr/textAppearanceLarge"
+        		android:textColor="@android:color/white"
+        		android:textSize="15.0dip" />
+    		 </LinearLayout>
+    		
+  
+ 
+    	    
+    		<View
+        		android:id="@+id/viewLine"
+        		android:layout_width="match_parent"
+        		android:layout_height="1dp"
+        		android:background="@android:color/white"
+        		android:layout_below="@+id/view" />
+    
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#4f888888" />
+        
+    		
+</LinearLayout>
