@@ -118,5 +118,42 @@ public class NetTool {
 		
 		return null;
    }
+   
+   public static String getWeather(String CityName) {
+	   String NAMESPACE = "http://WebXml.com.cn/";
+	   String METHOD_NAME = "getWeatherbyCityName";
+	   String URL = "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx";
+	   String SOAP_ACTION = "http://WebXml.com.cn/getWeatherbyCityName";
+	   SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+	   
+	   request.addProperty("theCityName", CityName);
+	   SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+	   envelope.bodyOut = request;
+	   envelope.dotNet = true;
+
+   	
+	   try {
+			HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+			androidHttpTransport.call(SOAP_ACTION, envelope);
+			SoapObject result = (SoapObject)envelope.bodyIn;
+		
+			if(result != null)
+			{
+				Log.e("NET", result.getProperty(0).toString());
+				return result.getProperty(0).toString();
+			}
+			else
+			{
+				Log.e("NET", "weather:Nothing");
+				//Toast.makeText(getApplicationContext(), "No Response",Toast.LENGTH_LONG).show();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	   return null;
+   }
+   
 }
-	
+
+
+

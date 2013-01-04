@@ -44,10 +44,12 @@ public class MainActivity extends TabActivity {
 	String SHPM2_5 = "";
 	String SHAQIVALUE = "";
 	String SHAQILEVEL = "";
-	byte[] SHLANDSCAPE = null;
-	Bitmap bm;
-	Toast UStoast;
-	Toast SHtoast;
+	String SHISHITEMPRATURE = "";
+	String AIRCONDITION = "";
+	String TEMPRATURE = "";
+	String WIND = "";
+	String WEATHERICON = "";
+	String TEMPRATUREUPDATETIME = "";
 	private TabHost tabHost;
 	
 	Handler handler = new Handler() {
@@ -87,9 +89,14 @@ public class MainActivity extends TabActivity {
 				SHUPDATETIME = (String) intent.getSerializableExtra("SHUPDATETIME");
 				SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
 				SHAQIVALUE = (String) intent.getSerializableExtra("SHAQIVALUE");
-				SHLANDSCAPE = (byte[]) intent.getSerializableExtra("SHLANDSCAPE");
-				//SHPM2_5 = (String) intent.getSerializableExtra("SHPM2_5");
-				
+
+				SHISHITEMPRATURE = (String) intent.getSerializableExtra("SHISHITEMPRATURE");
+				AIRCONDITION = (String) intent.getSerializableExtra("AIRCONDITION");
+				TEMPRATURE = (String) intent.getSerializableExtra("TEMPRATURE");
+				WIND = (String) intent.getSerializableExtra("WIND");
+				WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
+				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
+						
 				handler.sendEmptyMessage(2);
 			}
 		}
@@ -114,23 +121,7 @@ public class MainActivity extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_main);
-		
-//		View layout = findViewById(R.id.layout); 
-//		layout.setOnClickListener(new View.OnClickListener() {
-//	        @Override
-//	        public void onClick(View v) {
-//	            // TODO Auto-generated method stub
-//	        	Log.i("layout", "onclick");
-//	        	if (UStoast != null)
-//	        		UStoast.cancel();
-//	        	if (SHtoast != null)
-//	        	{	        		
-//	        		SHtoast.cancel();
-//	        		Log.i("SHtoast", "cancel SHtoast");
-//	        	}
-//	        }
-//	    });
+		setContentView(R.layout.activity_main);	
 		handler.sendEmptyMessage(1);
 		
 		IntentFilter filter = new IntentFilter();
@@ -165,28 +156,19 @@ public class MainActivity extends TabActivity {
 
 	@Override
 	protected void onStop() {
-		//if (input != null) {
-			//stopService(service);
-			//unbindService(conn);
-			//unregisterReceiver(receiver);
-		//}
 		super.onStop();
 	}
 
 	@Override
 	protected void onDestroy() {
-		//if (input != null) {
-			stopService(service);
-			unbindService(conn);
-			unregisterReceiver(receiver);
-		//}
+		stopService(service);
+		unbindService(conn);
+		unregisterReceiver(receiver);
 		super.onDestroy();
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.activity_main, menu);
 		   menu.add(0,1,0,"·ÖÏí")
 	        .setIcon(R.drawable.pointer)
 	        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
@@ -261,7 +243,6 @@ public class MainActivity extends TabActivity {
 	public int Linear(int AQIhigh, int AQIlow, float Conchigh, float Conclow, float Concentration)
 	{
 		int linear;
-		//float Conc =  Float.parseFloat(Concentration);
 		float temp;
 		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
 		linear=Math.round(temp);
@@ -313,8 +294,6 @@ public class MainActivity extends TabActivity {
 
 	
 	private void createMainView() {
-		//View layout = findViewById(R.id.layout);	
-		//setContentView(layout);
         tabHost = getTabHost(); 
 		Intent intentWeather = new Intent(this, weatheractivity.class);
 		intentWeather.putExtra("USAQIVALUE", USAQIVALUE);
@@ -323,7 +302,12 @@ public class MainActivity extends TabActivity {
 		intentWeather.putExtra("SHUPDATETIME", SHUPDATETIME);
 		intentWeather.putExtra("SHAQILEVEL", SHAQILEVEL);
 		intentWeather.putExtra("SHAQIVALUE", SHAQIVALUE);
-		intentWeather.putExtra("SHLANDSCAPE", SHLANDSCAPE);
+		intentWeather.putExtra("SHISHITEMPRATURE", SHISHITEMPRATURE);
+		intentWeather.putExtra("AIRCONDITION", AIRCONDITION);
+		intentWeather.putExtra("TEMPRATURE", TEMPRATURE);
+		intentWeather.putExtra("WIND", WIND);
+		intentWeather.putExtra("WEATHERICON", WEATHERICON);
+		intentWeather.putExtra("TEMPRATUREUPDATETIME",TEMPRATUREUPDATETIME);
 		
 		tabHost.addTab(tabHost.newTabSpec("home").setIndicator("home")
 				.setContent(intentWeather));

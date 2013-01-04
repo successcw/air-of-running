@@ -31,11 +31,7 @@ import android.widget.Toast;
 public class weatheractivity extends Activity  {
 	private ViewPager mPager;//页卡内容
     private List<View> listViews; // Tab页面列表
-    private ImageView cursor;// 动画图片
     private TextView t1, t2, t3;// 页卡头标
-    private int offset = 0;// 动画图片偏移量
-    private int currIndex = 0;// 当前页卡编号
-    private int bmpW;// 动画图片宽度
     private TextView temp;
     private View ViewKongqi;
     private View ViewJianyi;
@@ -48,7 +44,12 @@ public class weatheractivity extends Activity  {
 	String SHPM2_5 = "";
 	String SHAQIVALUE = "";
 	String SHAQILEVEL = "";
-	byte[] SHLANDSCAPE = null;
+	String SHISHITEMPRATURE = "";
+	String AIRCONDITION = "";
+	String TEMPRATURE = "";
+	String WIND = "";
+	String WEATHERICON = "";
+	String TEMPRATUREUPDATETIME = "";
     
     /**
      * 初始化头标
@@ -151,20 +152,10 @@ public class weatheractivity extends Activity  {
      * 页卡切换监听
 */
     public class MyOnPageChangeListener implements OnPageChangeListener {
-
-        int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
-        int two = one * 2;// 页卡1 -> 页卡3 偏移量
-
         @Override
         public void onPageSelected(int arg0) {
-            Animation animation = null;
             switch (arg0) {
             case 0:
-                if (currIndex == 1) {
-                    animation = new TranslateAnimation(one, 0, 0, 0);
-                } else if (currIndex == 2) {
-                    animation = new TranslateAnimation(two, 0, 0, 0);
-                }
                 Log.i("PageChange","0");
                 loadKongqi();
             	temp = (TextView) findViewById(R.id.kongqi);
@@ -174,12 +165,7 @@ public class weatheractivity extends Activity  {
             	temp = (TextView) findViewById(R.id.zixun);
             	temp.setBackgroundColor(0x4f888888);
                 break;
-            case 1:
-                if (currIndex == 0) {
-                    animation = new TranslateAnimation(offset, one, 0, 0);
-                } else if (currIndex == 2) {
-                    animation = new TranslateAnimation(two, one, 0, 0);
-                }          
+            case 1:      
                 Log.i("PageChange","1");
                 loadJianyi();
             	temp = (TextView) findViewById(R.id.kongqi);
@@ -190,11 +176,6 @@ public class weatheractivity extends Activity  {
             	temp.setBackgroundColor(0x4f888888);
                 break;
             case 2:
-                if (currIndex == 0) {
-                    animation = new TranslateAnimation(offset, two, 0, 0);
-                } else if (currIndex == 1) {
-                    animation = new TranslateAnimation(one, two, 0, 0);
-                }
                 Log.i("PageChange","2");
                 loadZixun();
             	temp = (TextView) findViewById(R.id.kongqi);
@@ -205,10 +186,6 @@ public class weatheractivity extends Activity  {
             	temp.setBackgroundColor(0x4f000000);                
                 break;
             }
-            currIndex = arg0;
-            animation.setFillAfter(true);// True:图片停在动画结束位置
-            animation.setDuration(300);
-            //cursor.startAnimation(animation);
         }
 
         @Override
@@ -226,164 +203,156 @@ public class weatheractivity extends Activity  {
             return null;
         }
 	}
-    
-    private void loadKongqi() {
-    	ViewTemp = ViewKongqi;
-
-	    Bitmap bm = BitmapFactory.decodeByteArray(SHLANDSCAPE, 0, SHLANDSCAPE.length);
-		
-		//ImageView USAQIimageView = (ImageView)findViewById(R.id.USAQIimageView);
-		//USAQIimageView.setImageBitmap(bm);
 	
+    private void loadKongqi() {
+    	ViewTemp = ViewKongqi;	
+    	Integer[] icon=new Integer[]{ 
+    		    R.drawable.b_0,R.drawable.b_1,R.drawable.b_2, 
+    		    R.drawable.b_3,R.drawable.b_4,R.drawable.b_5,
+    		    R.drawable.b_6,R.drawable.b_7,R.drawable.b_8, 
+    		    R.drawable.b_9,R.drawable.b_10,R.drawable.b_11,
+    		    R.drawable.b_12,R.drawable.b_13,R.drawable.b_14, 
+    		    R.drawable.b_15,R.drawable.b_16,R.drawable.b_17,
+    		    R.drawable.b_18,R.drawable.b_19,R.drawable.b_20, 
+    		    R.drawable.b_21,R.drawable.b_22,R.drawable.b_23,
+    		    R.drawable.b_24,R.drawable.b_25,R.drawable.b_26, 
+    		    R.drawable.b_27,R.drawable.b_28,R.drawable.b_29,
+    		    R.drawable.b_30,R.drawable.b_31
+    	};
 		
-		TextView US = (TextView) ViewTemp.findViewById(R.id.US);
-		US.setText("美国上海领事馆 " + SHUPDATEDATE + " " + USAQITIME + "发布" );
-		//US.setTextSize(20);
+    	TextView shishitemprature = (TextView) ViewTemp.findViewById(R.id.shishitemprature);
+    	shishitemprature.setText(SHISHITEMPRATURE);
+
+    	TextView aircondition = (TextView) ViewTemp.findViewById(R.id.aircondition);
+    	aircondition.setText(AIRCONDITION);   	     	
+    	
+    	TextView temprature = (TextView) ViewTemp.findViewById(R.id.temprature);
+    	temprature.setText(TEMPRATURE);       	
+
+    	TextView wind = (TextView) ViewTemp.findViewById(R.id.wind);
+    	wind.setText(WIND);  
+
+    	ImageView weathericon = (ImageView) ViewTemp.findViewById(R.id.weathericon);
+    	weathericon.setImageResource(icon[Integer.valueOf(WEATHERICON)]);
+    	
+    	TextView tempratureupdatetime = (TextView) ViewTemp.findViewById(R.id.tempratureupdatetime);
+    	tempratureupdatetime.setText("今天" + TEMPRATUREUPDATETIME + "发布");     	
+    	
+		TextView US = (TextView) ViewTemp.findViewById(R.id.USupdatetime);
+		US.setText("今天" + USAQITIME + "发布  " );
 		
 		TextView USAQIVALUEView = (TextView)ViewTemp.findViewById(R.id.USAQIVALUE);
-		TextView SHView = (TextView)ViewTemp.findViewById(R.id.SH);
-		SHView.setText("上海官方 " + SHUPDATEDATE + " " + SHUPDATETIME + "发布" );
-		//SHView.setTextSize(20);
+		TextView SHView = (TextView)ViewTemp.findViewById(R.id.SHupdatetime);
+		SHView.setText("今天" + SHUPDATETIME + "发布" );
+
 		TextView SHAQIVALUEView = (TextView)ViewTemp.findViewById(R.id.SHAQIVALUE);
 	
-		ImageView USAQILevel = (ImageView)ViewTemp.findViewById(R.id.usaqilevel);
-		
-//		USAQILevel.setOnClickListener(new View.OnClickListener() {
-//			   //@Override
-//		   public void onClick(View v) {
-//			  Log.i("USToast", " click");
-//			  UStoast = Toast.makeText(weatheractivity.this,   
-//			            "美国标准", Toast.LENGTH_LONG);
-//			  ImageView imageView = new ImageView(weatheractivity.this);  
-//			  imageView.setImageResource(R.drawable.usaqilevel);
-//			  
-//			  View toastView = UStoast.getView();  
-//			  
-//			  LinearLayout linearLayout = new LinearLayout(weatheractivity.this);  
-//			  linearLayout.setOrientation(LinearLayout.HORIZONTAL);  
-//			  
-//			  linearLayout.addView(imageView);  
-//			  linearLayout.addView(toastView);  
-//			  
-//			  UStoast.setView(linearLayout);  
-//			  UStoast.show();
-//		   }        
-//		});
-		
-		TextView SHShiJing = (TextView)ViewTemp.findViewById(R.id.shshijing);
-		SHShiJing.setText("实景照片");
-		
-		ImageView SHLandscape = (ImageView)ViewTemp.findViewById(R.id.shlandscape);
-		SHLandscape.setImageBitmap(bm);
+		TextView USAQILEVELView = (TextView)ViewTemp.findViewById(R.id.USAQILEVEL);
 		
 		Integer USAQIVALUETemp = TryParseInt(USAQIVALUE.toString());
 		
 		//update US AQI
 		if (USAQIVALUETemp == null) {
 			USAQIVALUEView.setText("AQI数据加载错误，请稍候重试");
+			USAQILEVELView.setText(" ");
 		}else if(Integer.valueOf(USAQIVALUETemp) <= 50){
-			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "健康");
+			USAQIVALUEView.setText(USAQIVALUE);
+			USAQILEVELView.setText("健康");
 			USAQIVALUEView.setTextColor(Color.rgb(0,228,0));
-			USAQIVALUEView.setTextSize(20);
-			USAQILevel.setImageResource(R.drawable.aqi_1);
+			USAQILEVELView.setTextColor(Color.rgb(0,228,0));
 			
 		}else if (Integer.valueOf(USAQIVALUETemp) <= 100 && Integer.valueOf(USAQIVALUETemp) >= 51){
-			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "中等");			
+			USAQIVALUEView.setText(USAQIVALUE);	
+			USAQILEVELView.setText("中等");
 			USAQIVALUEView.setTextColor(Color.rgb(255,255,0));
-			USAQIVALUEView.setTextSize(20);
-			USAQILevel.setImageResource(R.drawable.aqi_2);
+			USAQILEVELView.setTextColor(Color.rgb(255,255,0));
 			
 		}else if (Integer.valueOf(USAQIVALUETemp) <= 150 && Integer.valueOf(USAQIVALUETemp) >= 101){
-			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "对敏感人群不健康");
+			USAQIVALUEView.setText(USAQIVALUE);
 			USAQIVALUEView.setTextColor(Color.rgb(255,165,0));
-			USAQIVALUEView.setTextSize(20);		
-			USAQILevel.setImageResource(R.drawable.aqi_3);
+			USAQILEVELView.setText("对敏感人群不健康");
+			USAQILEVELView.setTextColor(Color.rgb(255,165,0));
+			
 		}else if (Integer.valueOf(USAQIVALUETemp) <= 200 && Integer.valueOf(USAQIVALUETemp) >= 151){
 			USAQIVALUEView.setTextColor(Color.RED);
-			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "不健康");
-			USAQIVALUEView.setTextSize(20);		
-			USAQILevel.setImageResource(R.drawable.aqi_4);
+			USAQIVALUEView.setText(USAQIVALUE);
+			USAQILEVELView.setText("不健康");
+			USAQILEVELView.setTextColor(Color.RED);
+			
 		}else if (Integer.valueOf(USAQIVALUETemp) <= 300 && Integer.valueOf(USAQIVALUETemp) >= 201){
-			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "非常不健康");
+			USAQIVALUEView.setText(USAQIVALUE);
+			USAQILEVELView.setText("非常不健康");
 			USAQIVALUEView.setTextColor(Color.rgb(176,48,96));
-			USAQIVALUEView.setTextSize(20);
-			USAQILevel.setImageResource(R.drawable.aqi_5);
+			USAQILEVELView.setTextColor(Color.rgb(176,48,96));
+
 		}else if (Integer.valueOf(USAQIVALUETemp) <= 500 && Integer.valueOf(USAQIVALUETemp) >= 301){
-			USAQIVALUEView.setText("AQI:" + USAQIVALUE+" "+ "危险");
+			USAQIVALUEView.setText(USAQIVALUE);
+			USAQILEVELView.setText("危险");
 			USAQIVALUEView.setTextColor(Color.rgb(139,69,19));
-			USAQIVALUEView.setTextSize(20);
-			USAQILevel.setImageResource(R.drawable.aqi_6);
+			USAQILEVELView.setTextColor(Color.rgb(139,69,19));
+
 		}else{
-			USAQIVALUEView.setText("AQI:"+USAQIVALUE+" "+ "爆表");
+			USAQIVALUEView.setText(USAQIVALUE);
+			USAQILEVELView.setText("爆表");
 			USAQIVALUEView.setTextColor(Color.rgb(139,69,19));
-			USAQIVALUEView.setTextSize(20);		
-			USAQILevel.setImageResource(R.drawable.aqi);
+			USAQILEVELView.setTextColor(Color.rgb(139,69,19));
+
 		}
 		
-		ImageView SHAQILevel = (ImageView)ViewTemp.findViewById(R.id.shaqilevel);
-//		SHAQILevel.setOnClickListener(new View.OnClickListener() {
-//			   //@Override
-//		   public void onClick(View v) {
-//			  Log.i("SHToast", " click");
-//			  SHtoast = Toast.makeText(weatheractivity.this,   
-//			            "上海标准", Toast.LENGTH_LONG);
-//			  ImageView imageView = new ImageView(weatheractivity.this);  
-//			  imageView.setImageResource(R.drawable.shaqilevel);
-//			  
-//			  View toastView = SHtoast.getView();  
-//			  
-//			  LinearLayout linearLayout = new LinearLayout(weatheractivity.this);  
-//			  linearLayout.setOrientation(LinearLayout.HORIZONTAL);  
-//			  
-//			  linearLayout.addView(imageView);  
-//			  linearLayout.addView(toastView);  
-//			  
-//			  SHtoast.setView(linearLayout);  
-//			  SHtoast.show();
-//		   }        
-//		});
-		
 		Integer SHAQIVALUETemp = TryParseInt(SHAQIVALUE.toString());
-		//update SH AQI value
-		SHAQIVALUEView.setTextSize(20);
 		
+		TextView SHAQILEVELView = (TextView)ViewTemp.findViewById(R.id.SHAQILEVEL);
 		if (SHAQIVALUETemp == null) {
 			SHAQIVALUEView.setText("AQI数据加载错误，请稍候重试");
+			SHAQILEVELView.setText(" ");
+			
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 50){
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
+			SHAQIVALUEView.setText(SHAQIVALUE);
 			SHAQIVALUEView.setTextColor(Color.rgb(0,228,0));	
-			SHAQILevel.setImageResource(R.drawable.aqi_1);
+			SHAQILEVELView.setText(SHAQILEVEL);
+			SHAQILEVELView.setTextColor(Color.rgb(0,228,0));
+	
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 100 && Integer.valueOf(SHAQIVALUETemp) >= 51){
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
-			SHAQIVALUEView.setTextColor(Color.rgb(255,255,0));		
-			SHAQILevel.setImageResource(R.drawable.aqi_2);
+			SHAQIVALUEView.setText(SHAQIVALUE);
+			SHAQIVALUEView.setTextColor(Color.rgb(255,255,0));	
+			SHAQILEVELView.setText(SHAQILEVEL);
+			SHAQILEVELView.setTextColor(Color.rgb(255,255,0));
+
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 150 && Integer.valueOf(SHAQIVALUETemp) >= 101){
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
+			SHAQIVALUEView.setText(SHAQIVALUE);
 			SHAQIVALUEView.setTextColor(Color.rgb(255,165,0));
-			SHAQILevel.setImageResource(R.drawable.aqi_3);
+			SHAQILEVELView.setText(SHAQILEVEL);
+			SHAQILEVELView.setTextColor(Color.rgb(255,165,0));
+
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 200 && Integer.valueOf(SHAQIVALUETemp) >= 151){
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
+			SHAQIVALUEView.setText(SHAQIVALUE);
 			SHAQIVALUEView.setTextColor(Color.RED);	
-			SHAQILevel.setImageResource(R.drawable.aqi_4);
+			SHAQILEVELView.setText(SHAQILEVEL);
+			SHAQILEVELView.setTextColor(Color.RED);
+
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 300 && Integer.valueOf(SHAQIVALUETemp) >= 201){
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
+			SHAQIVALUEView.setText(SHAQIVALUE);
 			SHAQIVALUEView.setTextColor(Color.rgb(176,48,96));
-			SHAQILevel.setImageResource(R.drawable.aqi_5);
+			SHAQILEVELView.setText(SHAQILEVEL);
+			SHAQILEVELView.setTextColor(Color.rgb(176,48,96));
+			
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 500 && Integer.valueOf(SHAQIVALUETemp) >= 301){
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ SHAQILEVEL);
+			SHAQIVALUEView.setText(SHAQIVALUE);
 			SHAQIVALUEView.setTextColor(Color.rgb(139,69,19));
-			SHAQILevel.setImageResource(R.drawable.aqi_6);
+			SHAQILEVELView.setText(SHAQILEVEL);
+			SHAQILEVELView.setTextColor(Color.rgb(139,69,19));			
+
 		}else{			
-			SHAQIVALUEView.setText("AQI:" + SHAQIVALUE+" "+ "爆表");
+			SHAQIVALUEView.setText(SHAQIVALUE);
 			SHAQIVALUEView.setTextColor(Color.rgb(139,69,19));
-			SHAQILevel.setImageResource(R.drawable.aqi);
+			SHAQILEVELView.setText("爆表");
+			SHAQILEVELView.setTextColor(Color.rgb(139,69,19));					
 		}
     }
 
     private void loadJianyi() {
     	ViewTemp = ViewJianyi;
     	TextView textjianyi = (TextView) ViewTemp.findViewById(R.id.textjianyi);
-    	//textjianyi.setText("abcdefg");
     	Integer USAQIVALUETemp = TryParseInt(USAQIVALUE.toString());
 		
 		//update US AQI
@@ -429,12 +398,17 @@ public class weatheractivity extends Activity  {
 		SHUPDATETIME = (String) intent.getSerializableExtra("SHUPDATETIME");
 		SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
 		SHAQIVALUE = (String) intent.getSerializableExtra("SHAQIVALUE");
-		SHLANDSCAPE = (byte[]) intent.getSerializableExtra("SHLANDSCAPE");
+		
+		SHISHITEMPRATURE = (String) intent.getSerializableExtra("SHISHITEMPRATURE");
+		AIRCONDITION = (String) intent.getSerializableExtra("AIRCONDITION");
+		TEMPRATURE = (String) intent.getSerializableExtra("TEMPRATURE");
+		WIND = (String) intent.getSerializableExtra("WIND");
+		WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
+		TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");		
+		
+
 		InitTextView();
 		InitViewPager();
-        //loadKongqi();
 
-		
-		//InitImageView();
 	}
 }

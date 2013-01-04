@@ -44,75 +44,26 @@ public class IntentService extends Service{
 	class MyThread extends Thread {	
 		@Override
 		public void run() {
-
-// this method sometimes can't work because http://www.beijingaqifeed.com/shanghaiaqi/shanghaiairrss.xml is not stable.
-//			try {	
-//				/**
-//				 * Create a new instance of the SAX parser
-//				 **/
-//				SAXParserFactory saxPF = SAXParserFactory.newInstance();
-//				SAXParser saxP = saxPF.newSAXParser();
-//				XMLReader xmlR = saxP.getXMLReader();
-//
-//				
-//				URL url = new URL("http://www.beijingaqifeed.com/shanghaiaqi/shanghaiairrss.xml"); // URL of the XML
-//				
-//				/** 
-//				 * Create the Handler to handle each of the XML tags. 
-//				 **/
-//				XMLHandler myXMLHandler = new XMLHandler();
-//				xmlR.setContentHandler(myXMLHandler);
-//				xmlR.parse(new InputSource(url.openStream()));
-//				flag = true;
-//				
-//			} catch (Exception e) {
-//				System.out.println(e);
-//				Intent intent = new Intent("com.successcw.airofrunning.noNet");
-//				sendBroadcast(intent);
-//				Log.e(ACTIVITY_SERVICE, "noNet");
-//			}
-//
-//			if(flag) {
-//				data = XMLHandler.data;
-//				byte[] USAQIImageData = null;
-//				
-//				//获取美国上海领事馆AQI图片
-//				String path = "http://www.beijingaqifeed.com/shanghaiaqi/CurrentAQI.jpg";
-//				
-//				try{
-//					USAQIImageData = NetTool.getImage(path);
-//	                //Bitmap bm = BitmapFactory.decodeByteArray(data, 0, data.length);
-//	                //imageView.setImageBitmap(bm);
-//	            }catch(Exception e){
-//	                Log.i("获取图片失败",e.toString());
-//	            //e.printStackTrace();
-//	                //Toast.makeText(DataActivity.this, "获取图片失败", 1);
-//	            }
-//				flag = false;
-//				
-//				
-//				Intent intent = new Intent("com.successcw.airofrunning.entity");
-//				intent.putExtra("USAQI", data.getDescription().get(1));
-//				intent.putExtra("USAQIIMAGE", USAQIImageData);
-//				sendBroadcast(intent);
-//			}
+			String WEATHER = "";
 			String USAQI = "";
 			String SHAQI = "";
 			
 			try{
+				WEATHER = NetTool.getWeather("上海");
+				String []WEATHERArray = WEATHER.split(";");
+				Log.i("IntertService1", WEATHERArray[4].split(" ")[2]);
+				Log.i("IntertService2", WEATHERArray[5].split("=")[1]);
+				Log.i("IntertService3", WEATHERArray[6].split(" ")[2]);
+				Log.i("IntertService4", WEATHERArray[8].trim().split("=")[1].replace(".", " ").split(" ")[0]);
+				
+				Log.i("IntertService5", WEATHERArray[10].split("：")[2].split("；")[0].replace("℃", "°"));
+				Log.i("IntertService6", WEATHERArray[10].split("：")[3].split("；")[0]);
+
 				USAQI = NetTool.getHtml("http://www.aqicn.info/?json&key=v5&city=Shanghai", "UTF-8");
 				JSONObject jsonObjRecv = new JSONObject(USAQI);
 				
 				SHAQI= NetTool.getSHAQI("GetSiteAQIData").replace("$", " ").replace("#", " ").replace("*"," ");
 				String []SHAQIArray = SHAQI.split(" ");
-				//for(String name:SHAQIArray)
-				//	Log.i("AQI:",name.toString());
-				byte[] SHLandscape = null;
-				
-				//获取上海实时图片
-				String path = "http://www.semc.gov.cn/aqi/home/images/landscape.jpg";		
-
-				SHLandscape = NetTool.getImage(path);
 				
 				Intent intent = new Intent("com.successcw.airofrunning.entity");
 				Log.i("USAQI",jsonObjRecv.toString());
@@ -122,7 +73,13 @@ public class IntentService extends Service{
 				intent.putExtra("SHUPDATEDATE", SHAQIArray[SHAQIArray.length - 2].toString());
 				intent.putExtra("SHUPDATETIME", SHAQIArray[SHAQIArray.length - 1].toString());
 				intent.putExtra("SHAQIVALUE", SHAQIArray[1].toString());
-				intent.putExtra("SHLANDSCAPE", SHLandscape);
+				intent.putExtra("SHISHITEMPRATURE", WEATHERArray[10].split("：")[2].split("；")[0].replace("℃", "°"));
+				intent.putExtra("AIRCONDITION", WEATHERArray[6].split(" ")[2]);
+				intent.putExtra("TEMPRATURE", WEATHERArray[5].split("=")[1]);
+				intent.putExtra("WIND", WEATHERArray[10].split("：")[3].split("；")[0]);
+				intent.putExtra("WEATHERICON", WEATHERArray[8].trim().split("=")[1].replace(".", " ").split(" ")[0]);
+				intent.putExtra("TEMPRATUREUPDATETIME", WEATHERArray[4].split(" ")[2]);
+				
 				sendBroadcast(intent);
 			}catch(Exception e){
 				Log.i("AQI",e.toString());
