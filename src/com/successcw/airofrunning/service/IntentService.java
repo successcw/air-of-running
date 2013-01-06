@@ -1,5 +1,7 @@
 package com.successcw.airofrunning.service;
 
+import java.util.ArrayList;
+
 import org.json.JSONObject;
 
 import android.app.Service;
@@ -12,7 +14,6 @@ import com.successcw.airofrunning.nettool.NetTool;
 
 public class IntentService extends Service{
 	
-	XMLGettersSetters data;
 	boolean flag = false;
 	public LocalBinder binder = new LocalBinder();
 	
@@ -44,46 +45,64 @@ public class IntentService extends Service{
 	class MyThread extends Thread {	
 		@Override
 		public void run() {
-			String WEATHER = "";
+			ArrayList<String> WEATHER = null;
 			String USAQI = "";
 			String SHAQI = "";
+			Intent intent = new Intent("com.successcw.airofrunning.entity");
 			
 			try{
-				WEATHER = NetTool.getWeather("上海");
-				String []WEATHERArray = WEATHER.split(";");
-				Log.i("IntertService1", WEATHERArray[4].split(" ")[2]);
-				Log.i("IntertService2", WEATHERArray[5].split("=")[1]);
-				Log.i("IntertService3", WEATHERArray[6].split(" ")[2]);
-				Log.i("IntertService4", WEATHERArray[8].trim().split("=")[1].replace(".", " ").split(" ")[0]);
+				WEATHER = NetTool.getWeatherFromSina("CHXX0116");
+				if (WEATHER == null) {
+					intent.putExtra("SHISHITEMPRATURE", "无数据");
+					intent.putExtra("AIRCONDITION", "");
+					intent.putExtra("TEMPRATURE", "");
+					intent.putExtra("WIND", "");
+					intent.putExtra("WEATHERICON", "32");
+					intent.putExtra("TEMPRATUREUPDATETIME", "");
+					intent.putExtra("WEATHERFORECASE", "");
+				}else {
+					Log.i("IntertService1", WEATHER.get(0));
+					intent.putExtra("SHISHITEMPRATURE", WEATHER.get(1));
+					intent.putExtra("AIRCONDITION", WEATHER.get(3));
+					intent.putExtra("TEMPRATURE", WEATHER.get(5) +"°/" + WEATHER.get(4) + "°");
+					intent.putExtra("WIND", WEATHER.get(2));
+					intent.putExtra("WEATHERICON", WEATHER.get(6));
+					intent.putExtra("TEMPRATUREUPDATETIME", WEATHER.get(0).split(" ")[1]);
+					intent.putExtra("WEATHERFORECASE", WEATHER);
+				}
 				
-				Log.i("IntertService5", WEATHERArray[10].split("：")[2].split("；")[0].replace("℃", "°"));
-				Log.i("IntertService6", WEATHERArray[10].split("：")[3].split("；")[0]);
-
 				USAQI = NetTool.getHtml("http://www.aqicn.info/?json&key=v5&city=Shanghai", "UTF-8");
-				JSONObject jsonObjRecv = new JSONObject(USAQI);
+				if (USAQI == null) {
+					intent.putExtra("USAQIVALUE", "无数据");
+					intent.putExtra("USAQITIME", "");
+					
+				}else{
+					JSONObject jsonObjRecv = new JSONObject(USAQI);
+					Log.i("USAQI",jsonObjRecv.toString());
+					intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
+					intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").toString());
+				}
 				
-				SHAQI= NetTool.getSHAQI("GetSiteAQIData").replace("$", " ").replace("#", " ").replace("*"," ");
-				String []SHAQIArray = SHAQI.split(" ");
-				
-				Intent intent = new Intent("com.successcw.airofrunning.entity");
-				Log.i("USAQI",jsonObjRecv.toString());
-				intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
-				intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").toString());
-				intent.putExtra("SHAQILEVEL", SHAQIArray[SHAQIArray.length - 3].toString());
-				intent.putExtra("SHUPDATEDATE", SHAQIArray[SHAQIArray.length - 2].toString());
-				intent.putExtra("SHUPDATETIME", SHAQIArray[SHAQIArray.length - 1].toString());
-				intent.putExtra("SHAQIVALUE", SHAQIArray[1].toString());
-				intent.putExtra("SHISHITEMPRATURE", WEATHERArray[10].split("：")[2].split("；")[0].replace("℃", "°"));
-				intent.putExtra("AIRCONDITION", WEATHERArray[6].split(" ")[2]);
-				intent.putExtra("TEMPRATURE", WEATHERArray[5].split("=")[1]);
-				intent.putExtra("WIND", WEATHERArray[10].split("：")[3].split("；")[0]);
-				intent.putExtra("WEATHERICON", WEATHERArray[8].trim().split("=")[1].replace(".", " ").split(" ")[0]);
-				intent.putExtra("TEMPRATUREUPDATETIME", WEATHERArray[4].split(" ")[2]);
-				
+				SHAQI= NetTool.getSHAQI("GetSiteAQIData");
+				if (SHAQI == null) {
+					intent.putExtra("SHAQILEVEL", "");
+					intent.putExtra("SHUPDATEDATE", "");
+					intent.putExtra("SHUPDATETIME", "");
+					intent.putExtra("SHAQIVALUE", "无数据");			
+				}else{
+					SHAQI = SHAQI.replace("$", " ").replace("#", " ").replace("*"," ");
+					String []SHAQIArray = SHAQI.split(" ");
+					intent.putExtra("SHAQILEVEL", SHAQIArray[SHAQIArray.length - 3].toString());
+					intent.putExtra("SHUPDATEDATE", SHAQIArray[SHAQIArray.length - 2].toString());
+					intent.putExtra("SHUPDATETIME", SHAQIArray[SHAQIArray.length - 1].toString());
+					intent.putExtra("SHAQIVALUE", SHAQIArray[1].toString());
+					intent.putExtra("SHPM2_5", SHAQIArray[SHAQIArray.length - 6].toString());
+					Log.i("IntentService SHPM2_5",SHAQIArray[SHAQIArray.length - 6].toString());
+				}
 				sendBroadcast(intent);
 			}catch(Exception e){
 				Log.i("AQI",e.toString());
-				Intent intent = new Intent("com.successcw.airofrunning.noNet");
+				intent = new Intent("com.successcw.airofrunning.noNet");
 				intent.putExtra("ERRORMSG", e.toString());
 				sendBroadcast(intent);
 			}

@@ -2,7 +2,7 @@ package com.successcw.airofrunning.ui;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.util.ArrayList;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -18,6 +18,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -50,6 +51,7 @@ public class MainActivity extends TabActivity {
 	String WIND = "";
 	String WEATHERICON = "";
 	String TEMPRATUREUPDATETIME = "";
+	ArrayList <String> WEATHERFORECASE;
 	private TabHost tabHost;
 	
 	Handler handler = new Handler() {
@@ -89,14 +91,15 @@ public class MainActivity extends TabActivity {
 				SHUPDATETIME = (String) intent.getSerializableExtra("SHUPDATETIME");
 				SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
 				SHAQIVALUE = (String) intent.getSerializableExtra("SHAQIVALUE");
-
+				SHPM2_5 = (String) intent.getSerializableExtra("SHPM2_5");
 				SHISHITEMPRATURE = (String) intent.getSerializableExtra("SHISHITEMPRATURE");
 				AIRCONDITION = (String) intent.getSerializableExtra("AIRCONDITION");
 				TEMPRATURE = (String) intent.getSerializableExtra("TEMPRATURE");
 				WIND = (String) intent.getSerializableExtra("WIND");
 				WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
 				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
-						
+				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");		
+				
 				handler.sendEmptyMessage(2);
 			}
 		}
@@ -170,8 +173,7 @@ public class MainActivity extends TabActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		   menu.add(0,1,0,"分享")
-	        .setIcon(R.drawable.pointer)
-	        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+	        .setIcon(R.drawable.pointer);
 		return true;
 	}
 	
@@ -181,13 +183,16 @@ public class MainActivity extends TabActivity {
         switch(item.getItemId())
         {
             case 1:
-	            Log.i("MENU", "1 clicked");
 	            DisplayMetrics dm = new DisplayMetrics();
 	            getWindowManager().getDefaultDisplay().getMetrics(dm);
 	            int width = dm.widthPixels; 
 	            int height = dm.heightPixels;//获取屏幕的宽和高
 	            Rect rect = new Rect();
 	            View view= getWindow().getDecorView();
+	            view.setDrawingCacheEnabled(true);
+	            view.buildDrawingCache();
+	            Bitmap b1 = view.getDrawingCache();
+	            
 	            view.getWindowVisibleDisplayFrame(rect);
 	            int statusBarHeight = rect.top;
 	            Log.i("状态栏高度",Integer.toString(statusBarHeight));
@@ -197,34 +202,22 @@ public class MainActivity extends TabActivity {
 	            Log.i("标题栏高度",Integer.toString(titleBarHeight));
 	            
 	       
-	            Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-	            view.draw(new Canvas(bmp));
+	            //Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+	            Bitmap bmp = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height - statusBarHeight);
+	            //view.draw(new Canvas(bmp));
+	            view.destroyDrawingCache();
 	            
-	            File SpicyDirectory = new File("/sdcard/AirOfRunning/");
+	            File SpicyDirectory = new File(Environment.getExternalStorageDirectory().getPath() + "/AirOfRunning/");
 	            SpicyDirectory.mkdirs();
 	            
-	            String filename="/sdcard/AirOfRunning/airofrunning.jpg";
+	            String filename=Environment.getExternalStorageDirectory().getPath() + "/AirOfRunning/airofrunning.jpg";
 	            FileOutputStream out = null;
 	            try {
-	            out = new FileOutputStream(filename);
-	            bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
+	            	out = new FileOutputStream(filename);
+	            	bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
 	            } catch (Exception e) {
-	            e.printStackTrace();
-	            } finally {
-	            try {
-	            out.flush();
-	            } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	            }
-	            try {
-	            out.close();
-	            } catch (IOException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	            }
-	            out=null;
-	            }
+	            	e.printStackTrace();
+	            } 
 	            
 	            //view.draw(new Canvas(b));
 	            String url = "file:///" + "sdcard/AirOfRunning/airofrunning.jpg";
@@ -232,67 +225,14 @@ public class MainActivity extends TabActivity {
 	            Intent intent=new Intent(Intent.ACTION_SEND);  
 	            intent.setType("image/*");  //分享的数据类型       <-----只要改為intent.setType("image/*");就可以了
 	            intent.putExtra(Intent.EXTRA_SUBJECT, "Air of running");  //主题
-	            intent.putExtra(Intent.EXTRA_TEXT,  "跑步之前看看空气质量再决定跑不跑哦，高污染跑了不如不跑。 分享自：我的第一个应用：Air of Running，^_^。 友情提示：科学跑步，拒绝污染。");  //内容
+	            intent.putExtra(Intent.EXTRA_TEXT,  "多久没跑步了？来一次太极跑吧，跑步也可以轻松愉快，不过要先看看空气情况哦。 分享自：@airOfRunning，^_^。 友情提示：科学跑步，拒绝污染。");  //内容
 	            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));   //圖片
 	            startActivity(Intent.createChooser(intent, "标题"));  //目标应用选择对话框的标题
 	        default:
 	            return super.onOptionsItemSelected(item);
         }
     }
-	
-	public int Linear(int AQIhigh, int AQIlow, float Conchigh, float Conclow, float Concentration)
-	{
-		int linear;
-		float temp;
-		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
-		linear=Math.round(temp);
-		return linear;
-	}
-	public int AQIPM25(String Concentration)
-	{
-		float Conc = Float.parseFloat(Concentration);
-		Log.i("AQIPM25", Float.toString(Conc));
-		float c = (float)(Math.floor(10*Conc))/10;
 		
-		int AQI = 0;
-	
-		if (c>=0 && c<15.5)
-		{
-			AQI=Linear(50,0,15.4f,0,c);
-		}
-		else if (c>=15.5 && c<35.5)
-		{
-			AQI=Linear(100,51,35.4f,15.5f,c);
-		}
-		else if (c>=35.5 && c<65.5)
-		{
-			AQI=Linear(150,101,65.4f,35.5f,c);
-		}
-		else if (c>=65.5 && c<150.5)
-		{
-			AQI=Linear(200,151,150.4f,65.5f,c);
-		}
-		else if (c>=150.5 && c<250.5)
-		{
-			AQI=Linear(300,201,250.4f,150.5f,c);
-		}
-		else if (c>=250.5 && c<350.5)
-		{
-			AQI=Linear(400,301,350.4f,250.5f,c);
-		}
-		else if (c>=350.5 && c<500.5)
-		{
-			AQI=Linear(500,401,500.4f,350.5f,c);
-		}
-		else
-		{
-			AQI=100000;
-		}
-		return AQI;
-	}
-
-
-	
 	private void createMainView() {
         tabHost = getTabHost(); 
 		Intent intentWeather = new Intent(this, weatheractivity.class);
@@ -302,12 +242,14 @@ public class MainActivity extends TabActivity {
 		intentWeather.putExtra("SHUPDATETIME", SHUPDATETIME);
 		intentWeather.putExtra("SHAQILEVEL", SHAQILEVEL);
 		intentWeather.putExtra("SHAQIVALUE", SHAQIVALUE);
+		intentWeather.putExtra("SHPM2_5", SHPM2_5);
 		intentWeather.putExtra("SHISHITEMPRATURE", SHISHITEMPRATURE);
 		intentWeather.putExtra("AIRCONDITION", AIRCONDITION);
 		intentWeather.putExtra("TEMPRATURE", TEMPRATURE);
 		intentWeather.putExtra("WIND", WIND);
 		intentWeather.putExtra("WEATHERICON", WEATHERICON);
 		intentWeather.putExtra("TEMPRATUREUPDATETIME",TEMPRATUREUPDATETIME);
+		intentWeather.putExtra("WEATHERFORECASE",WEATHERFORECASE);
 		
 		tabHost.addTab(tabHost.newTabSpec("home").setIndicator("home")
 				.setContent(intentWeather));

@@ -11,7 +11,7 @@
         		android:layout_height="20dp"
         		android:layout_alignParentLeft="true"
         		android:layout_alignParentTop="true"
-        		android:background="#4f888888">
+        		android:background="#4f000000">
 
     		<TextView
         		android:id="@+id/kongqi"
@@ -48,9 +48,6 @@
         		android:textSize="15.0dip" />
     		 </LinearLayout>
     		
-  
- 
-    	    
     		<View
         		android:id="@+id/viewLine"
         		android:layout_width="match_parent"
@@ -66,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="#4f888888" />
+        android:background="#4f000000" />
         
     		
 </LinearLayout>

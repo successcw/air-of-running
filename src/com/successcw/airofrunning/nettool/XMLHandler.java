@@ -1,8 +1,10 @@
-package com.successcw.airofrunning.service;
+package com.successcw.airofrunning.nettool;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import android.util.Log;
 
 public class XMLHandler extends DefaultHandler {
 
@@ -27,10 +29,27 @@ public class XMLHandler extends DefaultHandler {
 
 		elementOn = true;
 
-		if (localName.equals("channel"))
+		if (localName.equals("weather"))
 		{
+			Log.i("XML","get weather");
 			data = new XMLGettersSetters();
+			data.setDescription(attributes.getValue("pubdate"));
 		} 
+		if (localName.equals("condition"))
+		{
+			Log.i("XML","get condition");
+			data.setDescription(attributes.getValue("temp"));
+			data.setDescription(attributes.getValue("wind"));
+		}
+		if (localName.equals("foreca"))
+		{
+			Log.i("XML","get foreca");
+			data.setDescription(attributes.getValue("text"));
+			data.setDescription(attributes.getValue("high"));
+			data.setDescription(attributes.getValue("low"));
+			data.setDescription(attributes.getValue("code2"));
+			data.setDescription(attributes.getValue("date"));
+		}
 	}
 
 	/** 
@@ -45,8 +64,11 @@ public class XMLHandler extends DefaultHandler {
 		/** 
 		 * Sets the values after retrieving the values from the XML tags
 		 * */ 
-		if (localName.equalsIgnoreCase("description"))
-			data.setDescription(elementValue);
+		if (localName.equalsIgnoreCase("condition")) {
+			
+			//Log.i("XML", "get condition");
+			//data.setDescription(elementValue);
+		}
 	}
 
 	/** 

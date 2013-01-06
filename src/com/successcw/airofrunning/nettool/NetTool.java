@@ -4,15 +4,21 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.kxml2.kdom.Element;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
 
+import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 public class NetTool {
 	public static byte[] readStream(InputStream inStream) throws Exception{
@@ -150,6 +156,29 @@ public class NetTool {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	   return null;
+   }
+   
+   public static ArrayList<String> getWeatherFromSina(String CityName) {
+	   XMLGettersSetters data;
+	   try {   
+		   SAXParserFactory saxPF = SAXParserFactory.newInstance();
+		   SAXParser saxP = saxPF.newSAXParser();
+		   XMLReader xmlR = saxP.getXMLReader();
+		   URL url = new URL("http://forecast.sina.cn/app/update.php?city=" + CityName);
+		   
+		   XMLHandler myXMLHandler = new XMLHandler();
+		   xmlR.setContentHandler(myXMLHandler);
+		   xmlR.parse(new InputSource(url.openStream()));
+		   data = XMLHandler.data;
+		   
+		   Log.i("NetTool", data.getDescription().toString());
+		   
+		   return data.getDescription();
+	   } catch (Exception e) {
+		   System.out.println(e);
+		   Log.e("NET", e.toString());
+	   }
 	   return null;
    }
    
