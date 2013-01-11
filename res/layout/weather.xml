@@ -8,51 +8,38 @@
     	<LinearLayout
         		android:id="@+id/view"
         		android:layout_width="fill_parent"
-        		android:layout_height="20dp"
+        		android:layout_height="40dp"
         		android:layout_alignParentLeft="true"
         		android:layout_alignParentTop="true"
         		android:background="#4f000000">
 
     		<TextView
-        		android:id="@+id/kongqi"
+        		android:id="@+id/main_title"
         		android:layout_width="fill_parent"
         		android:layout_height="fill_parent"
         		android:layout_weight="1.0"
         		android:gravity="center"
-        		android:text="空气"
+        		android:text="空气质量"
         		android:textAppearance="?android:attr/textAppearanceLarge"
         		android:textColor="@android:color/white"
-        		android:textSize="15.0dip" 
+        		android:textSize="18.0dip" 
         		android:background="#4f000000"/>
-    		
-    		<TextView
-        		android:id="@+id/jianyi"
-        		android:layout_width="fill_parent"
-        		android:layout_height="fill_parent"
-        		android:layout_weight="1.0"
-        		android:gravity="center"
-        		android:text="建议"
-        		android:textAppearance="?android:attr/textAppearanceLarge"
-        		android:textColor="@android:color/white"
-        		android:textSize="15.0dip" />
-    		
-    		<TextView
-        		android:id="@+id/zixun"
-        		android:layout_width="fill_parent"
-        		android:layout_height="fill_parent"
-        		android:layout_weight="1.0"
-        		android:gravity="center"
-        		android:text="资讯"
-        		android:textAppearance="?android:attr/textAppearanceLarge"
-        		android:textColor="@android:color/white"
-        		android:textSize="15.0dip" />
+          	<ImageButton 
+    		    android:id="@+id/option_menu"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:src="@drawable/main_setting"
+				android:background="#4f000000"/>
+
+
     		 </LinearLayout>
     		
     		<View
         		android:id="@+id/viewLine"
         		android:layout_width="match_parent"
         		android:layout_height="1dp"
-        		android:background="@android:color/white"
+        		android:background="@android:color/black"
         		android:layout_below="@+id/view" />
     
 

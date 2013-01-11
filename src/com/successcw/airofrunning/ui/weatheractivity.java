@@ -13,11 +13,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.widget.Button;
+import android.widget.FrameLayout.LayoutParams;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
-public class weatheractivity extends Activity  {
+public class weatheractivity extends Activity {
 	private ViewPager mPager;//页卡内容
     private List<View> listViews; // Tab页面列表
     private TextView t1, t2, t3;// 页卡头标
@@ -26,6 +33,8 @@ public class weatheractivity extends Activity  {
     private View ViewJianyi;
     private View ViewZixun;
     private View ViewTemp;
+	private PopupWindow popupWindow;
+    
 	String USAQIVALUE = "";
 	String USAQITIME = "";
 	String SHUPDATETIME = "";
@@ -53,35 +62,7 @@ public class weatheractivity extends Activity  {
 		    R.drawable.b_27,R.drawable.b_28,R.drawable.b_29,
 		    R.drawable.b_30,R.drawable.b_31,R.drawable.b_nothing
 	};
-    /**
-     * 初始化头标
-*/
-    private void InitTextView() {
-        t1 = (TextView) findViewById(R.id.kongqi);
-        t2 = (TextView) findViewById(R.id.jianyi);
-        t3 = (TextView) findViewById(R.id.zixun);
 
-        t1.setOnClickListener(new MyOnClickListener(0));
-        t2.setOnClickListener(new MyOnClickListener(1));
-        t3.setOnClickListener(new MyOnClickListener(2));
-    }
-   
-    /**
-     * 头标点击监听
-*/
-    public class MyOnClickListener implements View.OnClickListener {
-        private int index = 0;
-
-        public MyOnClickListener(int i) {
-            index = i;
-        }
-
-        @Override
-        public void onClick(View v) {
-            mPager.setCurrentItem(index);
-            Log.i("viewpager",Integer.toString(index));
-        }
-    };
     /**
      * 初始化ViewPager
 */
@@ -160,32 +141,21 @@ public class weatheractivity extends Activity  {
             case 0:
                 Log.i("PageChange","0");
                 loadKongqi();
-            	temp = (TextView) findViewById(R.id.kongqi);
-            	temp.setBackgroundColor(0x4f000000);
-            	temp = (TextView) findViewById(R.id.jianyi);
-            	temp.setBackgroundColor(0x4f888888);
-            	temp = (TextView) findViewById(R.id.zixun);
-            	temp.setBackgroundColor(0x4f888888);
+            	temp = (TextView) findViewById(R.id.main_title);
+            	temp.setText("空气质量");
+            	
                 break;
             case 1:      
                 Log.i("PageChange","1");
                 loadJianyi();
-            	temp = (TextView) findViewById(R.id.kongqi);
-            	temp.setBackgroundColor(0x4f888888);
-            	temp = (TextView) findViewById(R.id.jianyi);
-            	temp.setBackgroundColor(0x4f000000);
-            	temp = (TextView) findViewById(R.id.zixun);
-            	temp.setBackgroundColor(0x4f888888);
+                temp = (TextView) findViewById(R.id.main_title);
+            	temp.setText("建议");
                 break;
             case 2:
                 Log.i("PageChange","2");
                 loadZixun();
-            	temp = (TextView) findViewById(R.id.kongqi);
-            	temp.setBackgroundColor(0x4f888888);
-            	temp = (TextView) findViewById(R.id.jianyi);
-            	temp.setBackgroundColor(0x4f888888);
-            	temp = (TextView) findViewById(R.id.zixun);
-            	temp.setBackgroundColor(0x4f000000);                
+                temp = (TextView) findViewById(R.id.main_title);
+            	temp.setText("资讯");               
                 break;
             }
         }
@@ -470,35 +440,35 @@ public class weatheractivity extends Activity  {
 		TextView forecast = (TextView) ViewTemp.findViewById(R.id.forecast1);
 		ImageView forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon1);
 		forecast.setText(WEATHERFORECASE.get(12).split("-")[1] + "/" + WEATHERFORECASE.get(12).split("-")[2] 
-							+ "             " + WEATHERFORECASE.get(10) +"°/" + WEATHERFORECASE.get(9) + "°"
+							+ "           " + WEATHERFORECASE.get(10) +"°/" + WEATHERFORECASE.get(9) + "°"
 							+ "\n" + WEATHERFORECASE.get(8));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(11))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast2);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon2);
 		forecast.setText(WEATHERFORECASE.get(17).split("-")[1] + "/" + WEATHERFORECASE.get(17).split("-")[2] 
-							+ "             " + WEATHERFORECASE.get(15) +"°/" + WEATHERFORECASE.get(14) + "°"
+							+ "           " + WEATHERFORECASE.get(15) +"°/" + WEATHERFORECASE.get(14) + "°"
 							+ "\n" + WEATHERFORECASE.get(13));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(16))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast3);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon3);
 		forecast.setText(WEATHERFORECASE.get(22).split("-")[1] + "/" + WEATHERFORECASE.get(22).split("-")[2] 
-							+ "             " + WEATHERFORECASE.get(20) +"°/" + WEATHERFORECASE.get(19) + "°"
+							+ "           " + WEATHERFORECASE.get(20) +"°/" + WEATHERFORECASE.get(19) + "°"
 							+ "\n" + WEATHERFORECASE.get(18));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(21))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast4);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon4);
 		forecast.setText(WEATHERFORECASE.get(27).split("-")[1] + "/" + WEATHERFORECASE.get(27).split("-")[2] 
-							+ "             " + WEATHERFORECASE.get(25) +"°/" + WEATHERFORECASE.get(24) + "°"
+							+ "           " + WEATHERFORECASE.get(25) +"°/" + WEATHERFORECASE.get(24) + "°"
 							+ "\n" + WEATHERFORECASE.get(23));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(26))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast5);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon5);
 		forecast.setText(WEATHERFORECASE.get(32).split("-")[1] + "/" + WEATHERFORECASE.get(32).split("-")[2] 
-							+ "             " + WEATHERFORECASE.get(30) +"°/" + WEATHERFORECASE.get(29) + "°"
+							+ "           " + WEATHERFORECASE.get(30) +"°/" + WEATHERFORECASE.get(29) + "°"
 							+ "\n" + WEATHERFORECASE.get(28));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(31))]);
 		
@@ -507,13 +477,112 @@ public class weatheractivity extends Activity  {
     	ViewTemp = ViewZixun;
     	TextView textjianyi = (TextView) ViewTemp.findViewById(R.id.textzixun);
     	textjianyi.setText("上海pm2.5采集和美国领事馆采集数据相差不大，区别在于中美执行的标准不同。"
-    						+ "\n" + "上海采用世界卫生组织（WHO）过 渡 时 期 目 标 -1，美国采用过 渡 时 期 目 标 -3 ，详细见下图，"
-    						+ "这个是导致两者空气质量指数(AQI)相差较大的原因。由于上海发布的pm2.5采集点更多，所以理论上比美国领事馆数据更能代表真实值，本软件采用上海发布的pm2.5数据,根据美国标准"
+    						+ "\n" + "上海采用 世界卫生组织（WHO）过渡时期目标-1，美国采用 过渡时期目标-3 ，详细见下图，"
+    						+ "这个是导致两者空气质量指数(AQI)相差较大的原因。本软件采用上海发布的pm2.5数据,根据美国标准"
     						+ "重新计算得出空气质量指数(AQI)，相关建议都是基于这个值给出，仅供参考。" + "\n"
     						+ "WHO空气质量准则，请参考：");
     	Integer USAQIVALUETemp = TryParseInt(USAQIVALUE.toString());
     }
     
+	
+	  //点击弹出左侧菜单的显示方式
+  OnClickListener popClick = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+		// TODO Auto-generated method stub
+		getPopupWindow();
+		// 这里是位置显示方式,在按钮的左下角
+		popupWindow.showAsDropDown(v,50,0);
+		// 这里可以尝试其它效果方式,如popupWindow.showAsDropDown(v,
+		// (screenWidth-dialgoWidth)/2, 0);
+		// popupWindow.showAtLocation(findViewById(R.id.layout),
+		// Gravity.CENTER, 0, 0);
+		}
+  };
+  
+  protected void initPopuptWindow() {
+  	// TODO Auto-generated method stub
+
+  	// 获取自定义布局文件pop.xml的视图
+  	View popupWindow_view = getLayoutInflater().inflate(R.layout.pop, null, false);
+  	// 创建PopupWindow实例,200,150分别是宽度和高度
+  	popupWindow = new PopupWindow(popupWindow_view,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT, true);
+  	// 设置动画效果
+  	popupWindow.setAnimationStyle(R.style.AnimationFade);
+  	//点击其他地方消失
+  	popupWindow_view.setOnTouchListener(new OnTouchListener() {
+  	@Override
+	    	public boolean onTouch(View v, MotionEvent event) {
+	    	// TODO Auto-generated method stub
+		    	if (popupWindow != null && popupWindow.isShowing()) {
+		    		popupWindow.dismiss();
+		    		popupWindow = null;
+		    	}
+		    	return false;
+	    	}
+  	});
+  	
+  	Button changestation = (Button) popupWindow_view.findViewById(R.id.changestation);
+  	Button share = (Button) popupWindow_view.findViewById(R.id.share);
+  	Button about = (Button) popupWindow_view.findViewById(R.id.about);
+  	// pop.xml视图里面的控件触发的事件
+  	// 打开
+  	changestation.setOnClickListener(new OnClickListener() {
+	    	@Override
+	    	public void onClick(View v) {
+	    		Intent intent = null;
+		    	// TODO Auto-generated method stub
+		    	// 这里可以执行相关操作
+		    	System.out.println("changestation");
+		    	// 对话框消失
+		    	popupWindow.dismiss();
+		    	changestation();
+	    	}
+  	});
+
+  	share.setOnClickListener(new OnClickListener() {
+  		@Override
+  		public void onClick(View v) {
+	    		// TODO Auto-generated method stub
+	    		// 这里可以执行相关操作
+	    		System.out.println("share");
+	    		popupWindow.dismiss();
+	    		share();
+  		}
+  	});
+  		// 关闭
+  	about.setOnClickListener(new OnClickListener() {
+  		@Override
+  		public void onClick(View v) {
+	    		// TODO Auto-generated method stub
+	    		// 这里可以执行相关操作
+	    		System.out.println("about");
+	    		popupWindow.dismiss();
+  		}
+  	});
+
+  }
+
+  private void getPopupWindow() {
+
+  	if (null != popupWindow) {
+  		popupWindow.dismiss();
+  		return;
+  	} else {
+  		initPopuptWindow();
+  	}
+  }
+    	
+  private void changestation() {
+	  Intent intent = null;
+	  intent = new Intent(this, StationActivity.class);
+	  startActivity(intent);
+  }
+  private void share() {
+	  Intent intent = new Intent("com.successcw.airofrunning.share");
+	  sendBroadcast(intent);
+  }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -537,9 +606,11 @@ public class weatheractivity extends Activity  {
 		WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
 		TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");		
 		WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");
-
-		InitTextView();
+		
+		//InitTextView();
 		InitViewPager();
-
+		ImageButton optionMenu = (ImageButton)findViewById(R.id.option_menu);
+		optionMenu.setOnClickListener(popClick);
+	
 	}
 }

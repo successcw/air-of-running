@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/xihu"
     >
+  
 	<TabHost 
 	    android:id="@android:id/tabhost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/xihu">
+        >
 	    <LinearLayout
 	        android:orientation="vertical"
 	        android:layout_width="match_parent"
@@ -29,4 +31,5 @@
             </FrameLayout>
 	        </LinearLayout>
     </TabHost>
+
 </RelativeLayout>

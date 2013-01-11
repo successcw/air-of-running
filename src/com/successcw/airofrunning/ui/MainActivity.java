@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,9 +24,9 @@ import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -102,6 +101,10 @@ public class MainActivity extends TabActivity {
 				
 				handler.sendEmptyMessage(2);
 			}
+			if (action.equals("com.successcw.airofrunning.share")) {
+				share();
+				Log.i("MainActivity","received com.successcw.airofrunning.share");
+			}
 		}
 	};
 	
@@ -119,7 +122,8 @@ public class MainActivity extends TabActivity {
 			AirOfRunningService.parserData();
 		}
 	};
-	
+
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -130,13 +134,16 @@ public class MainActivity extends TabActivity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("com.successcw.airofrunning.entity");
 		filter.addAction("com.successcw.airofrunning.noNet");
+		filter.addAction("com.successcw.airofrunning.share");
 		registerReceiver(receiver, filter);
 		
 		service = new Intent("com.successcw.airofrunning.intentservice");
 		startService(service);
 		bindService(service, conn, BIND_AUTO_CREATE);
-		
+
+
 	}
+
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
@@ -172,66 +179,62 @@ public class MainActivity extends TabActivity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		   menu.add(0,1,0,"分享")
-	        .setIcon(R.drawable.pointer);
+		  // menu.add(0,1,0,"分享")
+	      //  .setIcon(R.drawable.pointer);
 		return true;
 	}
 	
-	@Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch(item.getItemId())
-        {
-            case 1:
-	            DisplayMetrics dm = new DisplayMetrics();
-	            getWindowManager().getDefaultDisplay().getMetrics(dm);
-	            int width = dm.widthPixels; 
-	            int height = dm.heightPixels;//获取屏幕的宽和高
-	            Rect rect = new Rect();
-	            View view= getWindow().getDecorView();
-	            view.setDrawingCacheEnabled(true);
-	            view.buildDrawingCache();
-	            Bitmap b1 = view.getDrawingCache();
-	            
-	            view.getWindowVisibleDisplayFrame(rect);
-	            int statusBarHeight = rect.top;
-	            Log.i("状态栏高度",Integer.toString(statusBarHeight));
-	             
-	            int wintop = getWindow().findViewById(android.R.id.content).getTop();
-	            int titleBarHeight = wintop - statusBarHeight;
-	            Log.i("标题栏高度",Integer.toString(titleBarHeight));
-	            
-	       
-	            //Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-	            Bitmap bmp = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height - statusBarHeight);
-	            //view.draw(new Canvas(bmp));
-	            view.destroyDrawingCache();
-	            
-	            File SpicyDirectory = new File(Environment.getExternalStorageDirectory().getPath() + "/AirOfRunning/");
-	            SpicyDirectory.mkdirs();
-	            
-	            String filename=Environment.getExternalStorageDirectory().getPath() + "/AirOfRunning/airofrunning.jpg";
-	            FileOutputStream out = null;
-	            try {
-	            	out = new FileOutputStream(filename);
-	            	bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
-	            } catch (Exception e) {
-	            	e.printStackTrace();
-	            } 
-	            
-	            //view.draw(new Canvas(b));
-	            String url = "file:///" + "sdcard/AirOfRunning/airofrunning.jpg";
-	            //String url = "http://www.semc.gov.cn/aqi/home/images/landscape.jpg";
-	            Intent intent=new Intent(Intent.ACTION_SEND);  
-	            intent.setType("image/*");  //分享的数据类型       <-----只要改為intent.setType("image/*");就可以了
-	            intent.putExtra(Intent.EXTRA_SUBJECT, "Air of running");  //主题
-	            intent.putExtra(Intent.EXTRA_TEXT,  "多久没跑步了？来一次太极跑吧，跑步也可以轻松愉快，不过要先看看空气情况哦。 分享自：@airOfRunning，^_^。 友情提示：科学跑步，拒绝污染。");  //内容
-	            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));   //圖片
-	            startActivity(Intent.createChooser(intent, "标题"));  //目标应用选择对话框的标题
-	        default:
-	            return super.onOptionsItemSelected(item);
-        }
-    }
+
+
+	private void share() {
+	    DisplayMetrics dm = new DisplayMetrics();
+	    getWindowManager().getDefaultDisplay().getMetrics(dm);
+	    int width = dm.widthPixels; 
+	    int height = dm.heightPixels;//获取屏幕的宽和高
+	    Rect rect = new Rect();
+	    View view= getWindow().getDecorView();
+	    view.setDrawingCacheEnabled(true);
+	    view.buildDrawingCache();
+	    Bitmap b1 = view.getDrawingCache();
+	    Log.i("bitmap.height", Integer.toString(b1.getHeight()));
+	    
+	    view.getWindowVisibleDisplayFrame(rect);
+	    int statusBarHeight = rect.top;
+	    Log.i("状态栏高度",Integer.toString(statusBarHeight));
+	     
+	    int wintop = getWindow().findViewById(android.R.id.content).getTop();
+	    int titleBarHeight = wintop - statusBarHeight;
+	    Log.i("标题栏高度",Integer.toString(titleBarHeight));
+	    Log.i("Hight", Integer.toString(height));
+	    
+	    //Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+	    Bitmap bmp = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height - statusBarHeight);
+	    
+	    //view.draw(new Canvas(bmp));
+	    view.destroyDrawingCache();
+	    
+	    File SpicyDirectory = new File(Environment.getExternalStorageDirectory().getPath() + "/AirOfRunning/");
+	    SpicyDirectory.mkdirs();
+	    
+	    String filename=Environment.getExternalStorageDirectory().getPath() + "/AirOfRunning/airofrunning.jpg";
+	    FileOutputStream out = null;
+	    try {
+	    	out = new FileOutputStream(filename);
+	    	bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+	    } 
+	    
+	    //view.draw(new Canvas(b));
+	    String url = "file:///" + "sdcard/AirOfRunning/airofrunning.jpg";
+	    //String url = "http://www.semc.gov.cn/aqi/home/images/landscape.jpg";
+	    Intent intent=new Intent(Intent.ACTION_SEND);  
+	    intent.setType("image/*");  //分享的数据类型       <-----只要改為intent.setType("image/*");就可以了
+	    intent.putExtra(Intent.EXTRA_SUBJECT, "Air of running");  //主题
+	    intent.putExtra(Intent.EXTRA_TEXT,  "多久没跑步了？来一次太极跑吧，跑步也可以轻松愉快，不过要先看看空气情况哦。 分享自：@airOfRunning，^_^。 友情提示：科学跑步，拒绝污染。");  //内容
+	    intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));   //圖片
+	    startActivity(Intent.createChooser(intent, "标题"));  //目标应用选择对话框的标题
+	}
 		
 	private void createMainView() {
         tabHost = getTabHost(); 
@@ -253,6 +256,8 @@ public class MainActivity extends TabActivity {
 		
 		tabHost.addTab(tabHost.newTabSpec("home").setIndicator("home")
 				.setContent(intentWeather));
+		ImageButton optionMenu = (ImageButton)findViewById(R.id.option_menu);
+
 	}
 
 }
