@@ -36,7 +36,7 @@ public class MainActivity extends TabActivity {
 
 	private static final int DIALOG = 1;
 	private Intent service;
-	public IntentService AirOfRunningService;
+	private IntentService AirOfRunningService;
 	String USAQIVALUE = "";
 	String USAQITIME = "";
 	String SHUPDATETIME = "";
@@ -50,6 +50,8 @@ public class MainActivity extends TabActivity {
 	String WIND = "";
 	String WEATHERICON = "";
 	String TEMPRATUREUPDATETIME = "";
+	String CITYAREA = "";
+	String STATION = "";
 	ArrayList <String> WEATHERFORECASE;
 	private TabHost tabHost;
 	
@@ -61,6 +63,7 @@ public class MainActivity extends TabActivity {
 				break;
 			case 2:
 				removeDialog(DIALOG);
+				Log.i("main received", "createMainView");
 				createMainView();
 				break;
 			case 3:
@@ -97,8 +100,10 @@ public class MainActivity extends TabActivity {
 				WIND = (String) intent.getSerializableExtra("WIND");
 				WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
 				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
+				CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
+				STATION = (String) intent.getSerializableExtra("STATION");
 				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");		
-				
+				//Log.i("main received", "entity");
 				handler.sendEmptyMessage(2);
 			}
 			if (action.equals("com.successcw.airofrunning.share")) {
@@ -119,7 +124,7 @@ public class MainActivity extends TabActivity {
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			AirOfRunningService = ((IntentService.LocalBinder) service)
 					.getService();
-			AirOfRunningService.parserData();
+			AirOfRunningService.parserData(20, 0); //默认加载上海数据
 		}
 	};
 
@@ -140,8 +145,6 @@ public class MainActivity extends TabActivity {
 		service = new Intent("com.successcw.airofrunning.intentservice");
 		startService(service);
 		bindService(service, conn, BIND_AUTO_CREATE);
-
-
 	}
 
 
@@ -253,6 +256,8 @@ public class MainActivity extends TabActivity {
 		intentWeather.putExtra("WEATHERICON", WEATHERICON);
 		intentWeather.putExtra("TEMPRATUREUPDATETIME",TEMPRATUREUPDATETIME);
 		intentWeather.putExtra("WEATHERFORECASE",WEATHERFORECASE);
+		intentWeather.putExtra("CITYAREA",CITYAREA);
+		intentWeather.putExtra("STATION",STATION);
 		
 		tabHost.addTab(tabHost.newTabSpec("home").setIndicator("home")
 				.setContent(intentWeather));

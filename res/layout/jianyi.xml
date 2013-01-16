@@ -28,7 +28,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="running"
             android:layout_below="@+id/AQIjianyi"
             android:layout_marginTop="15dp"
             android:textColor="@android:color/white"

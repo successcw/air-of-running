@@ -31,19 +31,19 @@ public class XMLHandler extends DefaultHandler {
 
 		if (localName.equals("weather"))
 		{
-			Log.i("XML","get weather");
+			//Log.i("XML","get weather");
 			data = new XMLGettersSetters();
 			data.setDescription(attributes.getValue("pubdate"));
 		} 
 		if (localName.equals("condition"))
 		{
-			Log.i("XML","get condition");
+			//Log.i("XML","get condition");
 			data.setDescription(attributes.getValue("temp"));
 			data.setDescription(attributes.getValue("wind"));
 		}
 		if (localName.equals("foreca"))
 		{
-			Log.i("XML","get foreca");
+			//Log.i("XML","get foreca");
 			data.setDescription(attributes.getValue("text"));
 			data.setDescription(attributes.getValue("high"));
 			data.setDescription(attributes.getValue("low"));

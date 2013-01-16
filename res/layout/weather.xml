@@ -14,16 +14,25 @@
         		android:background="#4f000000">
 
     		<TextView
-        		android:id="@+id/main_title"
-        		android:layout_width="fill_parent"
-        		android:layout_height="fill_parent"
-        		android:layout_weight="1.0"
-        		android:gravity="center"
-        		android:text="空气质量"
-        		android:textAppearance="?android:attr/textAppearanceLarge"
-        		android:textColor="@android:color/white"
-        		android:textSize="18.0dip" 
-        		android:background="#4f000000"/>
+    		    android:id="@+id/main_title"
+    		    android:layout_width="fill_parent"
+    		    android:layout_height="fill_parent"
+    		    android:layout_alignParentLeft="true"
+    		    android:layout_alignParentTop="true"
+    		    android:layout_weight="1.0"
+    		    android:background="#4f000000"
+    		    android:gravity="center"
+    		    android:text="空气质量"
+    		    android:textAppearance="?android:attr/textAppearanceLarge"
+    		    android:textColor="@android:color/white"
+    		    android:textSize="18.0dip" />
+
+    		    		<ProgressBar
+    		    android:id="@+id/progressBar1"
+    		    style="?android:attr/progressBarStyleLarge"
+    		    android:layout_width="30dp"
+    		    android:layout_height="wrap_content" 
+    		    android:background="#4f000000"/>
           	<ImageButton 
     		    android:id="@+id/option_menu"
 				android:layout_width="wrap_content"
@@ -31,7 +40,6 @@
 				android:layout_alignParentRight="true"
 				android:src="@drawable/main_setting"
 				android:background="#4f000000"/>
-
 
     		 </LinearLayout>
     		

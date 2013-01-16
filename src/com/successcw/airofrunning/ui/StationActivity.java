@@ -10,15 +10,38 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.successcw.airofrunning.service.IntentService;
+
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
 public class StationActivity extends Activity{
-	private Spinner province_spinner;
+	private Spinner provinceSpinner;
+	private Spinner citySpinner;
+	private ListView stationList;
+	private JSONArray province;
+	private JSONArray city;
+	private JSONArray station;
+	private int argCity = 0;
+	private int argStation = 0;
+	private Intent service;
+	private IntentService AirOfRunningService;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,40 +49,189 @@ public class StationActivity extends Activity{
         //this.requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.station);
         initView();
+        ((ScrollView)findViewById(R.id.station_scrollview)).smoothScrollTo(0,20);
     }
+	private ServiceConnection conn = new ServiceConnection() {
+		
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			AirOfRunningService = null;
+		}
+		
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			AirOfRunningService = ((IntentService.LocalBinder) service)
+					.getService();
+			AirOfRunningService.parserData(argCity,argStation);
+		}
+	};
     private void initView() {
     	
-    	province_spinner = (Spinner)findViewById(R.id.province_spinner);
+    	provinceSpinner = (Spinner)findViewById(R.id.province_spinner);
+    	citySpinner = (Spinner)findViewById(R.id.city_spinner);
+    	stationList = (ListView)findViewById(R.id.station_list);
+
     	try {
-    	InputStream in= this.getResources().openRawResource(R.raw.station);
-    
-    	BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8")); 
-    	StringBuilder responseStrBuilder = new StringBuilder();
-    	String inputStr;
-    	while ((inputStr = streamReader.readLine()) != null)
-    		responseStrBuilder.append(inputStr);
-    	JSONObject json = new JSONObject(responseStrBuilder.toString());
-    	JSONArray province = json.getJSONArray("provinces");
-    	String[] items = new String[province.length()];
+	    	InputStream in= this.getResources().openRawResource(R.raw.station);
+	    
+	    	BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8")); 
+	    	StringBuilder responseStrBuilder = new StringBuilder();
+	    	String inputStr;
+	    	while ((inputStr = streamReader.readLine()) != null)
+	    		responseStrBuilder.append(inputStr);
+	  
+	    	JSONObject json = new JSONObject(responseStrBuilder.toString());
+	    	//init province
+	    	province = json.getJSONArray("provinces");
+	    	String[] provinceItems = new String[province.length()];
     	
-    	for(int i = 0; i < province.length(); i++)
-    	{
-    		Log.e("Station", province.getJSONObject(i).getString("name"));
-    		items[i]=province.getJSONObject(i).getString("name");
-    	}
-    	ArrayAdapter adapter = 
-                new ArrayAdapter(this, android.R.layout.simple_spinner_item, items);       
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        province_spinner.setAdapter(adapter);
-    	
+	    	for(int i = 0; i < province.length(); i++)
+	    	{
+	    		//Log.e("provinces", province.getJSONObject(i).getString("name"));
+	    		provinceItems[i] = province.getJSONObject(i).getString("name");
+	    	}
+	    	ArrayAdapter provinceAdapter = 
+	                new ArrayAdapter(this, android.R.layout.simple_spinner_item, provinceItems);       
+	    	provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        provinceSpinner.setAdapter(provinceAdapter);
+	        provinceSpinner.setOnItemSelectedListener(new provinceSpinnerSelectedListener());  
+	        
     	}catch(JSONException e)        {
             Log.e("log_tag", "Error parsing data "+e.toString());
           }
     	catch(IOException e) {
     		Log.e("log_tag", "Error open" + e.toString());
     	}
+	        
+        //init city
+        setCitySpinner(0);
+        citySpinner.setOnItemSelectedListener(new citySpinnerSelectedListener()); 
+        
+        //init station
+        setStationList(0);
+        stationList.setOnItemClickListener(new ListClickListener());
     	
+    }
+
+    public void finishActivity() {
+    	this.finish();
+		service = new Intent("com.successcw.airofrunning.intentservice");
+		startService(service);
+		bindService(service, conn, BIND_AUTO_CREATE);
+    }
+    
+    public class ListClickListener implements OnItemClickListener {
+    	   public void onItemClick(AdapterView<?> parent, View view,   
+                   int position, long id) {
+    		   Log.i("stationList clicked",Long.toString(id));
+    		   argStation=(int)id;
+    		   finishActivity();
+    	   }   
+    }
+ 
+    public class provinceSpinnerSelectedListener implements OnItemSelectedListener{  
+  
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
+                long arg3) {
+        	String temp = "0";
+        	if(arg0 == provinceSpinner) {
+        		
+        		Log.i("provinceSpinner clicked",Integer.toString(arg2));
+        		setCitySpinner(arg2);
+        		try {
+        			temp = city.getJSONObject(0).getString("id");
+        			//Log.i("id=",temp);
+        		}catch(JSONException e){
+         			Log.e("log_tag", "Error parsing data "+e.toString());
+         		}
+        		if(temp != "0")
+        			argCity = Integer.valueOf(temp);
+        		Log.i("argCity=",Integer.toString(argCity));
+        		setStationList(0);
+        		argStation = 0;
+        	}
+            
+        }  
+  
+        public void onNothingSelected(AdapterView<?> arg0) {  
+        }  
+    }
+    public class citySpinnerSelectedListener implements OnItemSelectedListener{  
+    	  
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,  
+                long arg3) {
+        	String temp = "0";
+        	if(arg0 == citySpinner) {    		
+				Log.i("citySpinner clicked",Integer.toString(arg2));
+				setStationList(arg2);
+				try {
+        			temp = city.getJSONObject(arg2).getString("id");
+        			Log.i("id=",temp);
+        		}catch(JSONException e){
+         			Log.e("log_tag", "Error parsing data "+e.toString());
+         		}
+        		if(temp != "0")
+        			argCity = Integer.valueOf(temp);
+        		argStation = 0;
+        		Log.i("argCity=",Integer.toString(argCity));
+        	}
+            
+        }  
+  
+        public void onNothingSelected(AdapterView<?> arg0) {  
+        }  
+    } 
+    private void setCitySpinner(int item) {
+    	try {
+	        //init city
+	    	city = province.getJSONObject(item).getJSONArray("cities");
+	    	String[] cityItems = new String[city.length()];
+		
+	    	for(int i = 0; i < city.length(); i++)
+	    	{
+	    		//Log.e("city", city.getJSONObject(i).getString("name"));
+	    		cityItems[i] = city.getJSONObject(i).getString("name");
+	    	}
+	    	ArrayAdapter cityAdapter = 
+	                new ArrayAdapter(this, android.R.layout.simple_spinner_item, cityItems);       
+	    	cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        citySpinner.setAdapter(cityAdapter);
+       	}catch(JSONException e){
+            Log.e("log_tag", "Error parsing data "+e.toString());
+       	}
+        
+    }
+    private void setStationList(int item) {
+    	try {
+	        //init station
+	    	station = city.getJSONObject(item).getJSONArray("stations");
+	    	String[] stationItems = new String[station.length()];
     	
+	    	for(int i = 0; i < station.length(); i++)
+	    	{
+	    		//Log.e("station", station.getJSONObject(i).getString("name"));
+	    		stationItems[i] = station.getJSONObject(i).getString("name");
+	    	}
+	    	ArrayAdapter stationAdapter = 
+	                new ArrayAdapter(this, android.R.layout.simple_list_item_1, stationItems);       
+	    	stationList.setAdapter(stationAdapter);
+
+
+	        int totalHeight = 0; 
+	        for (int i = 0; i < stationAdapter.getCount(); i++) { 
+	            View listItem = stationAdapter.getView(i, null, stationList); 
+	            listItem.measure(0, 0); 
+	            totalHeight += listItem.getMeasuredHeight(); 
+	        } 
+
+	        ViewGroup.LayoutParams params = stationList.getLayoutParams(); 
+	        params.height = totalHeight + (stationList.getDividerHeight() * (stationList.getCount() - 1)); 
+	        ((MarginLayoutParams)params).setMargins(10, 10, 10, 10);
+	        stationList.setLayoutParams(params); 
+       	}catch(JSONException e){
+            Log.e("log_tag", "Error parsing data "+e.toString());
+       	}
+        
     }
     
 	@Override
@@ -76,6 +248,8 @@ public class StationActivity extends Activity{
 
 	@Override
 	protected void onDestroy() {
+		stopService(service);
+		unbindService(conn);
 		super.onDestroy();
 	}
 

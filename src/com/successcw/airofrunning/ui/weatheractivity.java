@@ -4,9 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -22,7 +28,11 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.successcw.airofrunning.service.IntentService;
 
 public class weatheractivity extends Activity {
 	private ViewPager mPager;//页卡内容
@@ -34,6 +44,7 @@ public class weatheractivity extends Activity {
     private View ViewZixun;
     private View ViewTemp;
 	private PopupWindow popupWindow;
+	private IntentService AirOfRunningService;
     
 	String USAQIVALUE = "";
 	String USAQITIME = "";
@@ -48,6 +59,8 @@ public class weatheractivity extends Activity {
 	String WIND = "";
 	String WEATHERICON = "";
 	String TEMPRATUREUPDATETIME = "";
+	String CITYAREA = "";
+	String STATION = "";
 	ArrayList <String> WEATHERFORECASE;
 	Integer[] icon=new Integer[]{ 
 		    R.drawable.b_0,R.drawable.b_1,R.drawable.b_2, 
@@ -79,7 +92,10 @@ public class weatheractivity extends Activity {
         mPager.setAdapter(new MyPagerAdapter(listViews));
         mPager.setCurrentItem(0);
         mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+    	temp = (TextView) findViewById(R.id.main_title);
+    	temp.setText(CITYAREA + "空气质量");
         loadKongqi();
+        //Log.i("weather activity","initviewpager");
     }
     
     /**
@@ -142,7 +158,7 @@ public class weatheractivity extends Activity {
                 Log.i("PageChange","0");
                 loadKongqi();
             	temp = (TextView) findViewById(R.id.main_title);
-            	temp.setText("空气质量");
+            	temp.setText(CITYAREA + "空气质量");
             	
                 break;
             case 1:      
@@ -176,9 +192,98 @@ public class weatheractivity extends Activity {
         }
 	}
 	
+	private BroadcastReceiver receiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals("com.successcw.airofrunning.noNet")) {
+				String ERRORMSG = (String) intent.getSerializableExtra("ERRORMSG");
+				Toast.makeText(context, "出错了,请稍后重试" + ERRORMSG.toString(), Toast.LENGTH_LONG)
+				.show();		
+				ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+				progressBar1.setVisibility(View.GONE);
+			}
+			if (action.equals("com.successcw.airofrunning.entity")) {
+				USAQIVALUE = (String) intent.getSerializableExtra("USAQIVALUE");
+				USAQITIME = (String) intent.getSerializableExtra("USAQITIME");
+				SHUPDATEDATE = (String) intent.getSerializableExtra("SHUPDATEDATE");
+				SHUPDATETIME = (String) intent.getSerializableExtra("SHUPDATETIME");
+				SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
+				SHAQIVALUE = (String) intent.getSerializableExtra("SHAQIVALUE");
+				SHPM2_5 = (String) intent.getSerializableExtra("SHPM2_5");
+				SHISHITEMPRATURE = (String) intent.getSerializableExtra("SHISHITEMPRATURE");
+				AIRCONDITION = (String) intent.getSerializableExtra("AIRCONDITION");
+				TEMPRATURE = (String) intent.getSerializableExtra("TEMPRATURE");
+				WIND = (String) intent.getSerializableExtra("WIND");
+				WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
+				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
+				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");		
+				CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
+				STATION = (String) intent.getSerializableExtra("STATION");
+				
+				InitViewPager();
+				ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+				progressBar1.setVisibility(View.GONE);
+			}
+			if (action.equals("com.successcw.airofrunning.refresh")) {
+				TextView mainTitle = (TextView) findViewById(R.id.main_title);
+				mainTitle.setText("数据更新中...");
+				ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+				progressBar1.setVisibility(View.VISIBLE);
+			}
+		}
+	};
+	
+	private ServiceConnection conn = new ServiceConnection() {
+		
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+			AirOfRunningService = null;
+		}
+		
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			AirOfRunningService = ((IntentService.LocalBinder) service)
+					.getService();
+			AirOfRunningService.parserData(20, 0); //默认加载上海数据
+		}
+	};
+	
     private void loadKongqi() {
     	ViewTemp = ViewKongqi;	
-		
+    	TextView USconst = (TextView) ViewTemp.findViewById(R.id.USconst);
+    	TextView SHconst = (TextView) ViewTemp.findViewById(R.id.SHconst);
+    	TextView USAQIconst = (TextView) ViewTemp.findViewById(R.id.USAQIconst);
+    	TextView SHAQIconst = (TextView) ViewTemp.findViewById(R.id.SHAQIconst);
+    	//Log.i("loadKongqi",CITYAREA);
+    	
+    	if(CITYAREA.equalsIgnoreCase("上海")) {
+    		USconst.setText("美国上海领事馆");
+    		SHconst.setText("上海环境监测中心");
+    		USAQIconst.setText("美国领事馆");
+    		SHAQIconst.setText(STATION);
+    	} else if(CITYAREA.equalsIgnoreCase("北京")) {
+    		USconst.setText("美国北京大使馆");
+    		SHconst.setText("北京环境保护监测中心");
+    		USAQIconst.setText("美国大使馆");
+    		SHAQIconst.setText(STATION);
+    	} else if(CITYAREA.equalsIgnoreCase("广州")) {
+    		USconst.setText("美国广州领事馆");
+    		SHconst.setText("中国环境监测总站");
+    		USAQIconst.setText("美国领事馆");
+    		SHAQIconst.setText(STATION);
+    	} else if(CITYAREA.equalsIgnoreCase("成都")) {
+    		USconst.setText("美国成都领事馆");
+    		SHconst.setText("中国环境监测总站");
+    		USAQIconst.setText("美国领事馆");
+    		SHAQIconst.setText(STATION);
+    	} else {
+    		USconst.setText("中国环境监测总站");
+    		SHconst.setText("中国环境监测总站");
+    		USAQIconst.setText(CITYAREA + " 平均值");
+    		SHAQIconst.setText(STATION);
+    	}
     	TextView shishitemprature = (TextView) ViewTemp.findViewById(R.id.shishitemprature);
     	shishitemprature.setText(SHISHITEMPRATURE +"°");
 
@@ -213,6 +318,7 @@ public class weatheractivity extends Activity {
 		//update US AQI
 		if (USAQIVALUETemp == null) {
 			USAQIVALUEView.setText("AQI数据加载错误，请稍候重试");
+			USAQIVALUEView.setTextSize(40);
 			USAQILEVELView.setText(" ");
 		}else if(Integer.valueOf(USAQIVALUETemp) <= 50){
 			USAQIVALUEView.setText(USAQIVALUE);
@@ -262,8 +368,9 @@ public class weatheractivity extends Activity {
 		
 		TextView SHAQILEVELView = (TextView)ViewTemp.findViewById(R.id.SHAQILEVEL);
 		if (SHAQIVALUETemp == null) {
-			SHAQIVALUEView.setText("AQI数据加载错误，请稍候重试");
+			SHAQIVALUEView.setText("无当前数据");
 			SHAQILEVELView.setText(" ");
+			SHAQIVALUEView.setTextSize(40);
 			
 		}else if (Integer.valueOf(SHAQIVALUETemp) <= 50){
 			SHAQIVALUEView.setText(SHAQIVALUE);
@@ -374,16 +481,17 @@ public class weatheractivity extends Activity {
     	TextView running = (TextView) ViewTemp.findViewById(R.id.running);
     	
     	int SHAQI = AQIPM25(SHPM2_5.toString());
-    	//Log.i("load jianyi",Integer.toString(SHAQI));
+    	Log.i("load jianyi",Integer.toString(SHAQI));
     	
     	Integer shishitempratureTemp = TryParseInt(SHISHITEMPRATURE.toString());
     	//Log.i("load jianyi",Integer.toString(shishitempratureTemp));
     	
 		//update US AQI
 		if (SHAQI == 100001) {
-			AQI.setText("数据加载错误。");
+			AQI.setText("当前站点无PM2.5数据");
+			AQI.setTextSize(40);
 		}else if(SHAQI <= 50){
-			AQI.setText("空气质量指数：" + SHAQI);	
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);	
 			AQIjianyi.setText("健康，无建议");
 			AQIjianyi.setTextColor(Color.rgb(0,228,0));
 			if(shishitempratureTemp == null) {
@@ -395,7 +503,7 @@ public class weatheractivity extends Activity {
 			}
 			
 		}else if (SHAQI <= 100 && SHAQI >= 51){
-			AQI.setText("空气质量指数：" + SHAQI);
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);
 			AQIjianyi.setText("中等，特别敏感的人群应该考虑减少长期或沉重的负荷。");
 			AQIjianyi.setTextColor(Color.rgb(255,255,0));
 			if(shishitempratureTemp == null) {
@@ -406,7 +514,7 @@ public class weatheractivity extends Activity {
 				running.setText("正常人群可以跑步");
 			}
 		}else if (SHAQI <= 150 && SHAQI >= 101){
-			AQI.setText("空气质量指数：" + SHAQI);
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);
 			AQIjianyi.setText("对敏感人群不健康，有心脏或肺部疾病的人、老人和小孩应该减少长期或沉重的负荷。");
 			AQIjianyi.setTextColor(Color.rgb(255,165,0));
 			if(shishitempratureTemp == null) {
@@ -417,26 +525,28 @@ public class weatheractivity extends Activity {
 				running.setText("正常人群可以跑步");
 			}
 		}else if (SHAQI <= 200 && SHAQI >= 151){
-			AQI.setText("空气质量指数：" + SHAQI);
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);
 			AQIjianyi.setText("不健康，有心脏或肺部疾病的人、老人和小孩应该避免长期或沉重的负荷。其他人也应该减少长期或沉重的负荷。");
 			AQIjianyi.setTextColor(Color.RED);
 			running.setText("最好不要跑步");
 		}else if (SHAQI <= 300 && SHAQI >= 201){
-			AQI.setText("空气质量指数：" + SHAQI);
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);
 			AQIjianyi.setText("非常不健康，有心脏或肺部疾病的人、老人和小孩应该避免所有户外活动。其他人也应该避免长期或沉重的负荷。");
 			AQIjianyi.setTextColor(Color.rgb(176,48,96));
 			running.setText("不要跑步");
 		}else if (SHAQI <= 500 && SHAQI >= 301){
-			AQI.setText("空气质量指数：" + SHAQI);
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);
 			AQIjianyi.setText("危险，所有人都应该避免户外活动。有心脏或肺病的人、老人和小孩应该保持在室内，减少活动。");
 			AQIjianyi.setTextColor(Color.rgb(139,69,19));
 			running.setText("禁止跑步");
 		}else{
-			AQI.setText("空气质量指数：" + SHAQI);
+			AQI.setText("按美国标准计算出的空气质量指数为(" + STATION +"):" + SHAQI);
 			AQIjianyi.setText("爆表了，非常恐怖！");
 			AQIjianyi.setTextColor(Color.rgb(139,69,19));
 			running.setText("禁止跑步");
 		}
+		TextView weatherforecast = (TextView) ViewTemp.findViewById(R.id.weatherforecast);
+		weatherforecast.setText(CITYAREA + "未来5天天气预报");
 		TextView forecast = (TextView) ViewTemp.findViewById(R.id.forecast1);
 		ImageView forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon1);
 		forecast.setText(WEATHERFORECASE.get(12).split("-")[1] + "/" + WEATHERFORECASE.get(12).split("-")[2] 
@@ -591,8 +701,8 @@ public class weatheractivity extends Activity {
 		Intent intent = getIntent();
 		USAQIVALUE = (String) intent.getSerializableExtra("USAQIVALUE");
 		USAQITIME = (String) intent.getSerializableExtra("USAQITIME");
-		String []Array = USAQITIME.split(" ");
-		USAQITIME = Array[1];
+//		String []Array = USAQITIME.split(" ");
+//		USAQITIME = Array[1];
 		SHUPDATEDATE = (String) intent.getSerializableExtra("SHUPDATEDATE");
 		SHUPDATETIME = (String) intent.getSerializableExtra("SHUPDATETIME");
 		SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
@@ -606,11 +716,19 @@ public class weatheractivity extends Activity {
 		WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
 		TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");		
 		WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");
+		CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
+		STATION = (String) intent.getSerializableExtra("STATION");
 		
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("com.successcw.airofrunning.entity");
+		filter.addAction("com.successcw.airofrunning.refresh");
+		registerReceiver(receiver, filter);
 		//InitTextView();
 		InitViewPager();
 		ImageButton optionMenu = (ImageButton)findViewById(R.id.option_menu);
 		optionMenu.setOnClickListener(popClick);
+		ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
+		progressBar1.setVisibility(View.GONE);
 	
 	}
 }

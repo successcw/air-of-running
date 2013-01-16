@@ -19,6 +19,6 @@ public class XMLGettersSetters {
 
 	public void setDescription(String description) {
 		this.description.add(description);
-		Log.i("This is the description", description);
+		//Log.i("This is the description", description);
 	}
 }

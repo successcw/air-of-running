@@ -7,176 +7,147 @@
          "cities":[
             {
                "id":1,
-               "name_en":"Beijing",
-               "name_cn":"\u5317\u4eac",
+               "name":"北京",
                "stations":[
                   {
                      "id":1,
-                     "name_en":"U.S. Embassy",
-                     "name_cn":"\u7f8e\u56fd\u5927\u4f7f\u9986",
-                     "pm25":true
+                     "name":"永定门内"
+                  },
+                  {
+                     "id":2,
+                     "name":"榆垡"
                   },
                   {
                      "id":3,
-                     "name_en":"Wanshou Park",
-                     "name_cn":"\u4e07\u5bff\u897f\u5bab",
-                     "pm25":true
+                     "name":"植物园"
                   },
                   {
                      "id":4,
-                     "name_en":"Willow Park",
-                     "name_cn":"\u4e07\u67f3",
-                     "pm25":true
+                     "name":"丰台花园"
                   },
                   {
                      "id":5,
-                     "name_en":"Haidian Northen New Area",
-                     "name_cn":"\u5317\u90e8\u65b0\u533a",
-                     "pm25":true
+                     "name":"顺义"
                   },
                   {
                      "id":6,
-                     "name_en":"Beijing Botanical Garden",
-                     "name_cn":"\u5317\u4eac\u690d\u7269\u56ed",
-                     "pm25":true
+                     "name":"延庆"
                   },
                   {
                      "id":7,
-                     "name_en":"Fengtai Garden",
-                     "name_cn":"\u4e30\u53f0\u82b1\u56ed",
-                     "pm25":true
+                     "name":"平谷"
                   },
                   {
                      "id":8,
-                     "name_en":"Fengtai Yungang",
-                     "name_cn":"\u4e30\u53f0\u4e91\u5188",
-                     "pm25":true
+                     "name":"房山"
                   },
                   {
                      "id":9,
-                     "name_en":"Dongsi",
-                     "name_cn":"\u4e1c\u56db",
-                     "pm25":true
+                     "name":"亦庄"
                   },
                   {
                      "id":10,
-                     "name_en":"Agricultural Exhibition Hall",
-                     "name_cn":"\u519c\u5c55\u9986",
-                     "pm25":true
+                     "name":"云岗"
                   },
                   {
                      "id":11,
-                     "name_en":"Shijingshan Guchen Park",
-                     "name_cn":"\u53e4\u57ce",
-                     "pm25":true
+                     "name":"密云水库"
                   },
                   {
                      "id":12,
-                     "name_en":"Yizhuan Development Zone",
-                     "name_cn":"\u4ea6\u5e84\u5f00\u53d1\u533a",
-                     "pm25":true
+                     "name":"怀柔"
                   },
                   {
                      "id":13,
-                     "name_en":"Mentougou Longquan Town",
-                     "name_cn":"\u95e8\u5934\u6c9f\u9f99\u6cc9\u9547",
-                     "pm25":true
+                     "name":"八达岭"
                   },
                   {
                      "id":14,
-                     "name_en":"Fangshan Liangxiang",
-                     "name_cn":"\u623f\u5c71\u826f\u4e61",
-                     "pm25":true
+                     "name":"万寿西宫"
                   },
                   {
                      "id":15,
-                     "name_en":"Temple of Heaven",
-                     "name_cn":"\u5929\u575b",
-                     "pm25":true
+                     "name":"昌平"
                   },
                   {
                      "id":16,
-                     "name_en":"Olympic Sports Center",
-                     "name_cn":"\u5965\u4f53\u4e2d\u5fc3",
-                     "pm25":true
+                     "name":"门头沟"
                   },
                   {
                      "id":17,
-                     "name_en":"Guanyuan",
-                     "name_cn":"\u5b98\u56ed",
-                     "pm25":true
+                     "name":"通州"
                   },
                   {
                      "id":18,
-                     "name_en":"Huairou Town",
-                     "name_cn":"\u6000\u67d4\u9547",
-                     "pm25":true
+                     "name":"大兴"
                   },
                   {
                      "id":19,
-                     "name_en":"Pinggu Town",
-                     "name_cn":"\u5e73\u8c37\u9547",
-                     "pm25":true
+                     "name":"定陵"
                   },
                   {
                      "id":20,
-                     "name_en":"Miyun Reservoir",
-                     "name_cn":"\u5bc6\u4e91\u6c34\u5e93",
-                     "pm25":true
+                     "name":"前门"
                   },
                   {
                      "id":21,
-                     "name_en":"Miyun Town",
-                     "name_cn":"\u5bc6\u4e91\u9547",
-                     "pm25":true
+                     "name":"东四"
                   },
                   {
                      "id":22,
-                     "name_en":"Yanqing Town",
-                     "name_cn":"\u5ef6\u5e86\u9547",
-                     "pm25":true
+                     "name":"天坛"
                   },
                   {
                      "id":23,
-                     "name_en":"Yanqing Badaling",
-                     "name_cn":"\u5ef6\u5e86\u516b\u8fbe\u5cad",
-                     "pm25":true
+                     "name":"奥体中心"
                   },
                   {
                      "id":24,
-                     "name_en":"Dingling",
-                     "name_cn":"\u5b9a\u9675",
-                     "pm25":true
+                     "name":"农展馆"
                   },
                   {
                      "id":25,
-                     "name_en":"Changping Town",
-                     "name_cn":"\u660c\u5e73\u9547",
-                     "pm25":true
+                     "name":"密云"
                   },
                   {
                      "id":26,
-                     "name_en":"Daxing Huangcun",
-                     "name_cn":"\u5927\u5174\u9ec4\u6751\u9547",
-                     "pm25":true
+                     "name":"古城"
                   },
                   {
                      "id":27,
-                     "name_en":"Daxing Yufa",
-                     "name_cn":"\u5927\u5174\u6986\u57a1",
-                     "pm25":true
+                     "name":"官园"
                   },
                   {
                      "id":28,
-                     "name_en":"Tongzhou New Town",
-                     "name_cn":"\u901a\u5dde\u65b0\u57ce",
-                     "pm25":true
+                     "name":"南三环"
                   },
                   {
                      "id":29,
-                     "name_en":"Shunyi New Town",
-                     "name_cn":"\u987a\u4e49\u65b0\u57ce",
-                     "pm25":true
+                     "name":"北部新区"
+                  },
+                  {
+                     "id":30,
+                     "name":"万柳"
+                  },
+                  {
+                     "id":31,
+                     "name":"永乐店"
+                  },
+                  {
+                     "id":32,
+                     "name":"琉璃河"
+                  },
+                  {
+                     "id":33,
+                     "name":"东高村"
+                  },
+                  {
+                     "id":34,
+                     "name":"东四环"
+                  },
+                  {
+                     "id":35,
+                     "name":"西直门北"
                   }
                ]
             }
@@ -188,98 +159,67 @@
          "cities":[
             {
                "id":2,
-               "name_en":"Tianjin",
-               "name_cn":"\u5929\u6d25",
+               "name":"天津",
                "stations":[
                   {
-                     "id":30,
-                     "name_en":"Toray Middle School",
-                     "name_cn":"\u4e1c\u4e3d\u4e2d\u5b66",
-                     "pm25":true
+                     "id":13,
+                     "name":"市监测中心"
                   },
                   {
-                     "id":31,
-                     "name_en":"Beichen Hi-tech Park",
-                     "name_cn":"\u5317\u8fb0\u79d1\u6280\u56ed\u533a",
-                     "pm25":true
+                     "id":14,
+                     "name":"机车车辆厂"
                   },
                   {
-                     "id":32,
-                     "name_en":"Nanjing Road",
-                     "name_cn":"\u5357\u4eac\u8def",
-                     "pm25":true
+                     "id":15,
+                     "name":"继电器厂"
                   },
                   {
-                     "id":33,
-                     "name_en":"Tuanbowa",
-                     "name_cn":"\u56e2\u6cca\u6d3c",
-                     "pm25":true
+                     "id":16,
+                     "name":"南京路"
                   },
                   {
-                     "id":34,
-                     "name_en":"Tianshan Road",
-                     "name_cn":"\u5929\u5c71\u8def",
-                     "pm25":true
+                     "id":17,
+                     "name":"河东站"
                   },
                   {
-                     "id":35,
-                     "name_en":"Environment Monitoring Center",
-                     "name_cn":"\u5e02\u76d1\u6d4b\u4e2d\u5fc3",
-                     "pm25":true
+                     "id":18,
+                     "name":"河西站"
                   },
                   {
-                     "id":36,
-                     "name_en":"Rolling Stock Plant",
-                     "name_cn":"\u673a\u8f66\u8f66\u8f86\u5382",
-                     "pm25":true
+                     "id":19,
+                     "name":"北辰科技园区"
                   },
                   {
-                     "id":37,
-                     "name_en":"Yongming Lu",
-                     "name_cn":"\u6c38\u660e\u8def",
-                     "pm25":true
+                     "id":20,
+                     "name":"天山路"
                   },
                   {
-                     "id":38,
-                     "name_en":"Hedong Station",
-                     "name_cn":"\u6cb3\u4e1c\u7ad9",
-                     "pm25":true
+                     "id":21,
+                     "name":"东丽中学"
                   },
                   {
-                     "id":39,
-                     "name_en":"Hexi Station",
-                     "name_cn":"\u6cb3\u897f\u7ad9",
-                     "pm25":true
+                     "id":22,
+                     "name":"梅江小区"
                   },
                   {
-                     "id":40,
-                     "name_en":"Taifeng Industrial Park",
-                     "name_cn":"\u6cf0\u4e30\u5de5\u4e1a\u56ed",
-                     "pm25":true
+                     "id":23,
+                     "name":"泰丰工业园"
                   },
                   {
-                     "id":41,
-                     "name_en":"Relay Factory",
-                     "name_cn":"\u7ee7\u7535\u5668\u5382",
-                     "pm25":true
+                     "id":24,
+                     "name":"永明路"
                   },
                   {
-                     "id":42,
-                     "name_en":"Meijiang Unit",
-                     "name_cn":"\u6885\u6c5f\u5c0f\u533a",
-                     "pm25":true
+                     "id":25,
+                     "name":"空港物流加工区"
                   },
                   {
-                     "id":926,
-                     "name_en":"Airport Logistics Processing Area",
-                     "name_cn":"\u7a7a\u6e2f\u7269\u6d41\u52a0\u5de5\u533a",
-                     "pm25":true
+                     "id":26,
+                     "name":"中新生态城"
                   },
                   {
-                     "id":927,
-                     "name_en":"Sino-Singapore Tianjin Eco-city",
-                     "name_cn":"\u4e2d\u65b0\u751f\u6001\u57ce",
-                     "pm25":true
+                     "id":27,
+                     "name":"团泊洼"
                   }
                ]
             }
@@ -290,39 +230,280 @@
          "name":"河北",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":3,
+               "name":"石家庄",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
+                     "id":28,
+                     "name":"化工学校"
                   },              
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "id":29,
+                     "name":"职工医院"
+                  },
+                  {
+                     "id":30,
+                     "name":"高新区"
+                  }, 
+                  {
+                     "id":31,
+                     "name":"西北水源"
+                  }, 
+                  {
+                     "id":32,
+                     "name":"西南高教"
+                  },              
+                  {
+                     "id":33,
+                     "name":"世纪公园"
+                  },
+                  {
+                     "id":34,
+                     "name":"人民会堂"
+                  }, 
+                  {
+                     "id":35,
+                     "name":"封龙山"
+                  } 
+               ]
+            },
+            {
+               "id":4,
+               "name":"秦皇岛",
+               "stations":[
+                  {
+                     "id":42,
+                     "name":"北戴河环保局"
+                  },
+                  {
+                     "id":43,
+                     "name":"第一关"
+                  },
+                  {
+                     "id":44,
+                     "name":"监测站"
+                  },
+                  {
+                     "id":45,
+                     "name":"市政府"
+                  },
+                  {
+                     "id":46,
+                     "name":"建设大夏"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":5,
+               "name":"邯郸",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":47,
+                     "name":"环保局"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":48,
+                     "name":"东污水处理厂"
+                  },
+                  {
+                     "id":49,
+                     "name":"矿院"
+                  },
+                  {
+                     "id":50,
+                     "name":"丛台公园"
+                  }
+               ]
+            },
+            {
+               "id":6,
+               "name":"邢台",
+               "stations":[
+                  {
+                     "id":77,
+                     "name":"达活泉"
+                  },
+                  {
+                     "id":78,
+                     "name":"邢师高专"
+                  },
+                  {
+                     "id":79,
+                     "name":"路桥公司"
+                  },
+                  {
+                     "id":80,
+                     "name":"市环保局"
+                  }
+               ]
+            },
+            {
+               "id":7,
+               "name":"保定",
+               "stations":[
+                  {
+                     "id":51,
+                     "name":"游泳馆"
+                  },
+                  {
+                     "id":52,
+                     "name":"华电二区"
+                  },
+                  {
+                     "id":53,
+                     "name":"接待中心"
+                  },
+                  {
+                     "id":54,
+                     "name":"地表水厂"
+                  },
+              	  {
+                     "id":55,
+                     "name":"胶片厂"
+                  },
+                  {
+                     "id":56,
+                     "name":"监测站"
+                  }
+               ]
+            },
+            {
+               "id":8,
+               "name":"承德",
+               "stations":[
+                  {
+                     "id":62,
+                     "name":"铁路"
+                  },
+                  {
+                     "id":63,
+                     "name":"中国银行"
+                  },
+                  {
+                     "id":64,
+                     "name":"开发区"
+                  },
+                  {
+                     "id":65,
+                     "name":"文化中心"
+                  },
+              	  {
+                     "id":66,
+                     "name":"离宫"
+                  }
+               ]
+            },
+            {
+               "id":9,
+               "name":"衡水",
+               "stations":[
+                  {
+                     "id":74,
+                     "name":"电机北厂"
+                  },
+                  {
+                     "id":75,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":76,
+                     "name":"市环保局"
+                  }
+               ]
+            },
+            {
+               "id":10,
+               "name":"张家口",
+               "stations":[
+                  {
+                     "id":57,
+                     "name":"人民公园"
+                  },
+                  {
+                     "id":58,
+                     "name":"探机厂"
+                  },
+                  {
+                     "id":59,
+                     "name":"五金库"
+                  },
+                  {
+                     "id":60,
+                     "name":"世纪豪园"
+                  },
+                  {
+                     "id":61,
+                     "name":"北泵房"
+                  }
+               ]
+            },
+            {
+               "id":11,
+               "name":"廊坊",
+               "stations":[
+                  {
+                     "id":67,
+                     "name":"药材公司"
+                  },
+                  {
+                     "id":68,
+                     "name":"开发区"
+                  },
+                  {
+                     "id":69,
+                     "name":"环境监测监理中心"
+                  },
+                  {
+                     "id":70,
+                     "name":"北华航天学校"
+                  }
+               ]
+            },
+            {
+               "id":12,
+               "name":"唐山",
+               "stations":[
+                  {
+                     "id":36,
+                     "name":"供销社"
+                  },
+                  {
+                     "id":37,
+                     "name":"雷达站"
+                  },
+                  {
+                     "id":38,
+                     "name":"物资局"
+                  },
+                  {
+                     "id":39,
+                     "name":"陶瓷公司"
+                  },
+                  {
+                     "id":40,
+                     "name":"十二中"
+                  },
+                  {
+                     "id":41,
+                     "name":"小山"
+                  }
+               ]
+            },
+            {
+               "id":13,
+               "name":"沧州",
+               "stations":[
+                  {
+                     "id":71,
+                     "name":"沧县城建局"
+                  },
+                  {
+                     "id":72,
+                     "name":"电视转播站"
+                  },
+                  {
+                     "id":73,
+                     "name":"市环保局"
                   }
                ]
             }
@@ -333,39 +514,44 @@
          "name":"山西",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":14,
+               "name":"太原",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
+                     "id":81,
+                     "name":"尖草坪"
                   },              
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":82,
+                     "name":"涧河"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":83,
+                     "name":"上兰"
+                  },              
+                  {
+                     "id":84,
+                     "name":"晋源"
+                  },
+                  {
+                     "id":85,
+                     "name":"小店"
+                  },              
+                  {
+                     "id":86,
+                     "name":"桃园"
+                  },
+                  {
+                     "id":87,
+                     "name":"坞城"
+                  },              
+                  {
+                     "id":88,
+                     "name":"南寨"
+                  },
+                  {
+                     "id":89,
+                     "name":"金胜"
                   }
                ]
             }
@@ -376,39 +562,40 @@
          "name":"内蒙古",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":15,
+               "name":"呼和浩特",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
+                     "id":90,
+                     "name":"呼市一监"
                   },              
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":91,
+                     "name":"小召"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":92,
+                     "name":"兴松小区"
+                  },              
+                  {
+                     "id":93,
+                     "name":"糖厂"
+                  },
+                  {
+                     "id":94,
+                     "name":"如意水处理厂"
+                  },              
+                  {
+                     "id":95,
+                     "name":"二十九中"
+                  },
+                  {
+                     "id":96,
+                     "name":"工大金川校区"
+                  },              
+                  {
+                     "id":97,
+                     "name":"化肥厂生活区"
                   }
                ]
             }
@@ -419,39 +606,98 @@
          "name":"辽宁",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":16,
+               "name":"沈阳",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
+                     "id":98,
+                     "name":"辉山"
                   },              
                   {
+                     "id":99,
+                     "name":"浑南二"
+                  },
+                  {
+                     "id":100,
+                     "name":"东软"
+                  },              
+                  {
+                     "id":101,
+                     "name":"张士"
+                  },
+                  {
                      "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "name":"炮兵学院"
+                  },              
+                  {
+                     "id":103,
+                     "name":"北陵"
+                  },
+                  {
+                     "id":104,
+                     "name":"文艺路"
+                  },
+                  {
+                     "id":105,
+                     "name":"小河沿"
+                  },              
+                  {
+                     "id":106,
+                     "name":"太原街"
+                  },
+                  {
+                     "id":107,
+                     "name":"二毛"
+                  },              
+                  {
+                     "id":108,
+                     "name":"辽大"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":17,
+               "name":"大连",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":109,
+                     "name":"甘井子"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":110,
+                     "name":"周水子"
+                  },
+                  {
+                     "id":111,
+                     "name":"星海三站"
+                  },
+                  {
+                     "id":112,
+                     "name":"青泥洼桥"
+                  },
+                  {
+                     "id":113,
+                     "name":"傅家庄"
+                  },
+                  {
+                     "id":114,
+                     "name":"七贤岭"
+                  },
+                  {
+                     "id":115,
+                     "name":"旅顺"
+                  },
+                  {
+                     "id":116,
+                     "name":"金州"
+                  },
+                  {
+                     "id":117,
+                     "name":"开发区"
+                  },
+                  {
+                     "id":118,
+                     "name":"双D港"
                   }
                ]
             }
@@ -462,39 +708,48 @@
          "name":"吉林",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":18,
+               "name":"长春",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":119,
+                     "name":"食品厂"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":120,
+                     "name":"客车厂"
+                  },
+                  {
+                     "id":121,
+                     "name":"邮电学院"
+                  },
+                  {
+                     "id":122,
+                     "name":"劳动公园"
+                  },
+                  {
+                     "id":123,
+                     "name":"园林处"
+                  },
+                  {
+                     "id":124,
+                     "name":"净月潭"
+                  },
+                  {
+                     "id":125,
+                     "name":"甩湾子"
+                  },
+                  {
+                     "id":126,
+                     "name":"经开区环卫处"
+                  },
+                  {
+                     "id":127,
+                     "name":"高新区管委会"
+                  },
+                  {
+                     "id":128,
+                     "name":"岱山公园"
                   }
                ]
             }
@@ -505,42 +760,59 @@
          "name":"黑龙江",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":19,
+               "name":"哈尔滨",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":129,
+                     "name":"岭北"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":130,
+                     "name":"松北商大"
+                  },
+                  {
+                     "id":131,
+                     "name":"阿城会宁"
+                  },
+                  {
+                     "id":132,
+                     "name":"南岗学府路"
+                  },
+                  {
+                     "id":133,
+                     "name":"太平宏伟公园"
+                  },
+                  {
+                     "id":134,
+                     "name":"道外承德广场"
+                  },
+                  {
+                     "id":135,
+                     "name":"香坊红旗大街"
+                  },
+                  {
+                     "id":136,
+                     "name":"动力和平路"
+                  },
+                  {
+                     "id":137,
+                     "name":"道里建国路"
+                  },
+                  {
+                     "id":138,
+                     "name":"平房东轻厂"
+                  },
+                  {
+                     "id":139,
+                     "name":"呼兰师专"
+                  },
+                  {
+                     "id":140,
+                     "name":"省农科院"
                   }
                ]
-            }
+            }     
          ]
       },
       {
@@ -548,39 +820,52 @@
          "name":"上海",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":20,
+               "name":"上海",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":0,
+                     "name":"上海平均"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":201,
+                     "name":"普陀监测站"
+                  },
+                  {
+                     "id":209,
+                     "name":"杨浦四漂"
+                  },
+                  {
+                     "id":185,
+                     "name":"卢湾师专附小"
+                  },
+                  {
+                     "id":203,
+                     "name":"青浦淀山湖"
+                  },
+                  {
+                     "id":215,
+                     "name":"虹口凉城"
+                  },
+                  {
+                     "id":183,
+                     "name":"静安监测站"
+                  },
+                  {
+                     "id":207,
+                     "name":"徐汇上师大"
+                  },
+                  {
+                     "id":193,
+                     "name":"浦东川沙"
+                  },
+                  {
+                     "id":228,
+                     "name":"浦东新区监测站"
+                  },
+                  {
+                     "id":195,
+                     "name":"浦东张江"
                   }
                ]
             }
@@ -591,39 +876,368 @@
          "name":"江苏",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":21,
+               "name":"南京",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
+                     "id":151,
+                     "name":"迈皋桥"
+                  },
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "id":152,
+                     "name":"草场门"
+                  },
+                  {
+                     "id":153,
+                     "name":"山西路"
+                  },
+                  {
+                     "id":154,
+                     "name":"中华门"
+                  },
+                  {
+                     "id":155,
+                     "name":"瑞金路"
+                  },
+                  {
+                     "id":156,
+                     "name":"玄武湖"
+                  },
+                  {
+                     "id":157,
+                     "name":"浦口"
+                  },
+                  {
+                     "id":158,
+                     "name":"奥体中心"
+                  },
+                  {
+                     "id":159,
+                     "name":"仙林大学城"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":22,
+               "name":"无锡",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":188,
+                     "name":"大学城"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":189,
+                     "name":"市北高中"
+                  },
+                  {
+                     "id":190,
+                     "name":"曹张"
+                  },
+                  {
+                     "id":191,
+                     "name":"漆塘"
+                  },
+                  {
+                     "id":192,
+                     "name":"东亭"
+                  },
+                  {
+                     "id":193,
+                     "name":"旺庄"
+                  },
+                  {
+                     "id":194,
+                     "name":"育红小学"
+                  },
+                  {
+                     "id":195,
+                     "name":"堰桥"
+                  }
+               ]
+            },
+            {
+               "id":23,
+               "name":"徐州",
+               "stations":[
+                  {
+                     "id":177,
+                     "name":"黄河新村"
+                  },
+                  {
+                     "id":178,
+                     "name":"淮塔"
+                  },
+                  {
+                     "id":179,
+                     "name":"铜山兽医院"
+                  },
+                  {
+                     "id":180,
+                     "name":"新城区"
+                  },
+                  {
+                     "id":181,
+                     "name":"桃园路"
+                  },
+                  {
+                     "id":182,
+                     "name":"农科院"
+                  },
+                  {
+                     "id":183,
+                     "name":"铜山区环保局"
+                  }
+               ]
+            },
+            {
+               "id":24,
+               "name":"常州",
+               "stations":[
+                  {
+                     "id":196,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":197,
+                     "name":"城建学校"
+                  },
+                  {
+                     "id":198,
+                     "name":"常工院"
+                  },
+                  {
+                     "id":199,
+                     "name":"潞城"
+                  },
+                  {
+                     "id":200,
+                     "name":"武进监测站"
+                  },
+                  {
+                     "id":201,
+                     "name":"安家"
+                  }
+               ]
+            },
+            {
+               "id":25,
+               "name":"苏州",
+               "stations":[
+                  {
+                     "id":160,
+                     "name":"上方山"
+                  },
+                  {
+                     "id":161,
+                     "name":"南门"
+                  },
+                  {
+                     "id":162,
+                     "name":"彩香"
+                  },
+                  {
+                     "id":163,
+                     "name":"轧钢厂"
+                  },
+                  {
+                     "id":164,
+                     "name":"吴中区"
+                  },
+                  {
+                     "id":165,
+                     "name":"苏州新区"
+                  },
+                  {
+                     "id":166,
+                     "name":"苏州工业园区"
+                  },
+                  {
+                     "id":167,
+                     "name":"相城区"
+                  }
+               ]
+            },
+            {
+               "id":26,
+               "name":"南通",
+               "stations":[
+                  {
+                     "id":168,
+                     "name":"南郊"
+                  },
+                  {
+                     "id":169,
+                     "name":"虹桥"
+                  },
+                  {
+                     "id":170,
+                     "name":"城中"
+                  },
+                  {
+                     "id":171,
+                     "name":"星湖花园"
+                  },
+                  {
+                     "id":172,
+                     "name":"紫琅学院"
+                  }
+               ]
+            },
+            {
+               "id":27,
+               "name":"连云港",
+               "stations":[
+                  {
+                     "id":173,
+                     "name":"市环境监测站"
+                  },
+                  {
+                     "id":174,
+                     "name":"洪门派出所"
+                  },
+                  {
+                     "id":175,
+                     "name":"墟沟核电专家村"
+                  },
+                  {
+                     "id":176,
+                     "name":"开发区恒瑞医药公司"
+                  }
+               ]
+            },
+            {
+               "id":28,
+               "name":"淮安",
+               "stations":[
+                  {
+                     "id":210,
+                     "name":"钵池山"
+                  },
+                  {
+                     "id":211,
+                     "name":"北京南路"
+                  },
+                  {
+                     "id":212,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":213,
+                     "name":"楚州区监测站"
+                  },
+                  {
+                     "id":214,
+                     "name":"淮阴区监测站"
+                  }
+               ]
+            },
+            {
+               "id":29,
+               "name":"盐城",
+               "stations":[
+                  {
+                     "id":215,
+                     "name":"盐城电厂"
+                  },
+                  {
+                     "id":216,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":217,
+                     "name":"文峰中学"
+                  },
+                  {
+                     "id":218,
+                     "name":"开发区管委会"
+                  }
+               ]
+            },
+            {
+               "id":30,
+               "name":"扬州",
+               "stations":[
+                  {
+                     "id":184,
+                     "name":"城东财政所"
+                  },
+                  {
+                     "id":185,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":186,
+                     "name":"邗江监测站"
+                  },
+                  {
+                     "id":187,
+                     "name":"第四医院"
+                  }
+               ]
+            },
+            {
+               "id":31,
+               "name":"镇江",
+               "stations":[
+                  {
+                     "id":202,
+                     "name":"环境监测站"
+                  },
+                  {
+                     "id":203,
+                     "name":"新区办事处"
+                  },
+                  {
+                     "id":204,
+                     "name":"职教中心"
+                  },
+                  {
+                     "id":205,
+                     "name":"丹徒区监测站"
+                  }
+               ]
+            },
+            {
+               "id":32,
+               "name":"泰州",
+               "stations":[
+                  {
+                     "id":206,
+                     "name":"公园路"
+                  },
+                  {
+                     "id":207,
+                     "name":"莲花"
+                  },
+                  {
+                     "id":208,
+                     "name":"高港区政府"
+                  },
+                  {
+                     "id":209,
+                     "name":"留学生创业园"
+                  }
+               ]
+            },
+            {
+               "id":33,
+               "name":"宿迁",
+               "stations":[
+                  {
+                     "id":219,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":220,
+                     "name":"宿迁学院"
+                  },
+                  {
+                     "id":221,
+                     "name":"宿迁中学"
+                  },
+                  {
+                     "id":222,
+                     "name":"宿豫区环保局"
                   }
                ]
             }
@@ -634,39 +1248,256 @@
          "name":"浙江",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":34,
+               "name":"杭州",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
+                     "id":223,
+                     "name":"滨江"
+                  },
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "id":224,
+                     "name":"西溪"
+                  },
+                  {
+                     "id":225,
+                     "name":"千岛湖"
+                  },
+                  {
+                     "id":226,
+                     "name":"下沙"
+                  },
+                  {
+                     "id":227,
+                     "name":"卧龙桥"
+                  },
+                  {
+                     "id":228,
+                     "name":"浙江农大"
+                  },
+                  {
+                     "id":229,
+                     "name":"朝晖五区"
+                  },
+                  {
+                     "id":230,
+                     "name":"和睦小学"
+                  },
+                  {
+                     "id":231,
+                     "name":"临平镇"
+                  },
+                  {
+                     "id":232,
+                     "name":"城厢镇"
+                  },
+                  {
+                     "id":233,
+                     "name":"云栖"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":35,
+               "name":"宁波",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":234,
+                     "name":"区环保大楼"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":235,
+                     "name":"万里学院"
+                  },
+                  {
+                     "id":236,
+                     "name":"龙赛医院"
+                  },
+                  {
+                     "id":237,
+                     "name":"三江中学"
+                  },
+                  {
+                     "id":238,
+                     "name":"市政管理站"
+                  },
+                  {
+                     "id":239,
+                     "name":"钱湖水厂"
+                  },
+                  {
+                     "id":240,
+                     "name":"太古小学"
+                  },
+                  {
+                     "id":241,
+                     "name":"市环境监测中心"
+                  }
+               ]
+            },
+            {
+               "id":36,
+               "name":"温州",
+               "stations":[
+                  {
+                     "id":242,
+                     "name":"瓯海"
+                  },
+                  {
+                     "id":243,
+                     "name":"南浦"
+                  },
+                  {
+                     "id":244,
+                     "name":"龙湾"
+                  },
+                  {
+                     "id":245,
+                     "name":"市站"
+                  }
+               ]
+            },
+            {
+               "id":37,
+               "name":"嘉兴",
+               "stations":[
+                  {
+                     "id":252,
+                     "name":"清河小学"
+                  },
+                  {
+                     "id":253,
+                     "name":"嘉兴学院"
+                  },
+                  {
+                     "id":254,
+                     "name":"监测站"
+                  }
+               ]
+            },
+            {
+               "id":38,
+               "name":"湖州",
+               "stations":[
+                  {
+                     "id":249,
+                     "name":"城北水厂"
+                  },
+                  {
+                     "id":250,
+                     "name":"城西水厂"
+                  },
+                  {
+                     "id":251,
+                     "name":"吉山新村"
+                  }
+               ]
+            },
+            {
+               "id":39,
+               "name":"衢州",
+               "stations":[
+                  {
+                     "id":264,
+                     "name":"环保大楼"
+                  },
+                  {
+                     "id":265,
+                     "name":"实验学校"
+                  },
+                  {
+                     "id":266,
+                     "name":"衢州学院"
+                  }
+               ]
+            },
+            {
+               "id":40,
+               "name":"舟山",
+               "stations":[
+                  {
+                     "id":258,
+                     "name":"定海檀枫"
+                  },
+                  {
+                     "id":259,
+                     "name":"普陀东港"
+                  },
+                  {
+                     "id":260,
+                     "name":"临城新区"
+                  }
+               ]
+            },
+            {
+               "id":41,
+               "name":"台州",
+               "stations":[
+                  {
+                     "id":255,
+                     "name":"黄岩环保大楼"
+                  },
+                  {
+                     "id":256,
+                     "name":"台州环保大楼"
+                  },
+                  {
+                     "id":257,
+                     "name":"路桥田洋王"
+                  }
+               ]
+            },
+            {
+               "id":42,
+               "name":"丽水",
+               "stations":[
+                  {
+                     "id":267,
+                     "name":"监测站大楼"
+                  },
+                  {
+                     "id":268,
+                     "name":"莲都小学"
+                  },
+                  {
+                     "id":269,
+                     "name":"余庄前"
+                  }
+               ]
+            },
+            {
+               "id":43,
+               "name":"绍兴",
+               "stations":[
+                  {
+                     "id":246,
+                     "name":"袍江站"
+                  },
+                  {
+                     "id":247,
+                     "name":"城东开发委"
+                  },
+                  {
+                     "id":248,
+                     "name":"市环保站"
+                  }
+               ]
+            },
+            {
+               "id":44,
+               "name":"金华",
+               "stations":[
+                  {
+                     "id":261,
+                     "name":"四中"
+                  },
+                  {
+                     "id":262,
+                     "name":"十五中"
+                  },
+                  {
+                     "id":263,
+                     "name":"监测站"
                   }
                ]
             }
@@ -677,39 +1508,48 @@
          "name":"安徽",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":45,
+               "name":"合肥",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":270,
+                     "name":"明珠广场"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":271,
+                     "name":"三里街"
+                  },
+                  {
+                     "id":272,
+                     "name":"琥珀山庄"
+                  },
+                  {
+                     "id":273,
+                     "name":"董铺水库"
+                  },
+                  {
+                     "id":274,
+                     "name":"长江中路"
+                  },
+                  {
+                     "id":275,
+                     "name":"庐阳区"
+                  },
+                  {
+                     "id":276,
+                     "name":"瑶海区"
+                  },
+                  {
+                     "id":277,
+                     "name":"包河区"
+                  },
+                  {
+                     "id":278,
+                     "name":"滨湖新区"
+                  },
+                  {
+                     "id":279,
+                     "name":"高新区"
                   }
                ]
             }
@@ -720,39 +1560,54 @@
          "name":"福建",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":46,
+               "name":"福州",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
+                     "id":280,
+                     "name":"鼓山"
+                  },
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "id":281,
+                     "name":"快安"
+                  },
+                  {
+                     "id":282,
+                     "name":"师大"
+                  },
+                  {
+                     "id":283,
+                     "name":"五四北路"
+                  },
+                  {
+                     "id":284,
+                     "name":"杨桥西路"
+                  },
+                  {
+                     "id":285,
+                     "name":"紫阳"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":47,
+               "name":"厦门",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":286,
+                     "name":"溪东"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":287,
+                     "name":"洪文"
+                  },
+                  {
+                     "id":288,
+                     "name":"鼓浪屿"
+                  },
+                  {
+                     "id":289,
+                     "name":"湖里"
                   }
                ]
             }
@@ -763,39 +1618,44 @@
          "name":"江西",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":48,
+               "name":"南昌",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":290,
+                     "name":"省外办"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":291,
+                     "name":"省林业公司"
+                  },
+                  {
+                     "id":292,
+                     "name":"林科所"
+                  },
+                  {
+                     "id":293,
+                     "name":"京东镇政府"
+                  },
+                  {
+                     "id":294,
+                     "name":"建工学校"
+                  },
+                  {
+                     "id":295,
+                     "name":"象湖"
+                  },
+                  {
+                     "id":296,
+                     "name":"武术学校"
+                  },
+                  {
+                     "id":297,
+                     "name":"石化"
+                  },
+                  {
+                     "id":298,
+                     "name":"省站"
                   }
                ]
             }
@@ -806,39 +1666,82 @@
          "name":"山东",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":49,
+               "name":"济南",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
+                     "id":299,
+                     "name":"科干所"
+                  },
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "id":300,
+                     "name":"农科所"
+                  },
+                  {
+                     "id":301,
+                     "name":"开发区"
+                  },
+                  {
+                     "id":302,
+                     "name":"济南化工厂"
+                  },
+                  {
+                     "id":303,
+                     "name":"省种子仓库"
+                  },
+                  {
+                     "id":304,
+                     "name":"机床二厂"
+                  },
+                  {
+                     "id":305,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":306,
+                     "name":"长清党校"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":50,
+               "name":"青岛",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":307,
+                     "name":"仰口"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":308,
+                     "name":"李沧区子站"
+                  },
+                  {
+                     "id":309,
+                     "name":"市北区子站"
+                  },
+                  {
+                     "id":310,
+                     "name":"市南区东部子站"
+                  },
+                  {
+                     "id":311,
+                     "name":"四方区子站"
+                  },
+                  {
+                     "id":312,
+                     "name":"市南区西部子站"
+                  },
+                  {
+                     "id":313,
+                     "name":"崂山区子站"
+                  },
+                  {
+                     "id":314,
+                     "name":"黄岛区子站"
+                  },
+                  {
+                     "id":315,
+                     "name":"城阳区子站"
                   }
                ]
             }
@@ -849,39 +1752,44 @@
          "name":"河南",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":51,
+               "name":"郑州",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":316,
+                     "name":"烟厂"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":317,
+                     "name":"郑纺机"
+                  },
+                  {
+                     "id":318,
+                     "name":"银行学校"
+                  },
+                  {
+                     "id":319,
+                     "name":"供水公司"
+                  },
+                  {
+                     "id":320,
+                     "name":"经开区管委"
+                  },
+                  {
+                     "id":321,
+                     "name":"四十七中"
+                  },
+                  {
+                     "id":322,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":323,
+                     "name":"河医大"
+                  },
+                  {
+                     "id":324,
+                     "name":"岗李水库"
                   }
                ]
             }
@@ -892,39 +1800,48 @@
          "name":"湖北",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":52,
+               "name":"武汉",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":325,
+                     "name":"东湖梨园"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":326,
+                     "name":"汉阳月湖"
+                  },
+                  {
+                     "id":327,
+                     "name":"汉口花桥"
+                  },
+                  {
+                     "id":328,
+                     "name":"武昌紫阳"
+                  },
+                  {
+                     "id":329,
+                     "name":"青山钢花"
+                  },
+                  {
+                     "id":330,
+                     "name":"沌口新区"
+                  },
+                  {
+                     "id":331,
+                     "name":"汉口江滩"
+                  },
+                  {
+                     "id":332,
+                     "name":"东湖高新"
+                  },
+                  {
+                     "id":333,
+                     "name":"吴家山"
+                  },
+                  {
+                     "id":334,
+                     "name":"沉湖七壕"
                   }
                ]
             }
@@ -935,39 +1852,48 @@
          "name":"湖南",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":53,
+               "name":"长沙",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":335,
+                     "name":"经开区环保局"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":336,
+                     "name":"高开区环保局"
+                  },
+                  {
+                     "id":337,
+                     "name":"马坡岭"
+                  },
+                  {
+                     "id":338,
+                     "name":"湖南师范大学"
+                  },
+                  {
+                     "id":339,
+                     "name":"雨花区环保局"
+                  },
+                  {
+                     "id":340,
+                     "name":"伍家岭"
+                  },
+                  {
+                     "id":341,
+                     "name":"火车新站"
+                  },
+                  {
+                     "id":342,
+                     "name":"天心区环保局"
+                  },
+                  {
+                     "id":343,
+                     "name":"湖南中医药大学"
+                  },
+                  {
+                     "id":344,
+                     "name":"沙坪"
                   }
                ]
             }
@@ -978,39 +1904,280 @@
          "name":"广东",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":54,
+               "name":"广州",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
+                     "id":345,
+                     "name":"广雅中学"
+                  },
                   {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
+                     "id":346,
+                     "name":"市五中"
+                  },
+                  {
+                     "id":347,
+                     "name":"天河职幼"
+                  },
+                  {
+                     "id":348,
+                     "name":"广东商学院"
+                  },
+                  {
+                     "id":349,
+                     "name":"市八十六中"
+                  },
+                  {
+                     "id":350,
+                     "name":"番禺中学"
+                  },
+                  {
+                     "id":351,
+                     "name":"花都师范"
+                  },
+                  {
+                     "id":352,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":353,
+                     "name":"九龙镇镇龙"
+                  },
+                  {
+                     "id":354,
+                     "name":"麓湖"
+                  },
+                  {
+                     "id":355,
+                     "name":"帽峰山森林公园"
                   }
                ]
             },
             {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
+               "id":55,
+               "name":"深圳",
                "stations":[
                   {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":356,
+                     "name":"荔园"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":357,
+                     "name":"洪湖"
+                  },
+                  {
+                     "id":358,
+                     "name":"华侨城"
+                  },
+                  {
+                     "id":359,
+                     "name":"南油"
+                  },
+                  {
+                     "id":360,
+                     "name":"盐田"
+                  },
+                  {
+                     "id":361,
+                     "name":"龙岗"
+                  },
+                  {
+                     "id":362,
+                     "name":"西乡"
+                  },
+                  {
+                     "id":363,
+                     "name":"南澳"
+                  },
+                  {
+                     "id":364,
+                     "name":"葵涌"
+                  },
+                  {
+                     "id":365,
+                     "name":"梅沙"
+                  },
+                  {
+                     "id":366,
+                     "name":"观澜"
+                  }
+               ]
+            },
+            {
+               "id":56,
+               "name":"珠海",
+               "stations":[
+                  {
+                     "id":367,
+                     "name":"吉大"
+                  },
+                  {
+                     "id":368,
+                     "name":"前山"
+                  },
+                  {
+                     "id":369,
+                     "name":"唐家"
+                  },
+                  {
+                     "id":370,
+                     "name":"斗门"
+                  }
+               ]
+            },
+            {
+               "id":57,
+               "name":"佛山",
+               "stations":[
+                  {
+                     "id":371,
+                     "name":"湾梁"
+                  },
+                  {
+                     "id":372,
+                     "name":"华材职中"
+                  },
+                  {
+                     "id":373,
+                     "name":"南海气象局"
+                  },
+                  {
+                     "id":374,
+                     "name":"顺德苏岗"
+                  },
+                  {
+                     "id":375,
+                     "name":"容桂街道办"
+                  },
+                  {
+                     "id":376,
+                     "name":"高明孔堂"
+                  },
+                  {
+                     "id":377,
+                     "name":"三水监测站"
+                  },
+                  {
+                     "id":378,
+                     "name":"三水云东海"
+                  }
+               ]
+            },
+            {
+               "id":58,
+               "name":"江门",
+               "stations":[
+                  {
+                     "id":383,
+                     "name":"北街"
+                  },
+                  {
+                     "id":384,
+                     "name":"西区"
+                  },
+                  {
+                     "id":385,
+                     "name":"圭峰西"
+                  },
+                  {
+                     "id":386,
+                     "name":"东湖"
+                  }
+               ]
+            },
+            {
+               "id":59,
+               "name":"肇庆",
+               "stations":[
+                  {
+                     "id":397,
+                     "name":"睦岗子站"
+                  },
+                  {
+                     "id":398,
+                     "name":"城中子站"
+                  },
+                  {
+                     "id":399,
+                     "name":"坑口子站"
+                  },
+                  {
+                     "id":400,
+                     "name":"七星岩子站"
+                  }
+               ]
+            },
+            {
+               "id":60,
+               "name":"惠州",
+               "stations":[
+                  {
+                     "id":392,
+                     "name":"河南岸金山湖子站"
+                  },
+                  {
+                     "id":393,
+                     "name":"下埔横江三路子站"
+                  },
+                  {
+                     "id":394,
+                     "name":"江北云山西路子站"
+                  },
+                  {
+                     "id":395,
+                     "name":"惠阳区承修路船湖子站"
+                  },
+                  {
+                     "id":396,
+                     "name":"大亚湾管委会子站"
+                  }
+               ]
+            },
+            {
+               "id":61,
+               "name":"东莞",
+               "stations":[
+                  {
+                     "id":387,
+                     "name":"实验中学"
+                  },
+                  {
+                     "id":388,
+                     "name":"南城元岭"
+                  },
+                  {
+                     "id":389,
+                     "name":"莞城二水厂"
+                  },
+                  {
+                     "id":390,
+                     "name":"东城石井"
+                  },
+                  {
+                     "id":391,
+                     "name":"南城西平"
+                  }
+               ]
+            },
+            {
+               "id":62,
+               "name":"中山",
+               "stations":[
+                  {
+                     "id":379,
+                     "name":"华柏园"
+                  },
+                  {
+                     "id":380,
+                     "name":"张溪"
+                  },
+                  {
+                     "id":381,
+                     "name":"紫马岭"
+                  },
+                  {
+                     "id":382,
+                     "name":"长江旅游区"
                   }
                ]
             }
@@ -1021,39 +2188,40 @@
          "name":"广西",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":63,
+               "name":"南宁",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":401,
+                     "name":"振宁花园"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":402,
+                     "name":"北湖"
+                  },
+                  {
+                     "id":403,
+                     "name":"市监测站"
+                  },
+                  {
+                     "id":404,
+                     "name":"大自然花园"
+                  },
+                  {
+                     "id":405,
+                     "name":"仙葫"
+                  },
+                  {
+                     "id":406,
+                     "name":"区农职院"
+                  },
+                  {
+                     "id":407,
+                     "name":"英花嘉园"
+                  },
+                  {
+                     "id":408,
+                     "name":"沙井镇街道办"
                   }
                ]
             }
@@ -1064,39 +2232,28 @@
          "name":"海南",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":64,
+               "name":"海口",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":409,
+                     "name":"东寨港"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":410,
+                     "name":"海南大学"
+                  },
+                  {
+                     "id":411,
+                     "name":"秀英海南医院"
+                  },
+                  {
+                     "id":412,
+                     "name":"海南师范大学"
+                  },
+                  {
+                     "id":413,
+                     "name":"龙华路环保局宿舍"
                   }
                ]
             }
@@ -1107,39 +2264,76 @@
          "name":"重庆",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":65,
+               "name":"重庆",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":414,
+                     "name":"缙云山"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":415,
+                     "name":"高家花园"
+                  },
+                  {
+                     "id":416,
+                     "name":"天生"
+                  },
+                  {
+                     "id":417,
+                     "name":"两路"
+                  },
+                  {
+                     "id":418,
+                     "name":"虎溪"
+                  },
+                  {
+                     "id":419,
+                     "name":"南坪"
+                  },
+                  {
+                     "id":420,
+                     "name":"唐家沱"
+                  },
+                  {
+                     "id":421,
+                     "name":"茶园"
+                  },
+                  {
+                     "id":422,
+                     "name":"白市驿"
+                  },
+                  {
+                     "id":423,
+                     "name":"解放碑"
+                  },
+                  {
+                     "id":424,
+                     "name":"杨家坪"
+                  },
+                  {
+                     "id":425,
+                     "name":"空港"
+                  },
+                  {
+                     "id":426,
+                     "name":"新山村"
+                  },
+                  {
+                     "id":427,
+                     "name":"礼嘉"
+                  },
+                  {
+                     "id":429,
+                     "name":"鱼新街"
+                  },
+                  {
+                     "id":508,
+                     "name":"蔡家"
+                  },
+                  {
+                     "id":509,
+                     "name":"南泉"
                   }
                ]
             }
@@ -1150,39 +2344,40 @@
          "name":"四川",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":66,
+               "name":"成都",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":431,
+                     "name":"金泉两河"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":432,
+                     "name":"十里店"
+                  },
+                  {
+                     "id":433,
+                     "name":"三瓦窑"
+                  },
+                  {
+                     "id":434,
+                     "name":"沙河铺"
+                  },
+                  {
+                     "id":435,
+                     "name":"梁家巷"
+                  },
+                  {
+                     "id":436,
+                     "name":"草堂寺"
+                  },
+                  {
+                     "id":437,
+                     "name":"人民公园"
+                  },
+                  {
+                     "id":438,
+                     "name":"灵岩寺"
                   }
                ]
             }
@@ -1193,39 +2388,48 @@
          "name":"贵州",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":67,
+               "name":"贵阳",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":439,
+                     "name":"马鞍山"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":440,
+                     "name":"市环保站"
+                  },
+                  {
+                     "id":441,
+                     "name":"金阳新区"
+                  },
+                  {
+                     "id":442,
+                     "name":"乌当区"
+                  },
+                  {
+                     "id":443,
+                     "name":"花溪区"
+                  },
+                  {
+                     "id":444,
+                     "name":"小河区"
+                  },
+                  {
+                     "id":445,
+                     "name":"鸿边门"
+                  },
+                  {
+                     "id":446,
+                     "name":"冶金厅"
+                  },
+                  {
+                     "id":447,
+                     "name":"太慈桥"
+                  },
+                  {
+                     "id":507,
+                     "name":"桐木岭"
                   }
                ]
             }
@@ -1236,39 +2440,36 @@
          "name":"云南",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":68,
+               "name":"昆明",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":449,
+                     "name":"关上"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":450,
+                     "name":"呈贡新区"
+                  },
+                  {
+                     "id":451,
+                     "name":"西山森林公园"
+                  },
+                  {
+                     "id":452,
+                     "name":"龙泉镇"
+                  },
+                  {
+                     "id":453,
+                     "name":"东风东路"
+                  },
+                  {
+                     "id":454,
+                     "name":"金鼎山"
+                  },
+                  {
+                     "id":455,
+                     "name":"碧鸡广场"
                   }
                ]
             }
@@ -1279,39 +2480,32 @@
          "name":"西藏",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":69,
+               "name":"拉萨",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":456,
+                     "name":"八廓街"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":457,
+                     "name":"市环保局"
+                  },
+                  {
+                     "id":458,
+                     "name":"区监测站"
+                  },
+                  {
+                     "id":459,
+                     "name":"西藏大学"
+                  },
+                  {
+                     "id":460,
+                     "name":"区辐射站"
+                  },
+                  {
+                     "id":461,
+                     "name":"拉萨火车站"
                   }
                ]
             }
@@ -1322,39 +2516,60 @@
          "name":"陕西",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":70,
+               "name":"西安",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":462,
+                     "name":"高压开关厂"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":463,
+                     "name":"兴庆小区"
+                  },
+                  {
+                     "id":464,
+                     "name":"纺织城"
+                  },
+                  {
+                     "id":465,
+                     "name":"小寨"
+                  },
+                  {
+                     "id":466,
+                     "name":"市人民体育场"
+                  },
+                  {
+                     "id":467,
+                     "name":"高新西区"
+                  },
+                  {
+                     "id":468,
+                     "name":"经开区"
+                  },
+                  {
+                     "id":469,
+                     "name":"长安区"
+                  },
+                  {
+                     "id":470,
+                     "name":"阎良区"
+                  },
+                  {
+                     "id":471,
+                     "name":"临潼区"
+                  },
+                  {
+                     "id":472,
+                     "name":"草滩"
+                  },
+                  {
+                     "id":473,
+                     "name":"曲江文化产业集团"
+                  },
+                  {
+                     "id":474,
+                     "name":"广运潭"
                   }
                ]
             }
@@ -1365,39 +2580,28 @@
          "name":"甘肃",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":71,
+               "name":"兰州",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":475,
+                     "name":"职工医院"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":476,
+                     "name":"兰炼宾馆"
+                  },
+                  {
+                     "id":477,
+                     "name":"榆中兰大校区"
+                  },
+                  {
+                     "id":478,
+                     "name":"生物制品所"
+                  },
+                  {
+                     "id":479,
+                     "name":"铁路设计院"
                   }
                ]
             }
@@ -1408,39 +2612,24 @@
          "name":"青海",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":72,
+               "name":"西宁",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":480,
+                     "name":"市环境监测站"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":481,
+                     "name":"省医药仓库"
+                  },
+                  {
+                     "id":482,
+                     "name":"四陆医院"
+                  },
+                  {
+                     "id":483,
+                     "name":"第五水厂"
                   }
                ]
             }
@@ -1451,39 +2640,32 @@
          "name":"宁夏",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":73,
+               "name":"银川",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":484,
+                     "name":"贺兰山马莲口"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":485,
+                     "name":"银湖巷"
+                  },
+                  {
+                     "id":486,
+                     "name":"宁安大街"
+                  },
+                  {
+                     "id":487,
+                     "name":"宁化生活区"
+                  },
+                  {
+                     "id":488,
+                     "name":"贺兰山东路"
+                  },
+                  {
+                     "id":489,
+                     "name":"学院路"
                   }
                ]
             }
@@ -1494,39 +2676,36 @@
          "name":"新疆",
          "cities":[
             {
-               "id":10,
-               "name_en":"Taiyuan",
+               "id":74,
+               "name":"乌鲁木齐",
                "stations":[
                   {
-                     "id":94,
-                     "name_en":"Shanglan",
-                     "name_cn":"\u4e0a\u5170",
-                     "pm25":true
-                  },              
-                  {
-                     "id":102,
-                     "name_en":"Kim Seung",
-                     "name_cn":"\u91d1\u80dc",
-                     "pm25":true
-                  }
-               ]
-            },
-            {
-               "id":146,
-               "name_en":"Lvliang",
-               "name_cn":"\u5415\u6881",
-               "stations":[
-                  {
-                     "id":916,
-                     "name_en":"Municipal EPB",
-                     "name_cn":"\u5e02\u73af\u4fdd\u5c40",
-                     "pm25":true
+                     "id":490,
+                     "name":"监测站"
                   },
                   {
-                     "id":918,
-                     "name_en":"Water Works",
-                     "name_cn":"\u81ea\u6765\u6c34\u516c\u53f8",
-                     "pm25":true
+                     "id":491,
+                     "name":"收费所"
+                  },
+                  {
+                     "id":492,
+                     "name":"新疆农科院农场"
+                  },
+                  {
+                     "id":493,
+                     "name":"铁路局"
+                  },
+                  {
+                     "id":494,
+                     "name":"三十一中学"
+                  },
+                  {
+                     "id":495,
+                     "name":"七十四中学"
+                  },
+                  {
+                     "id":496,
+                     "name":"米东区环保局"
                   }
                ]
             }

@@ -75,7 +75,7 @@ public class NetTool {
         }
         return null;
       }
-   public static String getSHAQI(String MethodName) {
+   public static String getSHAQI(String MethodName, int station) {
 		String NAMESPACE = "http://tempuri.org/";
 		String SOAP_ACTION = NAMESPACE + MethodName;
 		String URL = "http://202.136.217.188/AQIWS4Moblie/WebService.asmx";
@@ -92,6 +92,7 @@ public class NetTool {
 		pass.addChild(4, "a1ea259d-068c-4aab-a795-0191f3b5e6f3");
 		header[0].addChild(2, pass);
 		
+		request.addProperty("siteID",String.valueOf(station));
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);    	
     	envelope.headerOut = header;
     	envelope.bodyOut = request;
