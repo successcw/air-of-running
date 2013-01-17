@@ -160,6 +160,9 @@ public class IntentService extends Service{
 			sendBroadcast(intentStart);
 			Log.i("service","send refresh");
 			Intent intent = new Intent("com.successcw.airofrunning.entity");
+
+			intent.putExtra("CITY_SETTING",city);
+			intent.putExtra("STATION_SETTING",station);
 			
 			try{
 				

@@ -17,7 +17,7 @@
         android:text="1°"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:textSize="90dp" />
+        android:textSize="70dp" />
 
     <TextView
         android:id="@+id/aircondition"
@@ -47,8 +47,7 @@
         android:id="@+id/wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/shishitemprature"
-        android:layout_alignBottom="@+id/shishitemprature"
+        android:layout_below="@+id/temprature"
         android:layout_alignLeft="@+id/temprature"
         android:text="西北风1级"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -72,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/aircondition"
-        android:layout_alignLeft="@+id/SHconst"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:src="@drawable/b_0" />
     

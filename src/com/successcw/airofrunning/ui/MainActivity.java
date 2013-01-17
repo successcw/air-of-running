@@ -102,7 +102,11 @@ public class MainActivity extends TabActivity {
 				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
 				CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
 				STATION = (String) intent.getSerializableExtra("STATION");
-				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");		
+				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");
+				
+				getPreferences(MODE_PRIVATE).edit().putString("CITY_SETTING",String.valueOf(intent.getSerializableExtra("CITY_SETTING"))).commit();
+				getPreferences(MODE_PRIVATE).edit().putString("STATION_SETTING",String.valueOf(intent.getSerializableExtra("STATION_SETTING"))).commit();
+				
 				//Log.i("main received", "entity");
 				handler.sendEmptyMessage(2);
 			}
@@ -124,7 +128,7 @@ public class MainActivity extends TabActivity {
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			AirOfRunningService = ((IntentService.LocalBinder) service)
 					.getService();
-			AirOfRunningService.parserData(20, 0); //默认加载上海数据
+			AirOfRunningService.parserData(Integer.valueOf(CITYAREA), Integer.valueOf(STATION)); //默认加载上海数据
 		}
 	};
 
@@ -142,6 +146,11 @@ public class MainActivity extends TabActivity {
 		filter.addAction("com.successcw.airofrunning.share");
 		registerReceiver(receiver, filter);
 		
+		//获取setting中的信息，如果没有的话默认加载上海数据（应用程序第一次启动）
+		CITYAREA = getPreferences(MODE_PRIVATE).getString("CITY_SETTING","20");
+		STATION = getPreferences(MODE_PRIVATE).getString("STATION_SETTING","0");
+		Log.i("OnCreate",CITYAREA);
+		Log.i("OnCreate",STATION);
 		service = new Intent("com.successcw.airofrunning.intentservice");
 		startService(service);
 		bindService(service, conn, BIND_AUTO_CREATE);

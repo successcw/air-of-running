@@ -480,7 +480,7 @@ public class weatheractivity extends Activity {
     	TextView AQIjianyi = (TextView) ViewTemp.findViewById(R.id.AQIjianyi);
     	TextView running = (TextView) ViewTemp.findViewById(R.id.running);
     	
-    	int SHAQI = AQIPM25(SHPM2_5.toString());
+    	int SHAQI = AQIPM25(SHPM2_5);
     	Log.i("load jianyi",Integer.toString(SHAQI));
     	
     	Integer shishitempratureTemp = TryParseInt(SHISHITEMPRATURE.toString());
@@ -550,35 +550,35 @@ public class weatheractivity extends Activity {
 		TextView forecast = (TextView) ViewTemp.findViewById(R.id.forecast1);
 		ImageView forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon1);
 		forecast.setText(WEATHERFORECASE.get(12).split("-")[1] + "/" + WEATHERFORECASE.get(12).split("-")[2] 
-							+ "           " + WEATHERFORECASE.get(10) +"°/" + WEATHERFORECASE.get(9) + "°"
+							+ "      " + WEATHERFORECASE.get(10) +"°/" + WEATHERFORECASE.get(9) + "°"
 							+ "\n" + WEATHERFORECASE.get(8));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(11))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast2);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon2);
 		forecast.setText(WEATHERFORECASE.get(17).split("-")[1] + "/" + WEATHERFORECASE.get(17).split("-")[2] 
-							+ "           " + WEATHERFORECASE.get(15) +"°/" + WEATHERFORECASE.get(14) + "°"
+							+ "      " + WEATHERFORECASE.get(15) +"°/" + WEATHERFORECASE.get(14) + "°"
 							+ "\n" + WEATHERFORECASE.get(13));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(16))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast3);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon3);
 		forecast.setText(WEATHERFORECASE.get(22).split("-")[1] + "/" + WEATHERFORECASE.get(22).split("-")[2] 
-							+ "           " + WEATHERFORECASE.get(20) +"°/" + WEATHERFORECASE.get(19) + "°"
+							+ "      " + WEATHERFORECASE.get(20) +"°/" + WEATHERFORECASE.get(19) + "°"
 							+ "\n" + WEATHERFORECASE.get(18));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(21))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast4);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon4);
 		forecast.setText(WEATHERFORECASE.get(27).split("-")[1] + "/" + WEATHERFORECASE.get(27).split("-")[2] 
-							+ "           " + WEATHERFORECASE.get(25) +"°/" + WEATHERFORECASE.get(24) + "°"
+							+ "      " + WEATHERFORECASE.get(25) +"°/" + WEATHERFORECASE.get(24) + "°"
 							+ "\n" + WEATHERFORECASE.get(23));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(26))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast5);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon5);
 		forecast.setText(WEATHERFORECASE.get(32).split("-")[1] + "/" + WEATHERFORECASE.get(32).split("-")[2] 
-							+ "           " + WEATHERFORECASE.get(30) +"°/" + WEATHERFORECASE.get(29) + "°"
+							+ "      " + WEATHERFORECASE.get(30) +"°/" + WEATHERFORECASE.get(29) + "°"
 							+ "\n" + WEATHERFORECASE.get(28));
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(31))]);
 		
@@ -586,9 +586,9 @@ public class weatheractivity extends Activity {
     private void loadZixun() {
     	ViewTemp = ViewZixun;
     	TextView textjianyi = (TextView) ViewTemp.findViewById(R.id.textzixun);
-    	textjianyi.setText("上海pm2.5采集和美国领事馆采集数据相差不大，区别在于中美执行的标准不同。"
-    						+ "\n" + "上海采用 世界卫生组织（WHO）过渡时期目标-1，美国采用 过渡时期目标-3 ，详细见下图，"
-    						+ "这个是导致两者空气质量指数(AQI)相差较大的原因。本软件采用上海发布的pm2.5数据,根据美国标准"
+    	textjianyi.setText("中国pm2.5采集和美国领事馆采集数据相差不大，区别在于中美执行的标准不同。"
+    						+ "\n" + "中国采用 世界卫生组织（WHO）过渡时期目标-1，美国采用 过渡时期目标-3 ，详细见下图，"
+    						+ "这个是导致两者空气质量指数(AQI)相差较大的原因。本软件采用中国发布的pm2.5数据,根据美国标准"
     						+ "重新计算得出空气质量指数(AQI)，相关建议都是基于这个值给出，仅供参考。" + "\n"
     						+ "WHO空气质量准则，请参考：");
     	Integer USAQIVALUETemp = TryParseInt(USAQIVALUE.toString());
