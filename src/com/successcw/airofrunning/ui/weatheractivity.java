@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcelable;
@@ -95,7 +96,7 @@ public class weatheractivity extends Activity {
     	temp = (TextView) findViewById(R.id.main_title);
     	temp.setText(CITYAREA + "空气质量");
         loadKongqi();
-        //Log.i("weather activity","initviewpager");
+        ////Log.i("weather activity","initviewpager");
     }
     
     /**
@@ -155,20 +156,20 @@ public class weatheractivity extends Activity {
         public void onPageSelected(int arg0) {
             switch (arg0) {
             case 0:
-                Log.i("PageChange","0");
+                //Log.i("PageChange","0");
                 loadKongqi();
             	temp = (TextView) findViewById(R.id.main_title);
             	temp.setText(CITYAREA + "空气质量");
             	
                 break;
             case 1:      
-                Log.i("PageChange","1");
+                //Log.i("PageChange","1");
                 loadJianyi();
                 temp = (TextView) findViewById(R.id.main_title);
             	temp.setText("建议");
                 break;
             case 2:
-                Log.i("PageChange","2");
+                //Log.i("PageChange","2");
                 loadZixun();
                 temp = (TextView) findViewById(R.id.main_title);
             	temp.setText("资讯");               
@@ -256,7 +257,7 @@ public class weatheractivity extends Activity {
     	TextView SHconst = (TextView) ViewTemp.findViewById(R.id.SHconst);
     	TextView USAQIconst = (TextView) ViewTemp.findViewById(R.id.USAQIconst);
     	TextView SHAQIconst = (TextView) ViewTemp.findViewById(R.id.SHAQIconst);
-    	//Log.i("loadKongqi",CITYAREA);
+    	////Log.i("loadKongqi",CITYAREA);
     	
     	if(CITYAREA.equalsIgnoreCase("上海")) {
     		USconst.setText("美国上海领事馆");
@@ -430,11 +431,11 @@ public class weatheractivity extends Activity {
 		float c;
 		try{
 			float Conc = Float.parseFloat(Concentration);
-			Log.i("AQIPM25", Float.toString(Conc));
+			//Log.i("AQIPM25", Float.toString(Conc));
 			c = (float)(Math.floor(10*Conc))/10;
 		} catch(NumberFormatException e){
-			System.err.println(" PM2.5错误 ");
-			Log.e("Weather","PM2.5数据错误");
+			//System.err.println(" PM2.5错误 ");
+			//Log.e("Weather","PM2.5数据错误");
 			return 100001;
 		}
 		
@@ -479,12 +480,16 @@ public class weatheractivity extends Activity {
     	TextView AQI = (TextView) ViewTemp.findViewById(R.id.AQI);
     	TextView AQIjianyi = (TextView) ViewTemp.findViewById(R.id.AQIjianyi);
     	TextView running = (TextView) ViewTemp.findViewById(R.id.running);
+    	int SHAQI;
     	
-    	int SHAQI = AQIPM25(SHPM2_5);
-    	Log.i("load jianyi",Integer.toString(SHAQI));
+    	if(SHPM2_5.equals(" "))
+    		SHAQI = 100001;
+    	else
+    		SHAQI = AQIPM25(SHPM2_5);
+    	//Log.i("load jianyi",Integer.toString(SHAQI));
     	
     	Integer shishitempratureTemp = TryParseInt(SHISHITEMPRATURE.toString());
-    	//Log.i("load jianyi",Integer.toString(shishitempratureTemp));
+    	////Log.i("load jianyi",Integer.toString(shishitempratureTemp));
     	
 		//update US AQI
 		if (SHAQI == 100001) {
@@ -620,6 +625,9 @@ public class weatheractivity extends Activity {
   	popupWindow = new PopupWindow(popupWindow_view,  LayoutParams.WRAP_CONTENT,  LayoutParams.WRAP_CONTENT, true);
   	// 设置动画效果
   	popupWindow.setAnimationStyle(R.style.AnimationFade);
+	
+  	//响应返回键
+  	popupWindow.setBackgroundDrawable(new BitmapDrawable());
   	//点击其他地方消失
   	popupWindow_view.setOnTouchListener(new OnTouchListener() {
   	@Override
@@ -642,10 +650,6 @@ public class weatheractivity extends Activity {
 	    	@Override
 	    	public void onClick(View v) {
 	    		Intent intent = null;
-		    	// TODO Auto-generated method stub
-		    	// 这里可以执行相关操作
-		    	System.out.println("changestation");
-		    	// 对话框消失
 		    	popupWindow.dismiss();
 		    	changestation();
 	    	}
@@ -654,9 +658,6 @@ public class weatheractivity extends Activity {
   	share.setOnClickListener(new OnClickListener() {
   		@Override
   		public void onClick(View v) {
-	    		// TODO Auto-generated method stub
-	    		// 这里可以执行相关操作
-	    		System.out.println("share");
 	    		popupWindow.dismiss();
 	    		share();
   		}
@@ -665,9 +666,6 @@ public class weatheractivity extends Activity {
   	about.setOnClickListener(new OnClickListener() {
   		@Override
   		public void onClick(View v) {
-	    		// TODO Auto-generated method stub
-	    		// 这里可以执行相关操作
-	    		System.out.println("about");
 	    		popupWindow.dismiss();
   		}
   	});
@@ -696,7 +694,7 @@ public class weatheractivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.i("weatheractivity","onCread");
+		//Log.i("weatheractivity","onCread");
 		setContentView(R.layout.weather);
 		Intent intent = getIntent();
 		USAQIVALUE = (String) intent.getSerializableExtra("USAQIVALUE");

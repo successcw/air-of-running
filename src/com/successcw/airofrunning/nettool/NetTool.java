@@ -99,7 +99,7 @@ public class NetTool {
     	envelope.dotNet = true;
 	
     	try {
-    		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+    		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL,6000);
     		
     		androidHttpTransport.debug = true;
     		//this is the actual part that will call the webservice
@@ -110,13 +110,13 @@ public class NetTool {
         	SoapObject result = (SoapObject)envelope.bodyIn;
         	if(result != null)
         	{
-        		Log.i("NetTool", result.getProperty(0).toString());
+        		//Log.i("NetTool", result.getProperty(0).toString());
         		return result.getProperty(0).toString();
         		//Get the first property and change the label text
 	    	}
         	else
         	{
-        		Log.e("NetTool", "Nothing");
+        		//Log.e("NetTool", "Nothing");
         		//Toast.makeText(getApplicationContext(), "No Response",Toast.LENGTH_LONG).show();
         	}
     	} catch (Exception e) {
@@ -146,12 +146,12 @@ public class NetTool {
 		
 			if(result != null)
 			{
-				Log.e("NET", result.getProperty(0).toString());
+				//Log.e("NET", result.getProperty(0).toString());
 				return result.getProperty(0).toString();
 			}
 			else
 			{
-				Log.e("NET", "weather:Nothing");
+				//Log.e("NET", "weather:Nothing");
 				//Toast.makeText(getApplicationContext(), "No Response",Toast.LENGTH_LONG).show();
 			}
 		} catch (Exception e) {
@@ -168,17 +168,23 @@ public class NetTool {
 		   XMLReader xmlR = saxP.getXMLReader();
 		   URL url = new URL("http://forecast.sina.cn/app/update.php?city=" + CityName);
 		   
+		   HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+	        //设置请求方法，默认是GET
+	        conn.setRequestMethod("GET");
+	        //设置超时时间
+	        conn.setConnectTimeout(6*1000);//10//如果超时android的组件时间，就会被系统回收
+		   
 		   XMLHandler myXMLHandler = new XMLHandler();
 		   xmlR.setContentHandler(myXMLHandler);
-		   xmlR.parse(new InputSource(url.openStream()));
+		   xmlR.parse(new InputSource(conn.getInputStream()));
 		   data = XMLHandler.data;
 		   
-		   Log.i("NetTool", data.getDescription().toString());
+		   //Log.i("NetTool", data.getDescription().toString());
 		   
 		   return data.getDescription();
 	   } catch (Exception e) {
-		   System.out.println(e);
-		   Log.e("NET", e.toString());
+		   //System.out.println(e);
+		   //Log.e("NET", e.toString());
 	   }
 	   return null;
    }

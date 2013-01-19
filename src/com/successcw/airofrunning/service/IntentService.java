@@ -146,8 +146,8 @@ public class IntentService extends Service{
 	public void parserData(int argCity, int argStation) {
 		city = argCity;
 		station = argStation;
-		Log.i("parserData",Integer.toString(city));
-		Log.i("parserData",Integer.toString(station));
+		//Log.i("parserData",Integer.toString(city));
+		//Log.i("parserData",Integer.toString(station));
 		new MyThread().start();
 	}
 	class MyThread extends Thread {	
@@ -158,7 +158,7 @@ public class IntentService extends Service{
 			String SHAQI = "";
 			Intent intentStart = new Intent("com.successcw.airofrunning.refresh");
 			sendBroadcast(intentStart);
-			Log.i("service","send refresh");
+			//Log.i("service","send refresh");
 			Intent intent = new Intent("com.successcw.airofrunning.entity");
 
 			intent.putExtra("CITY_SETTING",city);
@@ -176,7 +176,7 @@ public class IntentService extends Service{
 					intent.putExtra("TEMPRATUREUPDATETIME", "");
 					intent.putExtra("WEATHERFORECASE", "");
 				}else {
-					//Log.i("IntertService1", WEATHER.get(0));
+					////Log.i("IntertService1", WEATHER.get(0));
 					intent.putExtra("SHISHITEMPRATURE", WEATHER.get(1));
 					intent.putExtra("AIRCONDITION", WEATHER.get(3));
 					intent.putExtra("TEMPRATURE", WEATHER.get(5) +"°/" + WEATHER.get(4) + "°");
@@ -194,7 +194,7 @@ public class IntentService extends Service{
 						
 					}else{
 						JSONObject jsonObjRecv = new JSONObject(USAQI);
-						Log.i("USAQI",jsonObjRecv.toString());
+						//Log.i("USAQI",jsonObjRecv.toString());
 						intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
 						intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").split(" ")[1]);
 						intent.putExtra("CITYAREA", "上海");
@@ -207,6 +207,7 @@ public class IntentService extends Service{
 						intent.putExtra("SHUPDATETIME", "");
 						intent.putExtra("SHAQIVALUE", "无数据");
 						intent.putExtra("STATION", " ");
+						intent.putExtra("SHPM2_5", " ");
 					}else{
 						SHAQI = SHAQI.replace("$", " ").replace("#", " ").replace("*"," ");
 						String []SHAQIArray = SHAQI.split(" ");
@@ -216,7 +217,7 @@ public class IntentService extends Service{
 						intent.putExtra("SHAQIVALUE", SHAQIArray[1].toString());
 						intent.putExtra("SHPM2_5", SHAQIArray[SHAQIArray.length - 6].toString());
 						intent.putExtra("STATION", SHStation[station]);
-						//Log.i("IntentService SHPM2_5",SHAQIArray[SHAQIArray.length - 6].toString());
+						////Log.i("IntentService SHPM2_5",SHAQIArray[SHAQIArray.length - 6].toString());
 					}
 				} else if(city == 1 || city == 54 || city == 66) { //beijing,guangzhou,chengdu
 					switch(city){
@@ -241,24 +242,25 @@ public class IntentService extends Service{
 						
 					}else{
 						JSONObject jsonObjRecv = new JSONObject(USAQI);
-						Log.i("USAQI",jsonObjRecv.toString());
+						//Log.i("USAQI",jsonObjRecv.toString());
 						intent.putExtra("USAQIVALUE", jsonObjRecv.getString("aqi").toString());
 						intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").split(" ")[1]);
 					}
 					
 					SHAQI = NetTool.getHtml("http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station, "UTF-8");
-					//Log.i("URL","http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station);
-					Log.i("USQAI",SHAQI);
+					////Log.i("URL","http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station);
+					//Log.i("USQAI",SHAQI);
 					if (SHAQI == null) {
 						intent.putExtra("SHAQILEVEL", "");
 						intent.putExtra("SHUPDATEDATE", "");
 						intent.putExtra("SHUPDATETIME", "");
 						intent.putExtra("SHAQIVALUE", "无数据");	
 						intent.putExtra("CITYAREA", "");
-						intent.putExtra("STATION", "无数据");					
+						intent.putExtra("STATION", "无数据");	
+						intent.putExtra("SHPM2_5", " ");
 					}else{
 						JSONObject jsonObjRecv = new JSONObject(SHAQI);
-						Log.i("USAQI",jsonObjRecv.toString());						
+						//Log.i("USAQI",jsonObjRecv.toString());						
 						intent.putExtra("SHAQILEVEL", jsonObjRecv.getString("quality").toString());
 						
 						if(city == 1) {
@@ -276,8 +278,8 @@ public class IntentService extends Service{
 					}
 				} else { //the other cities
 					USAQI = NetTool.getHtml("http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station, "UTF-8");
-					Log.i("URL","http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station);
-					Log.i("USQAI",USAQI);
+					//Log.i("URL","http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station);
+					//Log.i("USQAI",USAQI);
 					if (USAQI == null) {
 						intent.putExtra("USAQIVALUE", "无数据");
 						intent.putExtra("USAQITIME", "");
@@ -291,7 +293,7 @@ public class IntentService extends Service{
 						
 					}else{
 						JSONObject jsonObjRecv = new JSONObject(USAQI);
-						Log.i("USAQI",jsonObjRecv.toString());
+						//Log.i("USAQI",jsonObjRecv.toString());
 						intent.putExtra("USAQIVALUE", jsonObjRecv.getString("averageAQI").toString());
 						intent.putExtra("USAQITIME", jsonObjRecv.getString("time").toString().split("T")[1]);
 						
@@ -308,7 +310,7 @@ public class IntentService extends Service{
 				}
 				sendBroadcast(intent);
 			}catch(Exception e){
-				Log.i("AQI",e.toString());
+				////Log.i("AQI",e.toString());
 				intent = new Intent("com.successcw.airofrunning.noNet");
 				intent.putExtra("ERRORMSG", e.toString());
 				sendBroadcast(intent);

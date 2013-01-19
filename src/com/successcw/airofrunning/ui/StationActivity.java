@@ -90,7 +90,7 @@ public class StationActivity extends Activity{
     	
 	    	for(int i = 0; i < province.length(); i++)
 	    	{
-	    		//Log.e("provinces", province.getJSONObject(i).getString("name"));
+	    		////Log.e("provinces", province.getJSONObject(i).getString("name"));
 	    		provinceItems[i] = province.getJSONObject(i).getString("name");
 	    	}
 	    	ArrayAdapter provinceAdapter = 
@@ -100,16 +100,16 @@ public class StationActivity extends Activity{
 	        provinceSpinner.setOnItemSelectedListener(new provinceSpinnerSelectedListener());  
 	        
     	}catch(JSONException e)        {
-            Log.e("log_tag", "Error parsing data "+e.toString());
+            //Log.e("log_tag", "Error parsing data "+e.toString());
           }
     	catch(IOException e) {
-    		Log.e("log_tag", "Error open" + e.toString());
+    		//Log.e("log_tag", "Error open" + e.toString());
     	}	    
         
     	tempProvince = getPreferences(MODE_PRIVATE).getInt("PROVINCE_SETTING",0);
     	tempCity = Integer.valueOf(getPreferences(MODE_PRIVATE).getString("CITY_SETTING","0"));
-    	Log.i("tempProvince", String.valueOf(tempProvince));
-    	Log.i("tempCity",String.valueOf(tempCity));
+    	//Log.i("tempProvince", String.valueOf(tempProvince));
+    	//Log.i("tempCity",String.valueOf(tempCity));
         provinceSpinner.setSelection(tempProvince);
         //init city
         setCitySpinner(tempProvince);
@@ -131,7 +131,7 @@ public class StationActivity extends Activity{
     public class ListClickListener implements OnItemClickListener {
     	   public void onItemClick(AdapterView<?> parent, View view,   
                    int position, long id) {
-    		   Log.i("stationList clicked",Long.toString(id));
+    		   //Log.i("stationList clicked",Long.toString(id));
     		   argStation=(int)id;
     		   getPreferences(MODE_PRIVATE).edit().putString("STATION_SETTING",String.valueOf(id)).commit();
     		   finishActivity();
@@ -145,7 +145,7 @@ public class StationActivity extends Activity{
         	String temp = "0";
         	if(arg0 == provinceSpinner) {
         		
-        		Log.i("provinceSpinner clicked",Integer.toString(arg2));
+        		//Log.i("provinceSpinner clicked",Integer.toString(arg2));
         		if(Integer.valueOf(getPreferences(MODE_PRIVATE).getInt("PROVINCE_SETTING",0)) == arg2){
         			provinceDifferent = 0;
         		}
@@ -157,15 +157,15 @@ public class StationActivity extends Activity{
 //        		if(provinceDifferent == 1) {
 //	        		try {
 //	        			temp = city.getJSONObject(0).getString("id");
-//	        			//Log.i("id=",temp);
+//	        			////Log.i("id=",temp);
 //	        		}catch(JSONException e){
-//	         			Log.e("log_tag", "Error parsing data "+e.toString());
+//	         			//Log.e("log_tag", "Error parsing data "+e.toString());
 //	         		}
 //	        		if(temp != "0") {
 //	        			argCity = Integer.valueOf(temp);
 //	        			getPreferences(MODE_PRIVATE).edit().putString("CITY_SETTING","0").commit();
 //	        		}
-//	        		Log.i("argCity=",Integer.toString(argCity));
+//	        		//Log.i("argCity=",Integer.toString(argCity));
 //        		}
         		setStationList(0);
         		argStation = 0;
@@ -182,20 +182,20 @@ public class StationActivity extends Activity{
                 long arg3) {
         	String temp = "0";
         	if(arg0 == citySpinner) {    		
-				Log.i("citySpinner clicked",Integer.toString(arg2));
+				//Log.i("citySpinner clicked",Integer.toString(arg2));
 				setStationList(arg2);
 				try {
         			temp = city.getJSONObject(arg2).getString("id");
-        			Log.i("id=",temp);
+        			//Log.i("id=",temp);
         		}catch(JSONException e){
-         			Log.e("log_tag", "Error parsing data "+e.toString());
+         			//Log.e("log_tag", "Error parsing data "+e.toString());
          		}
         		if(temp != "0") {
         			argCity = Integer.valueOf(temp);
         			getPreferences(MODE_PRIVATE).edit().putString("CITY_SETTING",String.valueOf(arg2)).commit();
         		}
         		argStation = 0;
-        		//Log.i("argCity=",Integer.toString(argCity));
+        		////Log.i("argCity=",Integer.toString(argCity));
         	}
             
         }  
@@ -211,7 +211,7 @@ public class StationActivity extends Activity{
 		
 	    	for(int i = 0; i < city.length(); i++)
 	    	{
-	    		//Log.e("city", city.getJSONObject(i).getString("name"));
+	    		////Log.e("city", city.getJSONObject(i).getString("name"));
 	    		cityItems[i] = city.getJSONObject(i).getString("name");
 	    	}
 	    	ArrayAdapter cityAdapter = 
@@ -226,7 +226,7 @@ public class StationActivity extends Activity{
 	        }
 	        
        	}catch(JSONException e){
-            Log.e("log_tag", "Error parsing data "+e.toString());
+            //Log.e("log_tag", "Error parsing data "+e.toString());
        	}
         
     }
@@ -238,7 +238,7 @@ public class StationActivity extends Activity{
     	
 	    	for(int i = 0; i < station.length(); i++)
 	    	{
-	    		//Log.e("station", station.getJSONObject(i).getString("name"));
+	    		////Log.e("station", station.getJSONObject(i).getString("name"));
 	    		stationItems[i] = station.getJSONObject(i).getString("name");
 	    	}
 	    	ArrayAdapter stationAdapter = 
@@ -258,21 +258,19 @@ public class StationActivity extends Activity{
 	        ((MarginLayoutParams)params).setMargins(10, 10, 10, 10);
 	        stationList.setLayoutParams(params); 
        	}catch(JSONException e){
-            Log.e("log_tag", "Error parsing data "+e.toString());
+            //Log.e("log_tag", "Error parsing data "+e.toString());
        	}
         
     }
     
 	@Override
 	protected void onStart() {
-		super.onStart();
-		System.out.println("onStart()");
+		super.onStart();	
 	}
 	
 	@Override
 	protected void onStop() {
 		super.onStop();
-		System.out.println("onStop()");
 	}
 
 	@Override

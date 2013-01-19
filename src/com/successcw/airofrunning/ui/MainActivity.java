@@ -63,7 +63,7 @@ public class MainActivity extends TabActivity {
 				break;
 			case 2:
 				removeDialog(DIALOG);
-				Log.i("main received", "createMainView");
+				//Log.i("main received", "createMainView");
 				createMainView();
 				break;
 			case 3:
@@ -107,12 +107,12 @@ public class MainActivity extends TabActivity {
 				getPreferences(MODE_PRIVATE).edit().putString("CITY_SETTING",String.valueOf(intent.getSerializableExtra("CITY_SETTING"))).commit();
 				getPreferences(MODE_PRIVATE).edit().putString("STATION_SETTING",String.valueOf(intent.getSerializableExtra("STATION_SETTING"))).commit();
 				
-				//Log.i("main received", "entity");
+				////Log.i("main received", "entity");
 				handler.sendEmptyMessage(2);
 			}
 			if (action.equals("com.successcw.airofrunning.share")) {
 				share();
-				Log.i("MainActivity","received com.successcw.airofrunning.share");
+				//Log.i("MainActivity","received com.successcw.airofrunning.share");
 			}
 		}
 	};
@@ -149,8 +149,8 @@ public class MainActivity extends TabActivity {
 		//获取setting中的信息，如果没有的话默认加载上海数据（应用程序第一次启动）
 		CITYAREA = getPreferences(MODE_PRIVATE).getString("CITY_SETTING","20");
 		STATION = getPreferences(MODE_PRIVATE).getString("STATION_SETTING","0");
-		Log.i("OnCreate",CITYAREA);
-		Log.i("OnCreate",STATION);
+		//Log.i("OnCreate",CITYAREA);
+		//Log.i("OnCreate",STATION);
 		service = new Intent("com.successcw.airofrunning.intentservice");
 		startService(service);
 		bindService(service, conn, BIND_AUTO_CREATE);
@@ -208,16 +208,16 @@ public class MainActivity extends TabActivity {
 	    view.setDrawingCacheEnabled(true);
 	    view.buildDrawingCache();
 	    Bitmap b1 = view.getDrawingCache();
-	    Log.i("bitmap.height", Integer.toString(b1.getHeight()));
+	    //Log.i("bitmap.height", Integer.toString(b1.getHeight()));
 	    
 	    view.getWindowVisibleDisplayFrame(rect);
 	    int statusBarHeight = rect.top;
-	    Log.i("状态栏高度",Integer.toString(statusBarHeight));
+	    //Log.i("状态栏高度",Integer.toString(statusBarHeight));
 	     
 	    int wintop = getWindow().findViewById(android.R.id.content).getTop();
 	    int titleBarHeight = wintop - statusBarHeight;
-	    Log.i("标题栏高度",Integer.toString(titleBarHeight));
-	    Log.i("Hight", Integer.toString(height));
+	    //Log.i("标题栏高度",Integer.toString(titleBarHeight));
+	    //Log.i("Hight", Integer.toString(height));
 	    
 	    //Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 	    Bitmap bmp = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height - statusBarHeight);
@@ -234,7 +234,7 @@ public class MainActivity extends TabActivity {
 	    	out = new FileOutputStream(filename);
 	    	bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
 	    } catch (Exception e) {
-	    	e.printStackTrace();
+	    	//e.printStackTrace();
 	    } 
 	    
 	    //view.draw(new Canvas(b));
