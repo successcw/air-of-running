@@ -247,7 +247,7 @@ public class IntentService extends Service{
 						intent.putExtra("USAQITIME", jsonObjRecv.getJSONObject("time").getString("u").split(" ")[1]);
 					}
 					
-					SHAQI = NetTool.getHtml("http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station, "UTF-8");
+					SHAQI = NetTool.getHtml("http://airofrunning-server.cloudfoundry.com/?city=" + city + "&station=" + station, "UTF-8");
 					////Log.i("URL","http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station);
 					//Log.i("USQAI",SHAQI);
 					if (SHAQI == null) {
@@ -277,7 +277,7 @@ public class IntentService extends Service{
 
 					}
 				} else { //the other cities
-					USAQI = NetTool.getHtml("http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station, "UTF-8");
+					USAQI = NetTool.getHtml("http://airofrunning-server.cloudfoundry.com/?city=" + city + "&station=" + station, "UTF-8");
 					//Log.i("URL","http://airofrunning-server.cloudfoundry.com?city=" + city + "&station=" + station);
 					//Log.i("USQAI",USAQI);
 					if (USAQI == null) {
