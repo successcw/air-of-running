@@ -3,6 +3,7 @@ package com.successcw.airofrunning.ui;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -22,7 +23,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -52,7 +52,7 @@ public class MainActivity extends TabActivity {
 	String TEMPRATUREUPDATETIME = "";
 	String CITYAREA = "";
 	String STATION = "";
-	ArrayList <String> WEATHERFORECASE;
+	String[] WEATHERFORECASE;
 	private TabHost tabHost;
 	
 	Handler handler = new Handler() {
@@ -102,7 +102,8 @@ public class MainActivity extends TabActivity {
 				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
 				CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
 				STATION = (String) intent.getSerializableExtra("STATION");
-				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");
+				WEATHERFORECASE = intent.getSerializableExtra("WEATHERFORECASE").toString().replace("[", "").replace("]", "").split(",");
+
 				
 				getPreferences(MODE_PRIVATE).edit().putString("CITY_SETTING",String.valueOf(intent.getSerializableExtra("CITY_SETTING"))).commit();
 				getPreferences(MODE_PRIVATE).edit().putString("STATION_SETTING",String.valueOf(intent.getSerializableExtra("STATION_SETTING"))).commit();

@@ -62,7 +62,7 @@ public class weatheractivity extends Activity {
 	String TEMPRATUREUPDATETIME = "";
 	String CITYAREA = "";
 	String STATION = "";
-	ArrayList <String> WEATHERFORECASE;
+	String[] WEATHERFORECASE;
 	Integer[] icon=new Integer[]{ 
 		    R.drawable.b_0,R.drawable.b_1,R.drawable.b_2, 
 		    R.drawable.b_3,R.drawable.b_4,R.drawable.b_5,
@@ -219,7 +219,7 @@ public class weatheractivity extends Activity {
 				WIND = (String) intent.getSerializableExtra("WIND");
 				WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
 				TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");
-				WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");		
+				WEATHERFORECASE = intent.getSerializableExtra("WEATHERFORECASE").toString().replace("[", "").replace("]", "").split(",");		
 				CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
 				STATION = (String) intent.getSerializableExtra("STATION");
 				
@@ -554,38 +554,38 @@ public class weatheractivity extends Activity {
 		weatherforecast.setText(CITYAREA + "未来5天天气预报");
 		TextView forecast = (TextView) ViewTemp.findViewById(R.id.forecast1);
 		ImageView forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon1);
-		forecast.setText(WEATHERFORECASE.get(12).split("-")[1] + "/" + WEATHERFORECASE.get(12).split("-")[2] 
-							+ "      " + WEATHERFORECASE.get(10) +"°/" + WEATHERFORECASE.get(9) + "°"
-							+ "\n" + WEATHERFORECASE.get(8));
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(11))]);
+		forecast.setText(WEATHERFORECASE[12].split("-")[1] + "/" + WEATHERFORECASE[12].split("-")[2] 
+							+ "      " + WEATHERFORECASE[10] +"°/" + WEATHERFORECASE[9] + "°"
+							+ "\n" + WEATHERFORECASE[8]);
+		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[11].replace(" ", ""))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast2);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon2);
-		forecast.setText(WEATHERFORECASE.get(17).split("-")[1] + "/" + WEATHERFORECASE.get(17).split("-")[2] 
-							+ "      " + WEATHERFORECASE.get(15) +"°/" + WEATHERFORECASE.get(14) + "°"
-							+ "\n" + WEATHERFORECASE.get(13));
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(16))]);
+		forecast.setText(WEATHERFORECASE[17].split("-")[1] + "/" + WEATHERFORECASE[17].split("-")[2] 
+							+ "      " + WEATHERFORECASE[15] +"°/" + WEATHERFORECASE[14] + "°"
+							+ "\n" + WEATHERFORECASE[13]);
+		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[16].replace(" ", ""))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast3);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon3);
-		forecast.setText(WEATHERFORECASE.get(22).split("-")[1] + "/" + WEATHERFORECASE.get(22).split("-")[2] 
-							+ "      " + WEATHERFORECASE.get(20) +"°/" + WEATHERFORECASE.get(19) + "°"
-							+ "\n" + WEATHERFORECASE.get(18));
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(21))]);
+		forecast.setText(WEATHERFORECASE[22].split("-")[1] + "/" + WEATHERFORECASE[22].split("-")[2] 
+							+ "      " + WEATHERFORECASE[20] +"°/" + WEATHERFORECASE[19] + "°"
+							+ "\n" + WEATHERFORECASE[18]);
+		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[21].replace(" ", ""))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast4);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon4);
-		forecast.setText(WEATHERFORECASE.get(27).split("-")[1] + "/" + WEATHERFORECASE.get(27).split("-")[2] 
-							+ "      " + WEATHERFORECASE.get(25) +"°/" + WEATHERFORECASE.get(24) + "°"
-							+ "\n" + WEATHERFORECASE.get(23));
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(26))]);
+		forecast.setText(WEATHERFORECASE[27].split("-")[1] + "/" + WEATHERFORECASE[27].split("-")[2] 
+							+ "      " + WEATHERFORECASE[25] +"°/" + WEATHERFORECASE[24] + "°"
+							+ "\n" + WEATHERFORECASE[23]);
+		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[26].replace(" ", ""))]);
 		
 		forecast = (TextView) ViewTemp.findViewById(R.id.forecast5);
 		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon5);
-		forecast.setText(WEATHERFORECASE.get(32).split("-")[1] + "/" + WEATHERFORECASE.get(32).split("-")[2] 
-							+ "      " + WEATHERFORECASE.get(30) +"°/" + WEATHERFORECASE.get(29) + "°"
-							+ "\n" + WEATHERFORECASE.get(28));
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE.get(31))]);
+		forecast.setText(WEATHERFORECASE[32].split("-")[1] + "/" + WEATHERFORECASE[32].split("-")[2] 
+							+ "      " + WEATHERFORECASE[30] +"°/" + WEATHERFORECASE[29] + "°"
+							+ "\n" + WEATHERFORECASE[28]);
+		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[31].replace(" ", ""))]);
 		
     }
     private void loadZixun() {
@@ -713,7 +713,7 @@ public class weatheractivity extends Activity {
 		WIND = (String) intent.getSerializableExtra("WIND");
 		WEATHERICON = (String) intent.getSerializableExtra("WEATHERICON");
 		TEMPRATUREUPDATETIME = (String) intent.getSerializableExtra("TEMPRATUREUPDATETIME");		
-		WEATHERFORECASE = (ArrayList) intent.getSerializableExtra("WEATHERFORECASE");
+		WEATHERFORECASE = (String[]) intent.getSerializableExtra("WEATHERFORECASE");
 		CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
 		STATION = (String) intent.getSerializableExtra("STATION");
 		
