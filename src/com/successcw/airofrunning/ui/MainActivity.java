@@ -2,18 +2,21 @@ package com.successcw.airofrunning.ui;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TabActivity;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -23,6 +26,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -54,6 +58,9 @@ public class MainActivity extends TabActivity {
 	String STATION = "";
 	String[] WEATHERFORECASE;
 	private TabHost tabHost;
+	private int VERSIONCODE = 0;
+	private String VERSIONNAME = null;
+	private String VERSIONCONTENT = null;
 	
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -82,7 +89,9 @@ public class MainActivity extends TabActivity {
 			String action = intent.getAction();
 			if (action.equals("com.successcw.airofrunning.noNet")) {
 				String ERRORMSG = (String) intent.getSerializableExtra("ERRORMSG");
-				Toast.makeText(context, "出错了,请稍后重试" + ERRORMSG.toString(), Toast.LENGTH_LONG)
+/*				Toast.makeText(context, "出错了,请稍后重试" + ERRORMSG.toString(), Toast.LENGTH_LONG)
+				.show();*/
+				Toast.makeText(context, "网络错误,请稍后重试", Toast.LENGTH_LONG)
 				.show();
 				handler.sendEmptyMessage(3);
 			}
@@ -103,7 +112,9 @@ public class MainActivity extends TabActivity {
 				CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
 				STATION = (String) intent.getSerializableExtra("STATION");
 				WEATHERFORECASE = intent.getSerializableExtra("WEATHERFORECASE").toString().replace("[", "").replace("]", "").split(",");
-
+				VERSIONCODE = Integer.valueOf((String) intent.getSerializableExtra("VERSIONCODE"));
+				VERSIONNAME = (String) intent.getSerializableExtra("VERSIONNAME");
+				VERSIONCONTENT = (String) intent.getSerializableExtra("VERSIONCONTENT");
 				
 				getPreferences(MODE_PRIVATE).edit().putString("CITY_SETTING",String.valueOf(intent.getSerializableExtra("CITY_SETTING"))).commit();
 				getPreferences(MODE_PRIVATE).edit().putString("STATION_SETTING",String.valueOf(intent.getSerializableExtra("STATION_SETTING"))).commit();
@@ -146,7 +157,7 @@ public class MainActivity extends TabActivity {
 		filter.addAction("com.successcw.airofrunning.noNet");
 		filter.addAction("com.successcw.airofrunning.share");
 		registerReceiver(receiver, filter);
-		
+
 		//获取setting中的信息，如果没有的话默认加载上海数据（应用程序第一次启动）
 		CITYAREA = getPreferences(MODE_PRIVATE).getString("CITY_SETTING","20");
 		STATION = getPreferences(MODE_PRIVATE).getString("STATION_SETTING","0");
@@ -248,7 +259,52 @@ public class MainActivity extends TabActivity {
 	    intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(url));   //圖片
 	    startActivity(Intent.createChooser(intent, "标题"));  //目标应用选择对话框的标题
 	}
-		
+	public static int getVersionCode(Context context) {
+        int verCode = -1;
+        try {
+        	verCode = context.getPackageManager().getPackageInfo(
+        			context.getPackageName(), 0).versionCode;
+            Log.i("getVersionCode", String.valueOf(verCode));
+        } catch (NameNotFoundException e) {
+            Log.e("NewVersionUpdate", e.getMessage());
+        }
+        return verCode;
+    }
+
+	private void showNoticeDialog(){
+		Dialog noticeDialog;
+        AlertDialog.Builder builder = new Builder(this);
+        builder.setTitle("软件版本更新");
+        builder.setMessage("有最新的软件包V1.3，快下载更新吧~\n 更新如下：\n" + VERSIONCONTENT.replace(";", "\n"));
+        builder.setPositiveButton("下载", new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Uri uri = Uri.parse("https://air-of-running.googlecode.com/files/AirOfRunningV"+ VERSIONNAME + ".apk");
+                Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(intent);
+                //showDownloadDialog();
+            }
+        });
+        builder.setNegativeButton("以后再说", new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                //getPreferences(MODE_PRIVATE).edit().putString("UPDATE_SETTING","1").commit();
+            }
+        });
+        builder.setCancelable(false); //不响应返回键
+        noticeDialog = builder.create();
+        noticeDialog.show();
+    }
+
+	public void checkUpdate() {
+		//Log.e("checkUpdate",String.valueOf(VERSIONCODE));
+		if(VERSIONCODE > getVersionCode(this)) {
+			//Log.i("checkUpdate", "need update!");
+			showNoticeDialog();
+		}
+	}
 	private void createMainView() {
         tabHost = getTabHost(); 
 		Intent intentWeather = new Intent(this, weatheractivity.class);
@@ -268,6 +324,11 @@ public class MainActivity extends TabActivity {
 		intentWeather.putExtra("WEATHERFORECASE",WEATHERFORECASE);
 		intentWeather.putExtra("CITYAREA",CITYAREA);
 		intentWeather.putExtra("STATION",STATION);
+		intentWeather.putExtra("VERSIONCODE",VERSIONCODE);
+		intentWeather.putExtra("VERSIONNAME",VERSIONNAME);
+		intentWeather.putExtra("VERSIONCONTENT",VERSIONCONTENT);
+		//if(getPreferences(MODE_PRIVATE).getString("UPDATE_SETTING","0") == "0")
+			checkUpdate();
 		
 		tabHost.addTab(tabHost.newTabSpec("home").setIndicator("home")
 				.setContent(intentWeather));

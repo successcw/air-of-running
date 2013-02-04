@@ -64,7 +64,7 @@ public class IntentService extends Service{
 				//message = NetTool.getHtml("http://airofrunning-serverv13.cloudfoundry.com", "UTF-8");
 				JSONObject jsonObjRecv = new JSONObject(message);
 
-				Log.i("USAQI",jsonObjRecv.toString());
+				//Log.i("USAQI",jsonObjRecv.toString());
 				intent.putExtra("SHISHITEMPRATURE", jsonObjRecv.getString("SHISHITEMPRATURE").toString());
 				intent.putExtra("AIRCONDITION", jsonObjRecv.getString("AIRCONDITION").toString());
 				intent.putExtra("TEMPRATURE", jsonObjRecv.getString("TEMPRATURE").toString());
@@ -88,6 +88,13 @@ public class IntentService extends Service{
 				intent.putExtra("SHPM2_5", jsonObjRecv.getString("PM2_5").toString());
 				intent.putExtra("CITYAREA", jsonObjRecv.getString("area").toString());
 				intent.putExtra("STATION", jsonObjRecv.getString("station").toString());
+
+				message = NetTool.getHtml("http://airofrunning-serverv13.cloudfoundry.com/?checkNewVersion=1", "UTF-8");
+				jsonObjRecv = new JSONObject(message);
+	            //Log.i("versioncode",jsonObjRecv.toString());
+	            intent.putExtra("VERSIONCODE", jsonObjRecv.getString("versionCode").toString());
+	            intent.putExtra("VERSIONNAME", jsonObjRecv.getString("versionName").toString());
+	            intent.putExtra("VERSIONCONTENT", jsonObjRecv.getString("contents").toString());
 				sendBroadcast(intent);
 
 			}catch(Exception e){

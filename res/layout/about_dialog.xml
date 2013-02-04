@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="15dip">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="3dip"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="跑跑空气V1.3" 
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content" >
+	    <TextView
+	        android:id="@+id/textview01"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dip"
+	        android:paddingBottom="10.0dip"
+	        android:text="意见反馈: "
+	        android:textSize="15sp"/>
+
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_toRightOf="@+id/textview01"
+	        android:autoLink="all"
+	        android:paddingBottom="10.0dip"
+	        android:text="successcw@gmail.com"
+	        android:textSize="15sp"/>
+    </RelativeLayout>
+   	    <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dip"
+	        android:paddingBottom="10.0dip"
+	        android:text="sina微博: @airOfRunning"
+	        android:textSize="15sp"/>
+    
+</LinearLayout>

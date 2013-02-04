@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcelable;
@@ -45,7 +51,11 @@ public class weatheractivity extends Activity {
     private View ViewZixun;
     private View ViewTemp;
 	private PopupWindow popupWindow;
+	private Dialog about_dialog;
 	private IntentService AirOfRunningService;
+	private int VERSIONCODE = 0;
+	private String VERSIONNAME = null;
+	private String VERSIONCONTENT = null;
     
 	String USAQIVALUE = "";
 	String USAQITIME = "";
@@ -554,6 +564,7 @@ public class weatheractivity extends Activity {
 		weatherforecast.setText(CITYAREA + "未来5天天气预报");
 		TextView forecast = (TextView) ViewTemp.findViewById(R.id.forecast1);
 		ImageView forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon1);
+
 		forecast.setText(WEATHERFORECASE[12].split("-")[1] + "/" + WEATHERFORECASE[12].split("-")[2] 
 							+ "      " + WEATHERFORECASE[10] +"°/" + WEATHERFORECASE[9] + "°"
 							+ "\n" + WEATHERFORECASE[8]);
@@ -586,7 +597,6 @@ public class weatheractivity extends Activity {
 							+ "      " + WEATHERFORECASE[30] +"°/" + WEATHERFORECASE[29] + "°"
 							+ "\n" + WEATHERFORECASE[28]);
 		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[31].replace(" ", ""))]);
-		
     }
     private void loadZixun() {
     	ViewTemp = ViewZixun;
@@ -643,6 +653,7 @@ public class weatheractivity extends Activity {
   	
   	Button changestation = (Button) popupWindow_view.findViewById(R.id.changestation);
   	Button share = (Button) popupWindow_view.findViewById(R.id.share);
+	Button check = (Button) popupWindow_view.findViewById(R.id.check);
   	Button about = (Button) popupWindow_view.findViewById(R.id.about);
   	// pop.xml视图里面的控件触发的事件
   	// 打开
@@ -662,16 +673,43 @@ public class weatheractivity extends Activity {
 	    		share();
   		}
   	});
-  		// 关闭
+
+  	check.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			popupWindow.dismiss();
+			checkUpdate();
+		}
+	});
+
   	about.setOnClickListener(new OnClickListener() {
   		@Override
   		public void onClick(View v) {
 	    		popupWindow.dismiss();
+	    		initAboutDialog();
   		}
   	});
 
   }
 
+  private void initAboutDialog() {
+	  View diaView = View.inflate(this, R.layout.about_dialog, null);
+	  about_dialog = new Dialog(this, R.style.about_dialog);
+	  about_dialog.setContentView(diaView);
+	  //点击其他地方消失
+	  diaView.setOnTouchListener(new OnTouchListener() {
+		  @Override
+		  public boolean onTouch(View v, MotionEvent event) {
+			  if (about_dialog != null && about_dialog.isShowing()) {
+				  about_dialog.dismiss();
+				  about_dialog = null;
+			  }
+			  return false;
+		  }
+	  });
+	  about_dialog.setCanceledOnTouchOutside(true);
+	  about_dialog.show();
+  }
   private void getPopupWindow() {
 
   	if (null != popupWindow) {
@@ -691,6 +729,75 @@ public class weatheractivity extends Activity {
 	  Intent intent = new Intent("com.successcw.airofrunning.share");
 	  sendBroadcast(intent);
   }
+
+  public static int getVersionCode(Context context) {
+      int verCode = -1;
+      try {
+    	  verCode = context.getPackageManager().getPackageInfo(
+    			  context.getPackageName(), 0).versionCode;
+          Log.i("getVersionCode", String.valueOf(verCode));
+      } catch (NameNotFoundException e) {
+          Log.e("NewVersionUpdate", e.getMessage());
+      }
+      return verCode;
+  }
+
+  private void showNoticeDialog(){
+	  Dialog noticeDialog;
+      AlertDialog.Builder builder = new Builder(this);
+      builder.setTitle("软件版本更新");
+      builder.setMessage("有最新的软件包V1.3，快下载更新吧~\n 更新如下：\n" + VERSIONCONTENT.replace(";", "\n"));
+      builder.setPositiveButton("下载", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+              dialog.dismiss();
+              Uri uri = Uri.parse("https://air-of-running.googlecode.com/files/AirOfRunningV"+ VERSIONNAME + ".apk");
+              Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+              startActivity(intent);
+              //showDownloadDialog();
+          }
+      });
+      builder.setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+              dialog.dismiss();
+          }
+      });
+      noticeDialog = builder.create();
+      noticeDialog.show();
+  }
+
+  private void showNoNoticeDialog(){
+	  Dialog noticeDialog;
+      AlertDialog.Builder builder = new Builder(this);
+      builder.setTitle("无更新");
+      builder.setMessage("已经是最新版了，感谢支持");
+      builder.setPositiveButton("返回", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+              dialog.dismiss();
+              //showDownloadDialog();
+          }
+      });
+/*      builder.setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+              dialog.dismiss();
+          }
+      });  */
+      noticeDialog = builder.create();
+      noticeDialog.show();
+  }
+	public void checkUpdate() {
+		//Log.e("checkUpdate",String.valueOf(VERSIONCODE));
+		if(VERSIONCODE > getVersionCode(this)) {
+			//Log.i("checkUpdate", "need update!");
+			showNoticeDialog();
+		}
+		else
+			showNoNoticeDialog();
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -717,6 +824,10 @@ public class weatheractivity extends Activity {
 		CITYAREA = (String) intent.getSerializableExtra("CITYAREA");
 		STATION = (String) intent.getSerializableExtra("STATION");
 		
+		VERSIONCODE = (Integer) intent.getSerializableExtra("VERSIONCODE");
+		VERSIONNAME = (String) intent.getSerializableExtra("VERSIONNAME");
+		VERSIONCONTENT = (String) intent.getSerializableExtra("VERSIONCONTENT");
+
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("com.successcw.airofrunning.entity");
 		filter.addAction("com.successcw.airofrunning.refresh");
