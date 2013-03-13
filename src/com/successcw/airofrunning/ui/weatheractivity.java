@@ -467,13 +467,13 @@ public class weatheractivity extends Activity {
 			SHAQI = 100001;
 		else
 			SHAQI = AQIPM25(SHPM2_5);*/
-		Log.i("Main SHPM2_5 ",SHPM2_5);
+/*		Log.i("Main SHPM2_5 ",SHPM2_5);
 		Log.i("Main PM10",PM10);
 		Log.i("Main SO2",SO2);
 		Log.i("Main NO2",NO2);
 		Log.i("Main CO",CO);
 		Log.i("Main O3_1H",O3_1H);
-		Log.i("Main O3_8H",O3_8H);
+		Log.i("Main O3_8H",O3_8H);*/
 		temp = AQITool.Conc2AQI(SHPM2_5, PM10, SO2, NO2, CO, O3_1H, O3_8H);
 		try {
 			JSONObject json = new JSONObject(temp);
@@ -569,7 +569,7 @@ public class weatheractivity extends Activity {
 		int linear;
 		float temp;
 		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
-		Log.i("AQIPM25", Float.toString(temp));
+		//Log.i("AQIPM25", Float.toString(temp));
 		linear=Math.round(temp);
 		return linear;
 	}
@@ -578,11 +578,11 @@ public class weatheractivity extends Activity {
 	{
 		float c;
 		try{
-			Log.i("AQIPM25",Concentration);
+			//Log.i("AQIPM25",Concentration);
 			float Conc = Float.parseFloat(Concentration);
-			Log.i("AQIPM25", Float.toString(Conc));
+			//Log.i("AQIPM25", Float.toString(Conc));
 			c = (float)(Math.floor(10*Conc))/10;
-			Log.i("AQIPM25", Float.toString(c));
+			//Log.i("AQIPM25", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
 			//Log.e("Weather","PM2.5Êý¾Ý´íÎó");
@@ -853,9 +853,9 @@ public class weatheractivity extends Activity {
       try {
     	  verCode = context.getPackageManager().getPackageInfo(
     			  context.getPackageName(), 0).versionCode;
-          Log.i("getVersionCode", String.valueOf(verCode));
+          //Log.i("getVersionCode", String.valueOf(verCode));
       } catch (NameNotFoundException e) {
-          Log.e("NewVersionUpdate", e.getMessage());
+          //Log.e("NewVersionUpdate", e.getMessage());
       }
       return verCode;
   }

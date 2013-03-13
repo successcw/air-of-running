@@ -278,7 +278,7 @@ public class MainActivity extends TabActivity {
         try {
         	verCode = context.getPackageManager().getPackageInfo(
         			context.getPackageName(), 0).versionCode;
-            Log.i("getVersionCode", String.valueOf(verCode));
+            //Log.i("getVersionCode", String.valueOf(verCode));
         } catch (NameNotFoundException e) {
             Log.e("NewVersionUpdate", e.getMessage());
         }

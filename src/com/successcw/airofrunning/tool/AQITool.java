@@ -9,7 +9,7 @@ public class AQITool {
 		int linear;
 		float temp;
 		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
-		Log.i("Linear", Float.toString(temp));
+		//Log.i("Linear", Float.toString(temp));
 		linear=Math.round(temp);
 		return linear;
 	}
@@ -18,7 +18,7 @@ public class AQITool {
 		int linear;
 		float temp;
 		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
-		Log.i("Linear", Float.toString(temp));
+		//Log.i("Linear", Float.toString(temp));
 		linear=Math.round(temp+0.5f);
 		return linear;
 	}
@@ -511,12 +511,12 @@ public class AQITool {
 		if (Concentration.equals("-9999.0"))
 			return 100001;
 		try{
-			Log.i("CHAQISO21hr",Concentration);
+			//Log.i("CHAQISO21hr",Concentration);
 			float Conc = Float.parseFloat(Concentration);
-			Log.i("CHAQISO21hr", Float.toString(Conc));
+			//Log.i("CHAQISO21hr", Float.toString(Conc));
 			//c = (float)(Math.floor(Conc));
 			c = Conc;
-			Log.i("CHAQISO21hr", Float.toString(c));
+			//Log.i("CHAQISO21hr", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
 			//Log.e("Weather","PM2.5Êý¾Ý´íÎó");
@@ -751,7 +751,7 @@ public class AQITool {
 		index = 0;
 		for(int i = 0; i < CHAQI.length; i++)
 		{
-			Log.i("for", String.valueOf(CHAQI[i]));
+			//Log.i("for", String.valueOf(CHAQI[i]));
 			if(CHAQI[i] == 100001)
 				continue;
 			if(CHAQI[i] > CHMaxAQI) {
@@ -791,7 +791,7 @@ public class AQITool {
 			CHPrimaryPollutant = 6;
 			break;
 		}
-		Log.i("US PM2_5", String.valueOf(USAQIPM25(PM2_5)));
+/*		Log.i("US PM2_5", String.valueOf(USAQIPM25(PM2_5)));
 		Log.i("US PM10", String.valueOf(USAQIPM10(PM10)));
 		Log.i("US SO2", String.valueOf(USAQISO21hr(SO2)));
 		Log.i("US NO2", String.valueOf(USAQINO2(NO2)));
@@ -804,7 +804,7 @@ public class AQITool {
 		Log.i("CH NO2", String.valueOf(CHAQINO2(NO2)));
 		Log.i("CH CO", String.valueOf(CHAQICO(CO)));
 		Log.i("CH O3_8H", String.valueOf(CHAQIOzone8hr(O3_8H)));
-		Log.i("CH O3_1H", String.valueOf(CHAQIOzone1hr(O3_1H)));
+		Log.i("CH O3_1H", String.valueOf(CHAQIOzone1hr(O3_1H)));*/
 		Json = "{\"PrimaryPollutant\":" + "\"" + PrimaryPollutant + "\"" + ", \"MaxAQI\":" + MaxAQI + ",\"USPrimaryPollutant\":" + USPrimaryPollutant +
 				",\"CHPrimaryPollutant\":" + CHPrimaryPollutant + ",\"Content\":[" +
 				"{\"name\": \"PM2_5\"," + "\"value\":" + PM2_5 + ",\"USAQI\":" + USAQIPM25(PM2_5) + ",\"CHAQI\":" + CHAQIPM25(PM2_5) + "}," +
@@ -815,7 +815,7 @@ public class AQITool {
 				"{\"name\": \"O3_8H\"," + "\"value\":" + O3_8H + ",\"USAQI\":" + USAQIOzone8hr(O3_8H) + ",\"CHAQI\":" + CHAQIOzone8hr(O3_8H) + "}," +
 				"{\"name\": \"O3_1H\"," + "\"value\":" + O3_1H + ",\"USAQI\": 100001" + ",\"CHAQI\":" + CHAQIOzone1hr(O3_1H) + "}" +
 				"]}";
-		Log.i("json", Json);		
+		//Log.i("json", Json);
 		return Json;
 	}
 }
