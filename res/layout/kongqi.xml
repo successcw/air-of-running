@@ -76,7 +76,7 @@
         android:src="@drawable/b_0" />
     
     <TextView
-        android:id="@+id/USconst"
+        android:id="@+id/SHconst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -88,11 +88,11 @@
         android:textColor="@android:color/black"
         android:textSize="12sp" />
     <TextView
-        android:id="@+id/USupdatetime"
+        android:id="@+id/SHupdatetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/USconst"
+        android:layout_below="@+id/SHconst"
         android:layout_marginRight="2dp"
         android:gravity="left"
         android:text="今天12点发布"
@@ -100,38 +100,38 @@
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/USAQIVALUE"
+        android:id="@+id/SHAQIVALUE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/USupdatetime"
+        android:layout_below="@+id/SHupdatetime"
         android:gravity="center_horizontal"
         android:shadowColor="#ff000000"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="5"
-        android:text="@string/USAQIVALUE"
+        android:text="@string/SHAQIVALUE"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="80dp" />
 
     <TextView
-        android:id="@+id/USAQIconst"
+        android:id="@+id/SHAQIconst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/USupdatetime"
+        android:layout_alignTop="@+id/SHupdatetime"
         android:text="空气质量指数(AQI)"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="15sp" />    
         
     <TextView
-        android:id="@+id/USAQILEVEL"
+        android:id="@+id/SHAQILEVEL"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/USupdatetime"
-        android:layout_toRightOf="@+id/USAQIVALUE"
+        android:layout_below="@+id/SHupdatetime"
+        android:layout_toRightOf="@+id/SHAQIVALUE"
         android:layout_marginLeft="34dp"
         android:layout_marginTop="25dp"
         android:shadowColor="#ff000000"
@@ -143,12 +143,40 @@
         android:textColor="@android:color/white"
         android:textSize="25dp" />
     
-    <TextView
+	<TextView
+	    android:id="@+id/PrimaryPollutant"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="left"
+	    android:text="首要污染物： PM10"
+	    android:layout_below="@+id/SHAQIVALUE"
+	    android:textSize="15dp" />
+	<TextView
+	    android:id="@+id/AQIjianyi"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="left"
+	    android:text=""
+	    android:layout_below="@+id/PrimaryPollutant"
+	    android:textSize="15dp" />
+
+	<TextView
+	    android:id="@+id/running"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="left"
+	    android:layout_below="@+id/AQIjianyi"
+	    android:layout_marginTop="15dp"
+	    android:textColor="@android:color/white"
+	    android:textSize="15dp" />
+    
+    
+   <!--  <TextView
         android:id="@+id/SHconst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/USAQIVALUE"
+        android:layout_below="@+id/SHAQIVALUE"
         android:layout_marginTop="36dp"
         android:layout_marginRight="2dp"
         android:gravity="left"
@@ -210,7 +238,7 @@
         android:text="良"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:textSize="25dp" />
+        android:textSize="25dp" /> -->
 
     
     

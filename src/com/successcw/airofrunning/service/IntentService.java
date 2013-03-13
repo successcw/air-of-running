@@ -86,6 +86,13 @@ public class IntentService extends Service{
 				intent.putExtra("SHUPDATETIME", jsonObjRecv.getString("time").toString());
 				intent.putExtra("SHAQIVALUE", jsonObjRecv.getString("AQI").toString());
 				intent.putExtra("SHPM2_5", jsonObjRecv.getString("PM2_5").toString());
+				intent.putExtra("PM10", jsonObjRecv.getString("PM10").toString());
+				intent.putExtra("SO2", jsonObjRecv.getString("SO2").toString());
+				intent.putExtra("NO2", jsonObjRecv.getString("NO2").toString());
+				intent.putExtra("CO", jsonObjRecv.getString("CO").toString());
+				intent.putExtra("O3_1H", jsonObjRecv.getString("O3_1H").toString());
+				intent.putExtra("O3_8H", jsonObjRecv.getString("O3_8H").toString());
+				intent.putExtra("PrimaryPollutant", jsonObjRecv.getString("PrimaryPollutant").toString());
 				intent.putExtra("CITYAREA", jsonObjRecv.getString("area").toString());
 				intent.putExtra("STATION", jsonObjRecv.getString("station").toString());
 

@@ -21,10 +21,38 @@
         android:text="http://apps.who.int/iris/bitstream/10665/69477/3/WHO_SDE_PHE_OEH_06.02_chi.pdf"
         android:textColor="@android:color/white"
         android:textSize="15dp" />
-	<ImageView
-	    android:id="@+id/shvsus"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:src="@drawable/shvsus" />
+    <TextView
+        android:id="@+id/textzixun2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="中国环境空气质量指数（AQI）标准："
+        android:textColor="@android:color/white"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/textzixun3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:autoLink="all"
+        android:text="http://www.zzemc.cn/em_aw/Content/HJ633-2012.pdf"
+        android:textColor="@android:color/white"
+        android:textSize="15dp" />
+   <TextView
+        android:id="@+id/textzixun4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="美国环境空气质量指数（AQI）标准："
+        android:textColor="@android:color/white"
+        android:textSize="15dp" />
+    <TextView
+        android:id="@+id/textzixun5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:autoLink="all"
+        android:text="http://epa.gov/airquality/urbanair/"
+        android:textColor="@android:color/white"
+        android:textSize="15dp" />
 </LinearLayout>

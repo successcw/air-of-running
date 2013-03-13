@@ -46,6 +46,13 @@ public class MainActivity extends TabActivity {
 	String SHUPDATETIME = "";
 	String SHUPDATEDATE = "";
 	String SHPM2_5 = "";
+	String PM10 = "";
+	String SO2 = "";
+	String NO2 = "";
+	String CO = "";
+	String O3_1H = "";
+	String O3_8H = "";
+	String PrimaryPollutant = "";
 	String SHAQIVALUE = "";
 	String SHAQILEVEL = "";
 	String SHISHITEMPRATURE = "";
@@ -103,6 +110,13 @@ public class MainActivity extends TabActivity {
 				SHAQILEVEL = (String) intent.getSerializableExtra("SHAQILEVEL");
 				SHAQIVALUE = (String) intent.getSerializableExtra("SHAQIVALUE");
 				SHPM2_5 = (String) intent.getSerializableExtra("SHPM2_5");
+				PM10 = (String) intent.getSerializableExtra("PM10");
+				SO2 = (String) intent.getSerializableExtra("SO2");
+				NO2 = (String) intent.getSerializableExtra("NO2");
+				CO = (String) intent.getSerializableExtra("CO");
+				O3_1H = (String) intent.getSerializableExtra("O3_1H");
+				O3_8H = (String) intent.getSerializableExtra("O3_8H");
+				PrimaryPollutant = (String) intent.getSerializableExtra("PrimaryPollutant");
 				SHISHITEMPRATURE = (String) intent.getSerializableExtra("SHISHITEMPRATURE");
 				AIRCONDITION = (String) intent.getSerializableExtra("AIRCONDITION");
 				TEMPRATURE = (String) intent.getSerializableExtra("TEMPRATURE");
@@ -275,7 +289,7 @@ public class MainActivity extends TabActivity {
 		Dialog noticeDialog;
         AlertDialog.Builder builder = new Builder(this);
         builder.setTitle("软件版本更新");
-        builder.setMessage("有最新的软件包V1.3，快下载更新吧~\n 更新如下：\n" + VERSIONCONTENT.replace(";", "\n"));
+        builder.setMessage("有最新的软件包，快下载更新吧~\n 更新如下：\n" + VERSIONCONTENT.replace(";", "\n"));
         builder.setPositiveButton("下载", new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -315,6 +329,13 @@ public class MainActivity extends TabActivity {
 		intentWeather.putExtra("SHAQILEVEL", SHAQILEVEL);
 		intentWeather.putExtra("SHAQIVALUE", SHAQIVALUE);
 		intentWeather.putExtra("SHPM2_5", SHPM2_5);
+		intentWeather.putExtra("PM10", PM10);
+		intentWeather.putExtra("SO2", SO2);
+		intentWeather.putExtra("NO2", NO2);
+		intentWeather.putExtra("CO", CO);
+		intentWeather.putExtra("O3_1H", O3_1H);
+		intentWeather.putExtra("O3_8H", O3_8H);
+		intentWeather.putExtra("PrimaryPollutant", PrimaryPollutant);
 		intentWeather.putExtra("SHISHITEMPRATURE", SHISHITEMPRATURE);
 		intentWeather.putExtra("AIRCONDITION", AIRCONDITION);
 		intentWeather.putExtra("TEMPRATURE", TEMPRATURE);
