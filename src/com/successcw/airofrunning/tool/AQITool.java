@@ -8,18 +8,11 @@ public class AQITool {
 	{
 		int linear;
 		float temp;
-		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
+		temp = (float)Arith.add(Arith.mul(Arith.div(Arith.sub(Concentration, Conclow),Arith.sub(Conchigh, Conclow)),Arith.sub(AQIhigh,AQIlow)),AQIlow);
+		//temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
 		//Log.i("Linear", Float.toString(temp));
-		linear=Math.round(temp);
-		return linear;
-	}
-    public static int CHLinear(int AQIhigh, int AQIlow, float Conchigh, float Conclow, float Concentration)
-	{
-		int linear;
-		float temp;
-		temp = ((Concentration-Conclow)/(Conchigh-Conclow))*(AQIhigh-AQIlow)+AQIlow;
-		//Log.i("Linear", Float.toString(temp));
-		linear=Math.round(temp+0.5f);
+		linear=(int)Math.ceil(temp);
+		//Log.i("after Linear", Float.toString(temp));
 		return linear;
 	}
 
@@ -32,7 +25,7 @@ public class AQITool {
 			//Log.i("AQIPM25",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQIPM25", Float.toString(Conc));
-			c = (float)(Math.floor(10*Conc))/10;
+			c = (float)Arith.div(Math.floor(Arith.mul(10,Conc)),10);
 			//Log.i("AQIPM25", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -139,7 +132,7 @@ public class AQITool {
 			//Log.i("AQICO",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQICO", Float.toString(Conc));
-			c = (float)(Math.floor(10*Conc))/10;
+			c = (float)Arith.div(Math.floor(Arith.mul(10,Conc)),10);
 			//Log.i("AQICO", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -245,7 +238,7 @@ public class AQITool {
 			//Log.i("AQIOzone8hr",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQIOzone8hr", Float.toString(Conc));
-			c = (float)(Math.floor(Conc))/1000;
+			c = (float)Arith.div((Math.floor(Conc)),1000);
 			//Log.i("AQIOzone8hr", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -302,7 +295,7 @@ public class AQITool {
 			//Log.i("USAQINO2",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("USAQINO2", Float.toString(Conc));
-			c = (float)(Math.floor(Conc))/1000;
+			c = (float)Arith.div((Math.floor(Conc)),1000);
 			//Log.i("USAQINO2", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -355,7 +348,8 @@ public class AQITool {
 			//Log.i("AQIPM25",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQIPM25", Float.toString(Conc));
-			c = (float)(Math.floor(10*Conc))/10;
+			c = Conc;
+			//c = (float)(Math.floor(10*Conc))/10;
 			//Log.i("AQIPM25", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -365,33 +359,33 @@ public class AQITool {
 		
 		int AQI = 0;
 	
-		if (c>=0 && c<35.5)
+		if (c>=0 && c<36)
 		{
-			AQI=Linear(50,0,35.4f,0,c);
+			AQI=Linear(50,0,35,0,c);
 		}
-		else if (c>=35.5 && c<75.5)
+		else if (c>=36 && c<76)
 		{
-			AQI=Linear(100,51,75.4f,35.5f,c);
+			AQI=Linear(100,51,75,36,c);
 		}
-		else if (c>=75.5 && c<115.5)
+		else if (c>=76 && c<116)
 		{
-			AQI=Linear(150,101,115.4f,75.5f,c);
+			AQI=Linear(150,101,115,76,c);
 		}
-		else if (c>=115.5 && c<150.5)
+		else if (c>=116 && c<151)
 		{
-			AQI=Linear(200,151,150.4f,115.5f,c);
+			AQI=Linear(200,151,150,116,c);
 		}
-		else if (c>=150.5 && c<250.5)
+		else if (c>=151 && c<251)
 		{
-			AQI=Linear(300,201,250.4f,150.5f,c);
+			AQI=Linear(300,201,250,151,c);
 		}
-		else if (c>=250.5 && c<350.5)
+		else if (c>=251 && c<351)
 		{
-			AQI=Linear(400,301,350.4f,250.5f,c);
+			AQI=Linear(400,301,350,251,c);
 		}
-		else if (c>=350.5 && c<500.5)
+		else if (c>=351 && c<501)
 		{
-			AQI=Linear(500,401,500.4f,350.5f,c);
+			AQI=Linear(500,401,500,351,c);
 		}
 		else
 		{
@@ -440,11 +434,11 @@ public class AQITool {
 		}
 		else if (c>=421 && c<501)
 		{
-			AQI=Linear(400,301,500,421,c);
+			AQI=Linear(400,301,50,421,c);
 		}
 		else if (c>=501 && c<601)
 		{
-			AQI=Linear(500,401,600,501,c);
+			AQI=Linear(500,401,60,501,c);
 		}
 		else
 		{
@@ -462,7 +456,8 @@ public class AQITool {
 			//Log.i("AQICO",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQICO", Float.toString(Conc));
-			c = (float)(Math.floor(10*Conc))/10;
+			//c = (float)(Math.floor(10*Conc))/10;
+			c = Conc;
 			//Log.i("AQICO", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -471,33 +466,33 @@ public class AQITool {
 		}
 		
 		int AQI = 0;
-		if (c>=0 && c<5.5)
+		if (c>=0 && c<6)
 		{
-			AQI=CHLinear(50,0,5.4f,0,c);
+			AQI=Linear(50,0,5,0,c);
 		}
-		else if (c>=5.5 && c<10.5)
+		else if (c>=6 && c<11)
 		{
-			AQI=CHLinear(100,51,10.4f,5.5f,c);
+			AQI=Linear(100,51,10,6,c);
 		}
-		else if (c>=10.5 && c<35.5)
+		else if (c>=11 && c<36)
 		{
-			AQI=CHLinear(150,101,35.4f,10.5f,c);
+			AQI=Linear(150,101,35,11,c);
 		}
-		else if (c>=35.5 && c<60.5)
+		else if (c>=36 && c<61)
 		{
-			AQI=CHLinear(200,151,60.4f,35.5f,c);
+			AQI=Linear(200,151,60,36,c);
 		}
-		else if (c>=60.5 && c<90.5)
+		else if (c>=61 && c<91)
 		{
-			AQI=CHLinear(300,201,90.4f,60.5f,c);
+			AQI=Linear(300,201,90,61,c);
 		}
-		else if (c>=90.5 && c<120.5)
+		else if (c>=91 && c<121)
 		{
-			AQI=CHLinear(400,301,120.4f,90.5f,c);
+			AQI=Linear(400,301,120,91,c);
 		}
-		else if (c>=120.5 && c<150.5)
+		else if (c>=121 && c<151)
 		{
-			AQI=CHLinear(500,401,150.4f,120.5f,c);
+			AQI=Linear(500,401,150,121,c);
 		}
 		else
 		{
@@ -526,19 +521,19 @@ public class AQITool {
 		int AQI = 0;
 		if (c>=0 && c<151)
 		{
-			AQI=CHLinear(50,0,150,0,c);
+			AQI=Linear(50,0,150,0,c);
 		}
 		else if (c>=151 && c<501)
 		{
-			AQI=CHLinear(100,51,500,151,c);
+			AQI=Linear(100,51,500,151,c);
 		}
 		else if (c>=501 && c<651)
 		{
-			AQI=CHLinear(150,101,650f,501f,c);
+			AQI=Linear(150,101,650f,501f,c);
 		}
 		else if (c>=651 && c<=801)
 		{
-			AQI=CHLinear(200,151,800f,651f,c);
+			AQI=Linear(200,151,800f,651f,c);
 		}
 		else
 		{
@@ -556,7 +551,7 @@ public class AQITool {
 			//Log.i("AQIOzone8hr",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQIOzone8hr", Float.toString(Conc));
-			c = (float)(Conc)/1000;
+			c = Conc;
 			//Log.i("AQIOzone8hr", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -566,25 +561,25 @@ public class AQITool {
 		
 		int AQI = 0;
 
-		if (c>=0 && c<.101)
+		if (c>=0 && c<101)
 		{
-			AQI=CHLinear(50,0,0.100f,0,c);
+			AQI=Linear(50,0,100,0,c);
 		}
-		else if (c>=.101 && c<.161)
+		else if (c>=101 && c<161)
 		{
-			AQI=CHLinear(100,51,.160f,.101f,c);
+			AQI=Linear(100,51,160,101,c);
 		}
-		else if (c>=.161 && c<.216)
+		else if (c>=161 && c<216)
 		{
-			AQI=CHLinear(150,101,.215f,.161f,c);
+			AQI=Linear(150,101,215,161,c);
 		}
-		else if (c>=.216 && c<.266)
+		else if (c>=216 && c<266)
 		{
-			AQI=CHLinear(200,151,.265f,.216f,c);
+			AQI=Linear(200,151,265,216,c);
 		}
-		else if (c>=.266 && c<.801)
+		else if (c>=266 && c<801)
 		{
-			AQI=CHLinear(300,201,.800f,.266f,c);
+			AQI=Linear(300,201,800,266,c);
 		}
 		else
 		{
@@ -601,7 +596,8 @@ public class AQITool {
 			//Log.i("AQIOzone8hr",Concentration);
 			float Conc = Float.parseFloat(Concentration);
 			//Log.i("AQIOzone8hr", Float.toString(Conc));
-			c = (float)(Conc)/1000;
+			//c = (float)(Conc)/1000;
+			c = Conc;
 			//Log.i("AQIOzone8hr", Float.toString(c));
 		} catch(NumberFormatException e){
 			//System.err.println(" PM2.5´íÎó ");
@@ -611,33 +607,33 @@ public class AQITool {
 		
 		int AQI = 0;
 
-		if (c>=0 && c<.161)
+		if (c>=0 && c<161)
 		{
-			AQI=CHLinear(50,0,0.160f,0,c);
+			AQI=Linear(50,0,160,0,c);
 		}
-		else if (c>=.161 && c<.201)
+		else if (c>=161 && c<201)
 		{
-			AQI=CHLinear(100,51,.200f,.161f,c);
+			AQI=Linear(100,51,200,161,c);
 		}
-		else if (c>=.201 && c<.301)
+		else if (c>=201 && c<301)
 		{
-			AQI=CHLinear(150,101,.300f,.201f,c);
+			AQI=Linear(150,101,300,201,c);
 		}
-		else if (c>=.301 && c<.401)
+		else if (c>=301 && c<401)
 		{
-			AQI=CHLinear(200,151,.400f,.301f,c);
+			AQI=Linear(200,151,400,301,c);
 		}
-		else if (c>=.401 && c<.801)
+		else if (c>=401 && c<801)
 		{
-			AQI=CHLinear(300,201,.800f,.201f,c);
+			AQI=Linear(300,201,800,401,c);
 		}
-		else if (c>=.801 && c<1.001)
+		else if (c>=801 && c<1001)
 		{
-			AQI=CHLinear(400,301,1.00f,.801f,c);
+			AQI=Linear(400,301,1000,801,c);
 		}
-		else if (c>=1.001 && c<1.201)
+		else if (c>=1001 && c<1201)
 		{
-			AQI=CHLinear(500,401,1.200f,1.001f,c);
+			AQI=Linear(500,401,1200,1001,c);
 		}
 		else
 		{
@@ -665,31 +661,31 @@ public class AQITool {
 		int AQI = 0;
 		if (c>=0 && c<101)
 		{
-			AQI=CHLinear(50,0,100,0,c);
+			AQI=Linear(50,0,100,0,c);
 		}
 		else if (c>=101 && c<201)
 		{
-			AQI=CHLinear(100,51,200,101,c);
+			AQI=Linear(100,51,200,101,c);
 		}
 		else if (c>=201 && c<701)
 		{
-			AQI=CHLinear(150,101,700,201,c);
+			AQI=Linear(150,101,700,201,c);
 		}
 		else if (c>=701 && c<1201)
 		{
-			AQI=CHLinear(200,151,1200,701,c);
+			AQI=Linear(200,151,1200,701,c);
 		}
 		else if (c>=1201 && c<2341)
 		{
-			AQI=CHLinear(300,201,2340,1201,c);
+			AQI=Linear(300,201,2340,1201,c);
 		}
 		else if (c>=2341 && c<3091)
 		{
-			AQI=CHLinear(400,301,3090,2341,c);
+			AQI=Linear(400,301,3090,2341,c);
 		}
-		else if (c>=3091 && c<=3841)
+		else if (c>=3091 && c<3841)
 		{
-			AQI=CHLinear(500,401,3840,3091,c);
+			AQI=Linear(500,401,3840,3091,c);
 		}
 		else
 		{
@@ -811,7 +807,7 @@ public class AQITool {
 				"{\"name\": \"PM10\"," + "\"value\":" + PM10 + ",\"USAQI\":" + USAQIPM10(PM10) + ",\"CHAQI\":" + CHAQIPM10(PM10) + "}," +
 				"{\"name\": \"SO2\"," + "\"value\":" + SO2 + ",\"USAQI\":" + USAQISO21hr(SO2) + ",\"CHAQI\":" + CHAQISO21hr(SO2) + "}," +
 				"{\"name\": \"NO2\"," + "\"value\":" + NO2 + ",\"USAQI\":" + USAQINO2(NO2) + ",\"CHAQI\":" + CHAQINO2(NO2) + "}," +
-				"{\"name\": \"CO\"," + "\"value\":" + CO + ",\"USAQI\":" + USAQICO(CO) + ",\"CHAQI\":" + USAQICO(CO) + "}," +
+				"{\"name\": \"CO\"," + "\"value\":" + CO + ",\"USAQI\":" + USAQICO(CO) + ",\"CHAQI\":" + CHAQICO(CO) + "}," +
 				"{\"name\": \"O3_8H\"," + "\"value\":" + O3_8H + ",\"USAQI\":" + USAQIOzone8hr(O3_8H) + ",\"CHAQI\":" + CHAQIOzone8hr(O3_8H) + "}," +
 				"{\"name\": \"O3_1H\"," + "\"value\":" + O3_1H + ",\"USAQI\": 100001" + ",\"CHAQI\":" + CHAQIOzone1hr(O3_1H) + "}" +
 				"]}";

@@ -338,7 +338,13 @@ public class weatheractivity extends Activity {
     	wind.setText(WIND);  
 
     	ImageView weathericon = (ImageView) ViewTemp.findViewById(R.id.weathericon);
-    	weathericon.setImageResource(icon[Integer.valueOf(WEATHERICON)]);
+    	
+    	Integer weathericonTemp = TryParseInt(WEATHERICON.toString());
+    	if(weathericonTemp == null || weathericonTemp > 32) {
+    		weathericon.setImageResource(icon[32]);
+    	}else{
+    		weathericon.setImageResource(icon[weathericonTemp]);
+    	}
     	
     	TextView tempratureupdatetime = (TextView) ViewTemp.findViewById(R.id.tempratureupdatetime);
     	tempratureupdatetime.setText("今天" + TEMPRATUREUPDATETIME + "发布");     	
@@ -683,46 +689,80 @@ public class weatheractivity extends Activity {
 		TextView forecast = (TextView) ViewTemp.findViewById(R.id.forecast1);
 		ImageView forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon1);
 
-		forecast.setText(WEATHERFORECASE[12].split("-")[1] + "/" + WEATHERFORECASE[12].split("-")[2] 
-							+ "      " + WEATHERFORECASE[10] +"°/" + WEATHERFORECASE[9] + "°"
-							+ "\n" + WEATHERFORECASE[8]);
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[11].replace(" ", ""))]);
-		
-		forecast = (TextView) ViewTemp.findViewById(R.id.forecast2);
-		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon2);
-		forecast.setText(WEATHERFORECASE[17].split("-")[1] + "/" + WEATHERFORECASE[17].split("-")[2] 
-							+ "      " + WEATHERFORECASE[15] +"°/" + WEATHERFORECASE[14] + "°"
-							+ "\n" + WEATHERFORECASE[13]);
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[16].replace(" ", ""))]);
-		
-		forecast = (TextView) ViewTemp.findViewById(R.id.forecast3);
-		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon3);
-		forecast.setText(WEATHERFORECASE[22].split("-")[1] + "/" + WEATHERFORECASE[22].split("-")[2] 
-							+ "      " + WEATHERFORECASE[20] +"°/" + WEATHERFORECASE[19] + "°"
-							+ "\n" + WEATHERFORECASE[18]);
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[21].replace(" ", ""))]);
-		
-		forecast = (TextView) ViewTemp.findViewById(R.id.forecast4);
-		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon4);
-		forecast.setText(WEATHERFORECASE[27].split("-")[1] + "/" + WEATHERFORECASE[27].split("-")[2] 
-							+ "      " + WEATHERFORECASE[25] +"°/" + WEATHERFORECASE[24] + "°"
-							+ "\n" + WEATHERFORECASE[23]);
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[26].replace(" ", ""))]);
-		
-		forecast = (TextView) ViewTemp.findViewById(R.id.forecast5);
-		forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon5);
-		forecast.setText(WEATHERFORECASE[32].split("-")[1] + "/" + WEATHERFORECASE[32].split("-")[2] 
-							+ "      " + WEATHERFORECASE[30] +"°/" + WEATHERFORECASE[29] + "°"
-							+ "\n" + WEATHERFORECASE[28]);
-		forcasticon.setImageResource(icon[Integer.valueOf(WEATHERFORECASE[31].replace(" ", ""))]);
+		try {
+			forecast.setText(WEATHERFORECASE[12].split("-")[1] + "/" + WEATHERFORECASE[12].split("-")[2] 
+								+ "      " + WEATHERFORECASE[10] +"°/" + WEATHERFORECASE[9] + "°"
+								+ "\n" + WEATHERFORECASE[8]);
+			Integer forcasticontemp = TryParseInt(WEATHERFORECASE[11].replace(" ", ""));
+			if(forcasticontemp == null || forcasticontemp > 32) {
+				forcasticon.setImageResource(icon[32]);
+			}else{
+				forcasticon.setImageResource(icon[forcasticontemp]);
+			}
+			
+			forecast = (TextView) ViewTemp.findViewById(R.id.forecast2);
+			forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon2);
+			forecast.setText(WEATHERFORECASE[17].split("-")[1] + "/" + WEATHERFORECASE[17].split("-")[2] 
+								+ "      " + WEATHERFORECASE[15] +"°/" + WEATHERFORECASE[14] + "°"
+								+ "\n" + WEATHERFORECASE[13]);
+			
+			forcasticontemp = TryParseInt(WEATHERFORECASE[16].replace(" ", ""));
+			if(forcasticontemp == null || forcasticontemp > 32) {
+				forcasticon.setImageResource(icon[32]);
+			}else{
+				forcasticon.setImageResource(icon[forcasticontemp]);
+			}
+			
+			forecast = (TextView) ViewTemp.findViewById(R.id.forecast3);
+			forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon3);
+			forecast.setText(WEATHERFORECASE[22].split("-")[1] + "/" + WEATHERFORECASE[22].split("-")[2] 
+								+ "      " + WEATHERFORECASE[20] +"°/" + WEATHERFORECASE[19] + "°"
+								+ "\n" + WEATHERFORECASE[18]);
+			
+			forcasticontemp = TryParseInt(WEATHERFORECASE[21].replace(" ", ""));
+			if(forcasticontemp == null || forcasticontemp > 32) {
+				forcasticon.setImageResource(icon[32]);
+			}else{
+				forcasticon.setImageResource(icon[forcasticontemp]);
+			}
+			
+			forecast = (TextView) ViewTemp.findViewById(R.id.forecast4);
+			forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon4);
+			forecast.setText(WEATHERFORECASE[27].split("-")[1] + "/" + WEATHERFORECASE[27].split("-")[2] 
+								+ "      " + WEATHERFORECASE[25] +"°/" + WEATHERFORECASE[24] + "°"
+								+ "\n" + WEATHERFORECASE[23]);
+			
+			forcasticontemp = TryParseInt(WEATHERFORECASE[26].replace(" ", ""));
+			if(forcasticontemp == null || forcasticontemp > 32) {
+				forcasticon.setImageResource(icon[32]);
+			}else{
+				forcasticon.setImageResource(icon[forcasticontemp]);
+			}
+			
+			forecast = (TextView) ViewTemp.findViewById(R.id.forecast5);
+			forcasticon = (ImageView) ViewTemp.findViewById(R.id.forecasticon5);
+			forecast.setText(WEATHERFORECASE[32].split("-")[1] + "/" + WEATHERFORECASE[32].split("-")[2] 
+								+ "      " + WEATHERFORECASE[30] +"°/" + WEATHERFORECASE[29] + "°"
+								+ "\n" + WEATHERFORECASE[28]);
+			
+			forcasticontemp = TryParseInt(WEATHERFORECASE[31].replace(" ", ""));
+			if(forcasticontemp == null || forcasticontemp > 32) {
+				forcasticon.setImageResource(icon[32]);
+			}else{
+				forcasticon.setImageResource(icon[forcasticontemp]);
+			}
+		}catch(ArrayIndexOutOfBoundsException e){
+			Log.e("error", e.getMessage());
+		}
     }
     private void loadZixun() {
     	ViewTemp = ViewZixun;
 		TextView textzixun = (TextView) ViewTemp.findViewById(R.id.textzixun);
 		textzixun.setText("中美执行的环保标准不同导致两者空气质量指数(AQI)相差较大，有关部门解释：发展要有序，慢慢来。"
 							+ "\n" + "但我们不得不说：生命是无价的。"
-							+ "所以，本软件采用中国发布的污染物数据,根据美国标准"
+							+ "所以，本软件采用中国发布的污染物数据，根据美国标准"
     						+ "重新计算得出空气质量指数(AQI)，相关建议都是基于这个值给出，仅供参考。" + "\n"
+							+ "数据来源：\n    北京：北京环境保护检测中心\n    上海：上海环境监测中心\n    其余城市：中国环境监测总站\n"
     						+ "WHO空气质量准则，请参考：");
     	Integer USAQIVALUETemp = TryParseInt(USAQIVALUE.toString());
     }
