@@ -10,15 +10,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.successcw.airofrunning.service.IntentService;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
@@ -30,6 +27,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+
+import com.successcw.airofrunning.service.IntentService;
+import com.umeng.analytics.MobclickAgent;
 
 public class StationActivity extends Activity{
 	private Spinner provinceSpinner;
@@ -280,6 +280,16 @@ public class StationActivity extends Activity{
 			unbindService(conn);
 		}
 		super.onDestroy();
+	}
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    //MobclickAgent.onResume(this);
+	}
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    //MobclickAgent.onPause(this);
 	}
 
 }

@@ -35,6 +35,7 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.successcw.airofrunning.service.IntentService;
+import com.umeng.analytics.MobclickAgent;
 
 public class MainActivity extends TabActivity {
 
@@ -214,7 +215,16 @@ public class MainActivity extends TabActivity {
 		unregisterReceiver(receiver);
 		super.onDestroy();
 	}
-	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    MobclickAgent.onResume(this);
+	}
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    MobclickAgent.onPause(this);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		  // menu.add(0,1,0,"·ÖÏí")

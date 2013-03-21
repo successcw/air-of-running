@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.successcw.airofrunning.ui"
-    android:versionCode="5"
-    android:versionName="1.4" >
+    android:versionCode="6"
+    android:versionName="1.5" >
 
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="14" />
 
@@ -37,10 +37,14 @@
         <activity 
             android:theme="@style/AppTheme" 
             android:name="com.successcw.airofrunning.ui.StationActivity"
-            android:screenOrientation="portrait"></activity>    
+            android:screenOrientation="portrait"></activity>
+        <meta-data android:value="51458d9d56240b4c05000ac9" android:name="UMENG_APPKEY"></meta-data>
+		<meta-data android:value="mail" android:name="UMENG_CHANNEL"/>
     </application>
     
 	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 	
 </manifest>

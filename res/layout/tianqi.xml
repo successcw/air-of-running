@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:background="#4f888888"
     android:orientation="vertical" >
-        
+
         <TextView
             android:id="@+id/weatherforecast"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-
+			android:layout_marginLeft="5dp"
             android:gravity="left"
             android:text="上海未来5天天气预报"
             android:textColor="@android:color/white"
@@ -35,7 +35,7 @@
 			android:layout_marginTop="10dp"
 			android:layout_marginLeft = "15dp"
 			android:background="#4f000000"
-			android:text=""	
+			android:text=""
 			android:textColor="@android:color/white"
 			android:textSize="14sp" />
 

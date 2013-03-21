@@ -45,6 +45,7 @@ import android.widget.Toast;
 
 import com.successcw.airofrunning.service.IntentService;
 import com.successcw.airofrunning.tool.AQITool;
+import com.umeng.analytics.MobclickAgent;
 
 public class weatheractivity extends Activity {
 	private ViewPager mPager;//Ò³¿¨ÄÚÈÝ
@@ -1004,5 +1005,26 @@ public class weatheractivity extends Activity {
 		ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progressBar1);
 		progressBar1.setVisibility(View.GONE);
 	
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		//unbindService(conn);
+		unregisterReceiver(receiver);
+		super.onDestroy();
+	}
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    //MobclickAgent.onResume(this);
+	}
+	@Override
+	public void onPause() {
+	    super.onPause();
+	    //MobclickAgent.onPause(this);
 	}
 }

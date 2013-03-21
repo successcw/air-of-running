@@ -73,8 +73,9 @@
         android:layout_alignTop="@+id/aircondition"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:src="@drawable/b_0" />
-    
+
     <TextView
         android:id="@+id/SHconst"
         android:layout_width="wrap_content"
@@ -82,7 +83,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/shishitemprature"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginRight="5dp"
         android:gravity="left"
         android:text="美国上海领事馆"
         android:textColor="@android:color/black"
@@ -93,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/SHconst"
-        android:layout_marginRight="2dp"
+        android:layout_marginRight="5dp"
         android:gravity="left"
         android:text="今天12点发布"
         android:textColor="@android:color/black"
@@ -121,11 +122,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/SHupdatetime"
+        android:layout_marginLeft="5dp"
         android:text="空气质量指数(AQI)"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:textSize="15sp" />    
-        
+        android:textSize="15sp" />
     <TextView
         android:id="@+id/SHAQILEVEL"
         android:layout_width="150dp"
@@ -142,11 +143,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="25dp" />
-    
 	<TextView
-	    android:id="@+id/PrimaryPollutant"
+		android:id="@+id/PrimaryPollutant"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="5dp"
 	    android:gravity="left"
 	    android:text="首要污染物： PM10"
 	    android:layout_below="@+id/SHAQIVALUE"
@@ -155,6 +156,7 @@
 	    android:id="@+id/AQIjianyi"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="5dp"
 	    android:gravity="left"
 	    android:text=""
 	    android:layout_below="@+id/PrimaryPollutant"
@@ -167,10 +169,10 @@
 	    android:gravity="left"
 	    android:layout_below="@+id/AQIjianyi"
 	    android:layout_marginTop="15dp"
+	    android:layout_marginLeft="5dp"
 	    android:textColor="@android:color/white"
 	    android:textSize="15dp" />
-    
-    
+
    <!--  <TextView
         android:id="@+id/SHconst"
         android:layout_width="wrap_content"
@@ -239,7 +241,4 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="25dp" /> -->
-
-    
-    
 </RelativeLayout>
