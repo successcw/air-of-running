@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="22dp"
             android:layout_toRightOf="@+id/imageView1"
-            android:text="跑跑空气V1.5"
+            android:text="跑跑空气V1.6"
             android:textSize="20sp"/>
 
     </RelativeLayout>

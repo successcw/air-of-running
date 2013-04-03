@@ -276,7 +276,7 @@
 	    android:layout_marginTop="15dp"
 	    android:layout_marginLeft="5dp"
 		android:layout_marginRight="5dp"
-	    android:text="注：\n    1.CO单位为微克/立方米，其余污染物单位为 毫克/立方米，除臭氧外，其余污染物都是1小时平均值\n    2.美国无臭氧1小时标准\n    3.最终的AQI取所有污染物对应AQI的最大值（表中红色所示)"
+	    android:text="注：\n    1.CO单位为毫克/立方米，其余污染物单位为 微克/立方米，除臭氧外，其余污染物都是1小时平均值\n    2.美国无臭氧1小时标准\n    3.最终的AQI取所有污染物对应AQI的最大值（表中红色所示)"
 	    android:textColor="@android:color/white"
 	    android:textSize="15dp" />
 </RelativeLayout>
